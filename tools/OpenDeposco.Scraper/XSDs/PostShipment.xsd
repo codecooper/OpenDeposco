@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://integration.deposco.com/postshipment"
+    xmlns:t="http://integration.deposco.com/types"
+    xmlns:container="http://integration.deposco.com/container"
+    xmlns="http://integration.deposco.com/postshipment" 
+    elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/container" schemaLocation="Container.xsd"/>
+    
+    <xs:element name="shipments" type="PostShipmentCollection"/>
+
+    <xs:complexType name="PostShipmentCollection">
+        <xs:sequence>
+            <xs:element name="shipment" type="PostShipmentType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PostShipmentType">
+        <xs:sequence>
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="plannedArrivalDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="plannedShipDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="actualShipDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="billToAddress" type="t:AddressType" minOccurs="0"/>
+            <xs:element name="shipToAddress" type="t:AddressType" minOccurs="0"/>
+            <xs:element name="shipToEmail" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttributes" type="t:CustomAttributeCollection" minOccurs="0"/>
+            <xs:element name="notes" type="t:NoteCollection" minOccurs="0"/>
+            <xs:element name="containers" type="container:ContainerCollection" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

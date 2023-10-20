@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+    This schema defines the types used by the Trading Partner Site resource.
+
+    All URLs below are relative to the base URL:
+    https://integration.deposco.com/integration/{company}
+
+    The following operations are allowed on item Vendor resources:
+
+    *******************************************************************
+
+    GET /tradingPartnerSite/{tradingPartnerCode}
+
+    Accepts: application/xml, application/json
+    Returns: application/xml, application/json
+
+    Fetches a list of the Trading Partner Site resources.  Returns a response
+     of 200 and the xml/json representation of the list of Trading Partner Sites
+     in the response.
+
+    *******************************************************************
+
+    GET /trandingPartnerSite/{tradingPartnerCode}/{traningPartnerSiteId}
+
+    Accepts: application/xml, application/json
+    Returns: application/xml, application/json
+
+    Fetches a single Trading Partner Site.  Returns a response code of 200 and
+    the XML representation of the Trading Partner Site in the response.  If the
+    Trading Partner Site cannot be found, a 404 response code is returned, along
+    with a plain text error message in the response.
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://integration.deposco.com/tradingPartnerSite"
+           xmlns:t="http://integration.deposco.com/types"
+           targetNamespace="http://integration.deposco.com/tradingPartnerSite"
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+
+    <xs:element name="tradingPartnerSites" type="TradingPartnerSiteCollection"/>
+
+    <xs:complexType name="TradingPartnerSiteCollection">
+        <xs:sequence>
+            <xs:element name="tradingPartnerSite" type="TradingPartnerSiteType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TradingPartnerSiteType">
+        <xs:sequence>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+            <xs:element name="code" type="xs:string" minOccurs="0"/>
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+            <xs:element name="type" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Store"/>
+                        <xs:enumeration value="DC"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="siteAddress" type="t:AddressType" minOccurs="0"/>
+            <xs:element name="tradingPartner" type="xs:string"/>
+            <xs:element name="parentTradingPartnerSite" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://integration.deposco.com/workorder"
+	xmlns="http://integration.deposco.com/workorder"
+	xmlns:t="http://integration.deposco.com/types"
+	xmlns:workorderDetail="http://integration.deposco.com/workorderdetail"
+	elementFormDefault="unqualified">
+	
+	<!-- xs:import namespace="http://integration.deposco.com/ " schemaLocation=" "/ -->
+	<xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+	<xs:import namespace="http://integration.deposco.com/workorderdetail" schemaLocation="WorkorderDetail.xsd"/>
+	
+	<xs:element name="workorders" type="WorkorderCollection"/>
+	
+	<xs:complexType name="WorkorderCollection">
+		<xs:sequence>
+			<xs:element name="workorder" type="WorkorderType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="WorkorderType">
+		<xs:sequence>
+			<xs:element name="persistable" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="number" type="xs:string"/>
+			<xs:element name="description" type="xs:string"/>
+			<xs:element name="quantity" type="xs:int" minOccurs="0"/>
+			<xs:element name="priority" type="xs:int" minOccurs="0"/>
+			<xs:element name="type" type="xs:string"/>
+			<xs:element name="status" type="xs:string"/>
+			<xs:element name="startDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="endDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="kitHeaderName" type="xs:string" minOccurs="0"/>
+			<xs:element name="assignedToUser" type="xs:string" minOccurs="0"/>
+			<xs:element name="location" type="xs:string" minOccurs="0"/>
+			<xs:element name="zone" type="xs:string" minOccurs="0"/>
+			<xs:element name="pickwave" type="xs:string" minOccurs="0"/>
+			<xs:element name="createdDateTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="createdBy" type="xs:string" minOccurs="0"/>
+			<xs:element name="updatedDateTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="updatedBy" type="xs:string" minOccurs="0"/>
+			<xs:element name="workorderDetails" type="workorderDetail:WorkorderDetailCollection" minOccurs="0"/>
+			<xs:element name="channels" type="t:ChannelsCollection" minOccurs="0"/>
+			<xs:element name="dueDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="customAttribute1" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>	

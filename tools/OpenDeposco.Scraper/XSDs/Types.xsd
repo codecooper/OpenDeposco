@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://integration.deposco.com/types"
+           xmlns:pack="http://integration.deposco.com/pack"
+           targetNamespace="http://integration.deposco.com/types"
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/pack" schemaLocation="Pack.xsd"/>
+
+    <xs:complexType name="CustomMapType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CustomMapCollection">
+        <xs:sequence>
+            <xs:element name="customMapping" type="CustomMapType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="LengthUnitsType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Inch"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="DimensionType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element name="length" type="xs:double"/>
+                    <xs:element name="width" type="xs:double" minOccurs="0"/>
+                    <xs:element name="height" type="xs:double" minOccurs="0"/>
+                </xs:sequence>
+                <xs:element name="volume" type="xs:double"/>
+                <xs:element name="volumeUOM" type="xs:string" minOccurs="0"/>
+            </xs:choice>
+            <xs:element name="units" type="xs:string" minOccurs="0" default="Inch"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="WeightUnitsType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Pound"/>
+            <xs:enumeration value="Kilogram"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="WeightType">
+        <xs:sequence>
+            <xs:element name="weight" type="xs:double"/>
+            <xs:element name="units" type="xs:string" minOccurs="0"  default="Pound"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CustomFieldType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="value" type="xs:string"/>
+            <xs:element name="type" minOccurs="0"  default="String">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Integer"/>
+                        <xs:enumeration value="String"/>
+                        <xs:enumeration value="Double"/>
+                        <xs:enumeration value="Boolean"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CarrierSpecialServiceType">
+        <xs:sequence>
+            <xs:element name="shipVendor" type="xs:string" minOccurs="0"/>
+            <xs:element name="saturdayDelivery" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="saturdayPickup" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="insideDelivery" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="pharmacyDelivery" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="printReturnLabel" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="brokerSelectOption" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="battery" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="liftgateDelivery" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="returnReceiptRequested" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="notificationPriorToDelivery" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="batteryMaterial" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="LITHIUM_ION"/>
+                        <xs:enumeration value="LITHIUM_METAL"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="batteryPackaging" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="PACKED_WITH_EQUIPMENT"/>
+                        <xs:enumeration value="CONTAINED_IN_EQUIPMENT"/>
+                        <xs:enumeration value="STANDALONE"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <!-- Battery Regulation  IATA_SECTION_II -->
+            <xs:element name="batteryRegulation" type="xs:string" minOccurs="0"/>
+            <xs:element name="freightBookingConfirmationNumber" type="xs:string" minOccurs="0"/>
+            <!-- NO EEI 30.37(F) -->
+            <xs:element name="exportComplianceStatement" type="xs:string" minOccurs="0"/>
+            <xs:element name="deliverySignatureOption"  minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!-- No Signature Required, Indirect Signature Required, Direct Signature Required, Adult Signature Required -->
+                        <xs:enumeration value="NONE"/>
+                        <xs:enumeration value="INDIRECT_SIGNATURE_REQUIRED"/>
+                        <xs:enumeration value="DIRECT_SIGNATURE_REQUIRED"/>
+                        <xs:enumeration value="ADULT_SIGNATURE_REQUIRED"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="homeDeliveryOption" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <!--   FedEx Date Certain Home Delivery, FedEx Evening Home Delivery, FedEx Appointment Home Delivery -->
+                        <xs:enumeration value="FEDEX_DATE_CERTAIN_HOME_DELIVERY"/>
+                        <xs:enumeration value="FEDEX_EVENING_HOME_DELIVERY"/>
+                        <xs:enumeration value="FEDEX_APPOINTMENT_HOME_DELIVERY"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="collectOnDelivery" type="xs:boolean" minOccurs="0" />
+            <!-- ANY, GUARANTEED_FUNDS -->
+            <xs:element name="codCollectionType" type="xs:string" minOccurs="0" />
+            <!-- PERSONAL_STATE -->
+            <xs:element name="codTinType" type="xs:string" minOccurs="0" />
+            <!-- BUSINESS_SERVICE_CENTER, DROP_BOX, REGULAR_PICKUP, REQUEST_COURIER, STATION -->
+            <xs:element name="dropOffType" type="xs:string" minOccurs="0" />
+            <!-- FEDEX_TUBE, FEDEX_PAK, FEDEX_BOX, FEDEX_ENVELOPE, YOUR_PACKAGE' -->
+            <xs:element name="packagingType" type="xs:string" minOccurs="0" />
+            <xs:element name="holdAtLocation" type="xs:boolean" minOccurs="0" />
+            <xs:element name="fedexOneRate" type="xs:boolean" minOccurs="0" />
+            <xs:element name="hazardClass" type="xs:double" minOccurs="0" />
+            <xs:element name="properShippingName" type="xs:string" minOccurs="0" />
+            <xs:element name="packingInstructions" type="xs:string" minOccurs="0" />
+            <xs:element name="cargoAircraftOnly" type="xs:boolean" minOccurs="0" />
+            <xs:element name="dangerousGoodsUOM" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipsWithDryIce" type="xs:boolean" minOccurs="0" />
+            <xs:element name="dutiesPaidByAccount" type="xs:string" minOccurs="0"/>
+            <xs:element name="unNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="hazmatLimitedQuantity" type="xs:string" minOccurs="0"/>
+            <xs:element name="limitedQtyPackingInstructions" type="xs:string" minOccurs="0"/>
+            <xs:element name="hazmatExceptedQuantity" type="xs:string" minOccurs="0"/>
+            <xs:element name="technicalName" type="xs:string" minOccurs="0"/>
+            <xs:element name="alcohol" type="xs:boolean" minOccurs="0" />
+            <xs:element name="medicalUse" type="xs:boolean" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="CustomFieldCollection">
+        <xs:sequence>
+            <xs:element name="customField" type="CustomFieldType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CarrierSpecialServiceCollection">
+        <xs:sequence>
+            <xs:element name="carrierSpecialService" type="CarrierSpecialServiceType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ItemOptionCollection">
+        <xs:sequence>
+            <xs:element name="itemOption" type="ItemOptionType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ItemOptionType">
+	    <xs:simpleContent>
+	    		<xs:extension base="xs:string">
+	    			 <xs:attribute name="optionName" type="xs:string" use="required"/>
+	    			 <xs:attribute name="optionValue" type="xs:string" use="required"/>
+	    		</xs:extension>
+	    </xs:simpleContent>
+    </xs:complexType>
+
+
+    <xs:complexType name="ChannelsCollection">
+        <xs:sequence>
+            <xs:element name="channel" type="ChannelFieldType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ChannelsListing">
+        <xs:sequence>
+            <xs:element name="channel" type="ChannelListingType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ChannelsResourceCollection">
+        <xs:sequence>
+            <xs:element name="channel" type="ChannelResourceFieldType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ChannelResourceFieldType">
+       <xs:simpleContent>
+	      <xs:extension base="xs:string">
+	        <xs:attribute name="businessUnit" type="xs:string" use="required"/>
+	        <xs:attribute name="businessKey" type="xs:string" use="required"/>
+	        <xs:attribute name="otherKey" type="xs:string" use="optional"/>
+	        <xs:attribute name="entityType" type="xs:string" use="required"/>
+	        <xs:attribute name="feedName" type="xs:string" use="required"/>
+	        <xs:attribute name="jobName" type="xs:string" use="required"/>
+	        <xs:attribute name="description" type="xs:string" use="optional"/>
+	        <xs:attribute name="price" type="xs:double" use="optional"/>
+	        <xs:attribute name="itemCondition" type="xs:string" use="optional"/>
+	        <xs:attribute name="listingStatus" type="xs:string" use="optional"/>
+	        <xs:attribute name="saleable" type="xs:boolean" use="optional"/>
+	        <xs:attribute name="status" type="xs:string" use="optional"/>
+	        <xs:attribute name="listingPrice" type="xs:double" use="optional"/>
+	        <xs:attribute name="packQuantity" type="xs:double" use="optional"/>
+	        <xs:attribute name="syncInventory" type="xs:boolean" use="optional"/>
+	        <xs:attribute name="active" type="xs:boolean" use="optional"/>
+	        <xs:attribute name="ref1" type="xs:string" use="required"/>
+	        <xs:attribute name="ref2" type="xs:string" use="optional"/>
+	        <xs:attribute name="ref3" type="xs:string" use="optional"/>
+	        <xs:attribute name="ref4" type="xs:string" use="optional"/>
+	        <xs:attribute name="ref5" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef1" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef2" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef3" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef4" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef5" type="xs:string" use="optional"/>
+	      </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ChannelFieldType">
+       <xs:simpleContent>
+	      <xs:extension base="xs:string">
+	        <xs:attribute name="feedName" type="xs:string" use="required"/>
+	        <xs:attribute name="jobName" type="xs:string" use="required"/>
+	        <xs:attribute name="active" type="xs:boolean" use="optional"/>
+	        <xs:attribute name="ref1" type="xs:string" use="required"/>
+	        <xs:attribute name="ref2" type="xs:string" use="optional"/>
+	        <xs:attribute name="ref3" type="xs:string" use="optional"/>
+	        <xs:attribute name="ref4" type="xs:string" use="optional"/>
+	        <xs:attribute name="ref5" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef1" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef2" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef3" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef4" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef5" type="xs:string" use="optional"/>
+	        <xs:attribute name="customerPackKey" type="xs:string" use="optional"/>
+	        <xs:attribute name="quantityInPack" type="xs:int" use="optional"/>
+	      </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ChannelListingType">
+       <xs:simpleContent>
+	      <xs:extension base="xs:string">
+	        <xs:attribute name="feedName" type="xs:string" use="required"/>
+	        <xs:attribute name="jobName" type="xs:string" use="optional"/>
+	        <xs:attribute name="description" type="xs:string" use="optional"/>
+	        <xs:attribute name="price" type="xs:double" use="optional"/>
+	        <xs:attribute name="itemCondition" type="xs:string" use="optional"/>
+	        <xs:attribute name="listingStatus" type="xs:string" use="optional"/>
+	        <xs:attribute name="saleable" type="xs:boolean" use="optional"/>
+	        <xs:attribute name="active" type="xs:boolean" use="optional"/>
+	        <xs:attribute name="status" type="xs:string" use="optional"/>
+	        <xs:attribute name="listingPrice" type="xs:double" use="optional"/>
+	        <xs:attribute name="packQuantity" type="xs:double" use="optional"/>
+	        <xs:attribute name="syncInventory" type="xs:boolean" use="optional"/>
+	        <xs:attribute name="optionValue" type="xs:string" use="optional"/>
+	        <xs:attribute name="optionName" type="xs:string" use="optional"/>
+	        <xs:attribute name="ref1" type="xs:string" use="required"/>
+	        <xs:attribute name="ref2" type="xs:string" use="optional"/>
+	        <xs:attribute name="ref3" type="xs:string" use="optional"/>
+	        <xs:attribute name="ref4" type="xs:string" use="optional"/>
+	        <xs:attribute name="ref5" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef1" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef2" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef3" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef4" type="xs:string" use="optional"/>
+	        <xs:attribute name="secRef5" type="xs:string" use="optional"/>
+	      </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ExtendedEntityCollection">
+        <xs:sequence>
+            <xs:element name="entity" type="ExtendedEntityType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ExtendedEntityType">
+        <xs:sequence>
+            <xs:element name="field" type="ExtendedFieldType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"></xs:attribute>
+        <xs:attribute name="key-field" type="xs:string" use="required"></xs:attribute>
+        <xs:attribute name="key-value" type="xs:string" use="required"></xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="ExtendedFieldType">
+       <xs:simpleContent>
+	      <xs:extension base="xs:string">
+	        <xs:attribute name="name" type="xs:string"/>
+	      </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+
+    <xs:complexType name="CustomAttributeCollection">
+        <xs:sequence>
+            <xs:element name="customAttribute" type="CustomAttributeType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CustomAttributeType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AddressType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+            <xs:element name="contactName" type="xs:string" minOccurs="0"/>
+            <xs:element name="attention" type="xs:string" minOccurs="0"/>
+            <xs:element name="email" type="xs:string" minOccurs="0"/>
+            <xs:element name="phone" type="xs:string" minOccurs="0"/>
+            <xs:element name="phone2" type="xs:string" minOccurs="0"/>
+            <xs:element name="addressLine1" type="xs:string"/>
+            <xs:element name="addressLine2" type="xs:string" minOccurs="0"/>
+            <xs:element name="addressLine3" type="xs:string" minOccurs="0"/>
+            <xs:element name="addressLine4" type="xs:string" minOccurs="0"/>
+            <xs:element name="city" type="xs:string"/>
+            <xs:element name="stateProvinceCode" type="xs:string"/>
+            <xs:element name="postalCode" type="xs:string"/>
+            <xs:element name="countryCode" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AddressValidationOptionsType">
+        <xs:sequence>
+            <xs:element name="carrier" type="xs:string" minOccurs="0"/>
+            <xs:element name="profileName" type="xs:string" minOccurs="0"/>
+            <xs:element name="maxSuggestedAddresses" type="xs:integer" default="0"/>
+            <xs:element name="streetLevel" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="AddressTypeCollection">
+        <xs:sequence>
+            <xs:element name="address" type="AddressType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FreightType">
+        <xs:sequence>
+            <xs:element name="termsType" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Prepaid"/>
+                        <xs:enumeration value="Collect"/>
+                        <xs:enumeration value="Third Party"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="account" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToPartner" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToAddress" type="AddressType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="NoteType">
+        <xs:sequence>
+            <xs:element name="source" default="Internal" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Internal"/>
+                        <xs:enumeration value="External"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="body" type="xs:string"/>
+            <xs:element name="priority" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="NoteCollection">
+        <xs:sequence>
+            <xs:element name="note" type="NoteType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LinkType">
+        <xs:sequence>
+            <xs:element name="rel" type="xs:string"/>
+            <xs:element name="href" type="xs:string"/>
+            <xs:element name="type" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PickDetailCollection">
+        <xs:sequence>
+            <xs:element name="pickDetail" type="PickDetailType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PickDetailType">
+        <xs:sequence>
+            <xs:element name="pickLocation" type="xs:string"/>
+            <xs:element name="pickQuantity" type="xs:double"/>
+            <xs:element name="packPicked" type="pack:PackType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RetailActCollection">
+        <xs:sequence>
+            <xs:element name="retailActivity" type="RetailActType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RetailActType">
+        <xs:sequence>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="1" />
+            <xs:element name="createdDate" type="xs:dateTime" minOccurs="1" />
+            <xs:element name="updatedDate" type="xs:dateTime" minOccurs="1" />
+            <xs:element name="status" type="xs:string" minOccurs="1" />
+            <xs:element name="batch" type="xs:string" minOccurs="0"/>
+            <xs:element name="batchSequenceNumber" type="xs:long" minOccurs="0"/>
+            <xs:element name="transactionSource" type="xs:string" minOccurs="0"/>
+            <xs:element name="retailTransactionId" type="xs:string" minOccurs="1"/>
+            <xs:element name="sequenceNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="referenceNumber" type="xs:string" minOccurs="1"/>
+            <xs:element name="register" type="xs:string" minOccurs="0"/>
+            <xs:element name="associate" type="xs:string" minOccurs="0"/>
+            <xs:element name="till" type="xs:string" minOccurs="0"/>
+            <xs:element name="transactionStartDate" type="xs:dateTime" minOccurs="1"/>
+            <xs:element name="transactionEndDate" type="xs:dateTime" minOccurs="1"/>
+            <xs:element name="businessDayDate" type="xs:date" minOccurs="1" />
+            <xs:element name="type" type="xs:string" minOccurs="1"/>
+            <xs:element name="reasonCode" type="xs:string" minOccurs="1"/>
+            <xs:element name="voided" type="xs:boolean" minOccurs="1" default="0"/>
+            <xs:element name="testTransaction" type="xs:boolean" minOccurs="1" default="0" />
+            <xs:element name="facility" type="xs:string" minOccurs="1"/>
+            <xs:element name="user" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

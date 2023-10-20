@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/shipment"
+    xmlns:t="http://integration.deposco.com/types"
+    xmlns:pack="http://integration.deposco.com/pack"
+    xmlns:container="http://integration.deposco.com/container"
+    xmlns="http://integration.deposco.com/shipment" elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/pack" schemaLocation="Pack.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/container" schemaLocation="Container.xsd"/>
+
+    <xs:element name="shipments" type="ShipmentCollection"/>
+
+    <xs:complexType name="ShipmentCollection">
+        <xs:sequence>
+            <xs:element name="shipment" type="ShipmentType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ShipmentType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+        	<xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+            <xs:element name="tradingPartner" type="xs:string" minOccurs="0"/>
+            <xs:element name="type" type="xs:string" minOccurs="0"/>
+			<xs:element name="facility" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipToFacility" type="xs:string" minOccurs="0"/>
+        	<xs:element name="createdBy" type="xs:string" minOccurs="0"/>
+        	<xs:element name="shipmentNumber" type="xs:string" />
+        	<xs:element name="shipmentStatus" type="xs:string" />
+        	<xs:element name="shipVia" type="xs:string" maxOccurs="1" minOccurs="0" />
+        	<xs:element name="shipVendor" type="xs:string" maxOccurs="1" minOccurs="0" />
+        	<xs:element name="bol" type="xs:string" maxOccurs="1" minOccurs="0" />
+        	<xs:element name="plannedArrivalDate" type="xs:dateTime" minOccurs="0" />
+        	<xs:element name="plannedShipDate" type="xs:dateTime" minOccurs="0" />
+        	<xs:element name="actualArrivalDate" type="xs:dateTime" minOccurs="0" />
+        	<xs:element name="actualShipDate" type="xs:dateTime" minOccurs="0" />
+        	<xs:element name="billToAddress" type="t:AddressType" minOccurs="0" />
+        	<xs:element name="shipToAddress" type="t:AddressType" minOccurs="0" />
+            <xs:element name="shipFromAddress" type="t:AddressType" minOccurs="0" />
+        	<xs:element name="customFields" type="t:CustomFieldCollection" minOccurs="0" />
+        	<xs:element name="notes" type="t:NoteCollection" minOccurs="0" />
+        	<xs:element name="orders" type="ShipmentOrderCollection" />
+        	<xs:element name="lines" type="ShipmentLineCollection" minOccurs="0" />
+        	<xs:element name="trackingNumber" type="xs:string" minOccurs="0"/>
+        	<xs:element name="trackingUrl" type="xs:string" minOccurs="0"/>
+        	<xs:element name="shipmentCurrentStatus" type="xs:string" minOccurs="0"/>
+        	<xs:element name="shippingCost" type="xs:double" minOccurs="0"/>
+        	<xs:element name="extendedShippingCost" type="xs:double" minOccurs="0" nillable="true"/>
+        	<xs:element name="weight" type="t:WeightType" minOccurs="0"/>
+        	<xs:element name="rateZone" type="xs:string" minOccurs="0"/>
+            <xs:element name="notificationCode1" type="xs:string" minOccurs="0"/>
+            <xs:element name="notificationCode2" type="xs:string" minOccurs="0"/>
+            <xs:element name="notificationCode3" type="xs:string" minOccurs="0"/>
+        	<xs:element name="originAirportCode" minOccurs="0">
+        		<xs:simpleType>
+        			<xs:restriction base="xs:string">
+        				<xs:maxLength value="3"/>
+        			</xs:restriction>
+        		</xs:simpleType>
+        	</xs:element>
+        	<xs:element name="destinationAirportCode" minOccurs="0">
+        		<xs:simpleType>
+        			<xs:restriction base="xs:string">
+        				<xs:maxLength value="3"/>
+        			</xs:restriction>
+        		</xs:simpleType>
+        	</xs:element>
+            <xs:element name="saturdayDelivery" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="deliveryConfirmation" type="xs:string" minOccurs="0"/>
+            <xs:element name="verbalConfirmationPhoneNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="dropShip" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="residential" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="insuranceRequired" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="returnShipVia" type="xs:string" minOccurs="0"/>
+            <xs:element name="returnShipVendor" type="xs:string" minOccurs="0"/>
+            <xs:element name="returnShipMethod" type="xs:string" minOccurs="0"/>
+            <xs:element name="taxCost" type="xs:double" minOccurs="0"/>
+            <xs:element name="returnShipOption" type="xs:string" minOccurs="0"/>
+            <xs:element name="routingNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="codAmount" type="xs:double" minOccurs="0"/>
+            <xs:element name="handlingInstructions" type="xs:string" minOccurs="0"/>
+            <xs:element name="totalPackages" type="xs:int" minOccurs="0"/>
+            <xs:element name="freightTermsType" type="xs:string" minOccurs="0"/>
+            <xs:element name="lpnNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="authorizationCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="totalPieces" type="xs:double" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ShipmentOrderCollection">
+        <xs:sequence>
+            <xs:element name="order" type="ShipmentOrderType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ShipmentOrderType">
+        <xs:sequence>
+            <xs:element name="orderNumber" type="xs:string"/>
+            <xs:element name="customerOrderNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="orderType" type="xs:string"/>
+            <xs:element name="orderStatus" type="xs:string"/>
+            <xs:element name="shippingStatus" type="xs:int" minOccurs="0"/>
+            <xs:element name="otherReferenceNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="orderSource" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipMethod" type="xs:string" minOccurs="0"/>
+            <xs:element name="lines" type="ShipmentLineCollection" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ShipmentLineCollection">
+        <xs:sequence>
+            <xs:element name="line" type="ShipmentLineType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ShipmentLineType">
+        <xs:sequence>
+            <xs:element name="lineNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="lineStatus" type="xs:string"/>
+            <xs:element name="externalLineNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="customerLineNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipmentLineNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipmentLineStatus" type="xs:string" minOccurs="0"/>
+            <xs:element name="itemNumber" type="xs:string"/>
+            <xs:element name="productCategory" type="xs:string" minOccurs="0"/>
+            <xs:element name="orderPackQuantity" type="xs:double"/>
+            <xs:element name="shippedPackQuantity" type="xs:double"/>
+            <xs:element name="receivedPackQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="returnedPackQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="soldPackQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="shortagePackQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="outOfStockQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="pickedPackQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="shippedDamagedPackQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="damagedPackQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="canceledPackQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="totalValue" type="xs:double" minOccurs="0"/>
+            <xs:element name="serialNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="lotNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="trackingNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="pack" type="pack:PackType"/>
+            <xs:element name="container" type="container:ContainerType" minOccurs="0"/>
+            <xs:element name="expirationDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="bornOnDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="inventoryAttribute1" type="xs:string" minOccurs="0"/>
+            <xs:element name="inventoryAttribute2" type="xs:string" minOccurs="0"/>
+            <xs:element name="pickDetails" type="t:PickDetailCollection" minOccurs="0"/>
+            <xs:element name="inventoryCondition" type="xs:string" minOccurs="0"/>
+            <xs:element name="importReference" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

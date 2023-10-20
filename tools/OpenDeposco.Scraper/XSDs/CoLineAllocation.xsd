@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/colineallocation"
+	xmlns="http://integration.deposco.com/colineallocation"
+    elementFormDefault="unqualified">
+        
+    <xs:element name="allocations" type="lineAllocationCollection"/>
+    
+    <xs:complexType name="lineAllocationCollection">
+        <xs:sequence>
+            <xs:element name="allocation" type="allocationType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+     <xs:complexType name="allocationType">
+    		<xs:sequence>
+			<xs:element name="status" type="xs:string" minOccurs="0"/>
+			<xs:element name="allocatedQuantity" type="xs:double" minOccurs="0"/>
+			<xs:element name="shipFromFacility" type="xs:string" minOccurs="0"/>
+			<xs:element name="source" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

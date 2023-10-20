@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/decisionService"
+           xmlns="http://integration.deposco.com/decisionService"
+           elementFormDefault="unqualified">
+
+    <xs:element name="category" type="DepRuleCategoryType"/>
+
+    <xs:complexType name="DepRuleCategoryType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+            <xs:element name="appName" type="xs:string" minOccurs="0"/>
+            <xs:element name="company" type="xs:string" minOccurs="0"/>
+            <xs:element name="subCategories" type="DepRuleSubCategoryCollection" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DepRuleSubCategoryCollection">
+        <xs:sequence>
+            <xs:element type="DepRuleSubCategoryType" minOccurs="0" name="subCategory" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DepRuleSubCategoryType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="preConditionInJson" type="xs:string"/>
+            <xs:element name="preConditionMeta" type="xs:string"/>
+            <xs:element name="imports" type="xs:string"/>
+            <xs:element name="active" type="xs:boolean"/>
+            <xs:element name="runInParallel" type="xs:boolean"/>
+            <xs:element name="returnImmediatelyOnTrue" type="xs:boolean"/>
+            <xs:element name="sequence" type="xs:int"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="engine" type="xs:string"/>
+            <xs:element name="visible" type="xs:boolean"/>
+            <xs:element name="disableLog" type="xs:boolean"/>
+            <xs:element name="disableAuditLog" type="xs:boolean"/>
+            <xs:element name="conditions" type="xs:string"/>
+            <xs:element name="sla" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

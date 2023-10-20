@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/inventory"
+   xmlns="http://integration.deposco.com/inventory"
+   xmlns:t="http://integration.deposco.com/types"
+   elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+
+    <xs:element name="facilityInventorySync" type="FacilityInventoryCollection"/>
+
+    <xs:complexType name="FacilityInventoryCollection">
+        <xs:sequence>
+            <xs:element name="facilityInventory" type="FacilityInventoryType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FacilityInventoryType">
+        <xs:sequence>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+            <xs:element name="facility" type="xs:string" minOccurs="0"/>
+            <xs:element name="itemNumber" type="xs:string" />
+            <xs:element name="inventoryOnHandQty" type="xs:int" />
+            <xs:element name="channels" type="t:ChannelsCollection" minOccurs="0" />
+            <xs:element name="description" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

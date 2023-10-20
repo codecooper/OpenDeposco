@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/pickwave"
+           xmlns="http://integration.deposco.com/pickwave"
+           xmlns:order="http://integration.deposco.com/order"
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/order" schemaLocation="OrderHeader.xsd"/>
+
+    <xs:element name="pickWaves" type="PickWaveCollection"/>
+
+    <xs:complexType name="PickWaveCollection">
+        <xs:sequence>
+            <xs:element name="pickWave" type="PickWaveType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PickWaveType">
+        <xs:sequence>
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="businessUnit" type="xs:string"/>
+            <xs:element name="pickSystem" type="xs:string"/>
+            <xs:element name="shipFrom" type="xs:string"/>
+            <xs:element name="orderReleaseProfile" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="createdDateTime" type="xs:dateTime"/>
+            <xs:element name="updatedDateTime" type="xs:dateTime"/>
+            <xs:element name="createdBy" type="xs:string"/>
+            <xs:element name="updatedBy" type="xs:string"/>
+            <xs:element name="orders" type="order:OrderCollection"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

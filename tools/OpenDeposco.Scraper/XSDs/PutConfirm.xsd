@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:types="http://integration.deposco.com/types" targetNamespace="http://integration.deposco.com/putconfirm"
+           xmlns="http://integration.deposco.com/putconfirm"
+           elementFormDefault="unqualified">
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+
+
+    <xs:element name="putConfirms" type="PutConfirmsCollection"/>
+
+    <xs:complexType name="PutConfirmsCollection">
+        <xs:sequence>
+            <!-- This will determine whether the put confirm needs to be executed as part of the picking process, or after picking has already occurred. -->
+            <xs:element name="afterPicking" type="xs:boolean" minOccurs="1" default="false"/>
+            <xs:element name="putConfirm" type="PutConfirmType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PutConfirmType">
+        <xs:sequence>
+            <xs:element name="orderNumber" type="xs:string" minOccurs="1"/>
+            <xs:element name="location" type="xs:string" minOccurs="1"/>
+            <xs:element name="qtyToPut" type="xs:int" minOccurs="1"/>
+            <xs:element name="qtyPut" type="xs:int" minOccurs="1"/>
+            <xs:element name="item" type="xs:string" minOccurs="0"/>
+            <xs:element name="container" type="xs:string" minOccurs="1"/>
+            <xs:element name="toContainer" type="xs:string" minOccurs="0"/>
+            <xs:element name="exceptionCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="user" type="xs:string" minOccurs="1"/>
+            <xs:element name="facility" type="xs:string" minOccurs="1"/>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="1"/>
+            <xs:element name="startTaskTime" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="endTaskTime" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="channel" type="types:ChannelFieldType" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

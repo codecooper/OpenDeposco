@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/coreference"
+	xmlns="http://integration.deposco.com/coreference"
+    elementFormDefault="unqualified">
+        
+    <xs:element name="references" type="CoReferenceCollection"/>
+    
+    <xs:complexType name="CoReferenceCollection">
+        <xs:sequence>
+            <xs:element name="reference" type="coReferenceType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+     <xs:complexType name="coReferenceType">
+    		<xs:sequence>
+			<xs:element name="qualifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="value" type="xs:string" minOccurs="0"/>
+			<xs:element name="value2" type="xs:string" minOccurs="0"/>
+			<xs:element name="value3" type="xs:string" minOccurs="0"/>
+			<xs:element name="value4" type="xs:string" minOccurs="0"/>
+			<xs:element name="value5" type="xs:string" minOccurs="0"/>
+			<xs:element name="description" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

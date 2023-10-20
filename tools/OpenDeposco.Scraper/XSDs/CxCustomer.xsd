@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/customer"
+           xmlns="http://integration.deposco.com/customer"
+           xmlns:address="http://integration.deposco.com/address"
+           xmlns:contactmethod="http://integration.deposco.com/contactmethod"
+           xmlns:tps="http://integration.deposco.com/tradingPartnerSite"
+           xmlns:types="http://integration.deposco.com/types"
+           xmlns:coh="http://integration.deposco.com/coheader"
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/address" schemaLocation="CxCustomerAddress.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/contactmethod" schemaLocation="CxCustomerContactMethod.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/tradingPartnerSite" schemaLocation="TradingPartnerSite.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/coheader" schemaLocation="CoHeader.xsd"/>
+
+    <xs:element name="customers" type="CxCustomerCollection"/>
+
+    <xs:complexType name="CxCustomerCollection">
+        <xs:sequence>
+            <xs:element name="customer" type="CxCustomerType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CxCustomerType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="number" type="xs:string" minOccurs="1"/>
+            <xs:element name="status" type="xs:string" minOccurs="0"/>
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+            <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+            <xs:element name="middleName" type="xs:string" minOccurs="0"/>
+            <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+            <xs:element name="namePrefix" type="xs:string" minOccurs="0"/>
+            <xs:element name="nameSuffix" type="xs:string" minOccurs="0"/>
+            <xs:element name="birthDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="gender" type="xs:string" minOccurs="0"/>
+            <xs:element name="source" type="xs:string" minOccurs="0"/>
+            <xs:element name="externalCustomerNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="otherReferenceNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="importReference" type="xs:string" minOccurs="0"/>
+            <xs:element name="registrationDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="registrationLocation" type="xs:string" minOccurs="0"/>
+            <xs:element name="firstTransactionDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="lastTransactionDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="taxExempt" type="xs:boolean" minOccurs="0" default="false"/>
+            <xs:element name="educationLevel" type="xs:string" minOccurs="0"/>
+            <xs:element name="maritalStatus" type="xs:string" minOccurs="0"/>
+            <xs:element name="acceptsMarketing" type="xs:boolean" minOccurs="0" default="false"/>
+            <xs:element name="acceptsMarketingUpdatedDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="employeeNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="ucceanNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="accountStatus" type="xs:string" minOccurs="0"/>
+            <xs:element name="doingBusinessAs" type="xs:string" minOccurs="0"/>
+            <xs:element name="paymentTerms" type="xs:string" minOccurs="0"/>
+            <xs:element name="sequenceSSCCBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="taxRate" type="xs:double" minOccurs="0"/>
+            <xs:element name="sendASN" type="xs:int" minOccurs="0"/>
+            <xs:element name="packingSlipLevel" type="xs:string" minOccurs="0"/>
+            <xs:element name="packingSlipReport" type="xs:string" minOccurs="0"/>
+            <xs:element name="zplLabelReport" type="xs:string" minOccurs="0"/>
+            <xs:element name="useShipFromForShipments" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="groupASNBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="groupPalletBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="salesChannel" type="xs:string" minOccurs="0"/>
+            <xs:element name="priceList" type="xs:string" minOccurs="0"/>
+            <xs:element name="createdDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="updatedDate" type="xs:dateTime" minOccurs="0"/>
+
+            <xs:element name="contactMethods" type="contactmethod:CxContactMethodCollection" minOccurs="0"/>
+            <xs:element name="addresses" type="address:CxAddressCollection" minOccurs="0"/>
+            <xs:element name="tradingPartnerSites" type="tps:TradingPartnerSiteCollection" minOccurs="0"/>
+            <xs:element name="notes" type="types:NoteCollection" minOccurs="0"/>
+            <xs:element name="customerOrders" type="coh:CustomerOrderCollection" minOccurs="0"/>
+            <xs:element name="channels" type="types:ChannelsCollection" minOccurs="0"/>
+
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

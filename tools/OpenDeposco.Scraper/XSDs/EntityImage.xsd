@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/entityimage"
+    xmlns="http://integration.deposco.com/entityimage"
+    elementFormDefault="unqualified">
+
+    <xs:element name="images" type="EntityImageCollection"/>
+
+    <xs:complexType name="EntityImageCollection">
+        <xs:sequence>
+            <xs:element name="image" type="EntityImageType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="EntityImageType">
+        <xs:sequence>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="entityType" type="xs:string" minOccurs="0"/>
+            <xs:element name="entityKey" type="xs:string" minOccurs="0"/>
+            <xs:element name="imageName" type="xs:string" minOccurs="0"/>
+            <xs:element name="imageType" type="xs:string" minOccurs="0"/>
+            <xs:element name="content" type="xs:base64Binary" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+    This schema defines the types used by the item resource.
+
+    All URLs below are relative to the base URL:
+    https://integration.deposco.com/integration/{company}
+
+    The following operations are allowed on item resources:
+
+    *******************************************************************
+
+    GET /items/{itemNumber}
+
+    Accepts: application/xml
+    Returns: application/xml
+
+    Fetches a single item.  Returns a response code of 200 and the XML
+    representation of the item in the response.  If the item cannot be
+    found, a 404 response code is returned, along with a plain text error
+    message in the response.
+
+    *******************************************************************
+
+    GET /items/{businessUnit}/{itemNumber}
+
+    Accepts: application/xml
+    Returns: application/xml
+
+    Fetches a single item for particular business unit code. Returns a response
+    code of 200 and the XML representation of the item in the response.
+    If the item for business unit cannot be found, a 404 response code is
+    returned, along with a plain text error  message in the response.
+
+    *******************************************************************
+
+    PUT /items/{itemNumber}
+
+    Accepts: application/xml
+    Returns: text/plain
+
+    Creates or updates a single item.
+
+    If the item is created, a 201 response code is returned, and the Location
+    header is set to the URI of the created resource.
+
+    If the item is updated, a 200 response code is returned, and the Location
+    header is set to the URI of the updated resource.
+
+    If the item cannot be created or updated, an appropriate 4xx or 5xx
+    response code is returned along with a plain text error message in the
+    response.
+
+    *******************************************************************
+
+    POST /items/updates
+
+    Accepts: application/xml
+    Returns: text/plain
+
+    Creates or updates a batch of items. Input is ItemCollection.
+    Returns a response code of 207, and a Multistatus XML document containing
+    the results for each item in the batch.
+
+    If the item is created, a 201 response code is returned, and the Location
+    header is set to the URI of the created resource.
+
+    If the item is updated, a 200 response code is returned, and the Location
+    header is set to the URI of the updated resource.
+
+    If the item cannot be created or updated, an appropriate 4xx or 5xx
+    response code is returned along with a plain text error message in the
+    response.
+
+    Each item is imported in a separate transaction, so that a single failed
+    import will not cause the entire batch to fail.
+
+    *******************************************************************
+
+    GET /items/{itemNumber}/atps
+
+    Accepts: application/xml
+    Returns: application/xml, application/json
+
+    Fetches a number of properites about stock levels for single item.
+    Returns a response code of 200 and the XML representation of the item in the response.
+    If the item cannot be found, an empty response xml is returned.
+
+    *******************************************************************
+
+    GET /items/atps
+
+    Accepts: application/xml
+    Returns: application/xml, application/json
+
+    Fetches all items and only ATP (available to promise) quantity is provided.
+
+    *******************************************************************
+
+    GET /items/totals
+
+    Accepts: application/xml
+    Returns: application/xml, application/json
+
+    Fetches all items and all inventory that is in one of the following location types:
+    Split Case Picking, Full Case Picking, Reserve Storage is provided.
+
+    *******************************************************************
+
+    GET /items/atpsByTP/{tradingPartnerCode}
+
+    Accepts: application/xml
+    Returns: application/xml, application/json
+
+    Fetches all items for a given trading partner code and only ATP (available to promise) quantity is provided.
+
+    *******************************************************************
+
+    GET /items/{itemNumber}/atp
+
+    Accepts: application/xml
+    Returns: text/plain
+
+    Fetches an ATP (available to promise) quantity for a single item. Returns
+    a response code of 200 and value in a plain text.
+
+    *******************************************************************
+
+    GET /items/{itemNumber}/boqty
+
+    Accepts: application/xml
+    Returns: text/plain
+
+    Fetches back ordered quantity for a single item. Returns
+    a response code of 200 and value in a plain text.
+    *******************************************************************
+
+    GET /items/{itemNumber}/poqty
+
+    Accepts: application/xml
+    Returns: text/plain
+
+    Fetches quantity on purchase orders for a single item. Returns
+    a response code of 200 and value in a plain text.
+
+    *******************************************************************
+
+    GET /items/{itemNumber}/fcqty
+
+    Accepts: application/xml
+    Returns: text/plain
+
+    Fetches total full cases quantity for a single item. Returns
+    a response code of 200 and value in a plain text.
+    *******************************************************************
+
+    GET /items/{itemNumber}/totals
+
+    Accepts: application/xml
+    Returns: text/plain
+
+    Fetches ATP (available to promise) quantity for a single item. Returns
+    a response code of 200 and value in a plain text.
+
+    *******************************************************************
+
+    GET /items/{itemNumber}/reserveqty
+
+    Accepts: application/xml
+    Returns: text/plain
+
+    Fetches reserve quantity for a single item. Returns
+    a response code of 200 and value in a plain text.
+
+    *******************************************************************
+
+    GET /items/{itemNumber}/totals
+
+    Accepts: application/xml
+    Returns: text/plain
+
+    Fetches ATP (available to promise) quantity for a single item. Returns
+    a response code of 200 and value in a plain text.
+
+    *******************************************************************
+
+    GET /items/{itemNumber}/scqty
+
+    Accepts: application/xml
+    Returns: application/xml
+
+    Fetches split cases quantity for a single item. Returns
+    a response code of 200 and value in a plain text.
+
+    *******************************************************************
+
+    DELETE /items/{itemNumber}
+
+    Accepts: application/xml
+    Returns: application/xml
+
+    Deletes a single item. If the item cannot be found, a 404 response
+    code is returned, along with a plain text error message in the response.
+    *******************************************************************
+
+                           PARTIAL UPDATE OPERATIONS
+
+    *******************************************************************
+
+    POST /items/{itemNumber}
+
+    Accepts: application/x-www-form-urlencoded
+    Returns: text/plain
+
+    This operation will update one or more fields of an item without
+    requiring the entire item document to be sent.  The item must already
+    exist.
+
+    The input consists of any set of the following form parameters:
+    String itemNumber, String name, String shortDescription,
+    String longDescription, String abcCategory, String productCode,
+    Boolean cycleCount, Double receiveOverTolerance,
+    Double receiveUnderTolerance, Double purchaseCost, String hazmatCode,
+    Boolean hazmat, Boolean bornOnDateRequired, Boolean expirationDateRequired,
+    Boolean receiveDateRequired, Boolean quarantineRequired,
+    Boolean inspectionRequired, Boolean catchWeightRequired,
+    Boolean inventoryTrackingEnabled, Boolean lotTrackingEnabled,
+    Boolean serialTrackingEnabled, Boolean shippable,
+    Integer cycleCountFrequency, Integer reorderQuantity
+
+    Returns a 200 response code if the item was successfully updated, or if
+    the update fails an appropriate 4xx or 5xx response code along with a
+    plain text error message in the response.
+
+    *******************************************************************
+
+    POST /items/{itemNumber}/packs
+
+    Accepts: application/x-www-form-urlencoded
+    Returns: text/plain
+
+    This operation is used to create a pack for the item.
+    The input consists of 2 form parameters:
+      type - type indication for pack, e.g. Each.
+      quantity - a quantity property of the pack.
+
+    Returns a 200 response code if the item was successfully updated and the Location
+    header is set to the URI of the updated resource, or if
+    the update fails an appropriate 4xx or 5xx response code along with a
+    plain text error message in the response.
+
+    *******************************************************************
+
+    PUT /items/{itemNumber}/replacePacks
+
+    Accepts: application/xml
+    Returns: text/plain
+
+    This operation is used to set packs for the item. Submit an xml that contains collection of
+    packs defined as PackCollection type.
+
+    Returns a 200 response code if the item was successfully updated and packs were replaced, or if
+    the update fails an appropriate 4xx or 5xx response code along with a
+    plain text error message in the response.
+
+    *******************************************************************
+
+    PUT /items/{itemNumber}/upcs
+
+    Accepts: application/xml
+    Returns: text/plain
+
+    This operation is used to set upcs for the item. Submit an xml that contains collection of
+    upcs defined as UPCCollection type.
+
+    Returns a 200 response code if the item was successfully updated and upcs were replaced, or if
+    the update fails an appropriate 4xx or 5xx response code along with a
+    plain text error message in the response.
+
+    *******************************************************************
+
+    POST /items/{businessUnit}/{itemNumber}/packs
+
+    Accepts: application/x-www-form-urlencoded
+    Returns: text/plain
+
+    This operation is used to update pack for the item.
+    The input consists of 3 form parameters:
+      type - type indication for pack, e.g. Each.
+      quantity - a quantity property of the pack.
+
+    Returns a 200 response code if the item was successfully updated and upcs were replaced, or if
+    the update fails an appropriate 4xx or 5xx response code along with a
+    plain text error message in the response.
+
+    *******************************************************************
+
+    PUT /items/{itemNumber}/packs
+
+    Accepts: application/xml
+    Returns: text/plain
+
+    This operation is used to set packs for the item. Submit an xml that contains collection of
+    upcs defined as PackCollection type.
+
+    Returns a 200 response code if the item was successfully updated and upcs were replaced, or if
+    the update fails an appropriate 4xx or 5xx response code along with a
+    plain text error message in the response.
+
+    *******************************************************************
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/item"
+           xmlns="http://integration.deposco.com/item"
+           xmlns:pack="http://integration.deposco.com/pack"
+           xmlns:upc="http://integration.deposco.com/upc"
+           xmlns:t="http://integration.deposco.com/types"
+           xmlns:itemVendor="http://integration.deposco.com/itemVendor"
+           xmlns:itemCustomer="http://integration.deposco.com/itemCustomer"
+           xmlns:planItem="http://integration.deposco.com/planItem"
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/pack" schemaLocation="Pack.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/upc" schemaLocation="UPC.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/itemVendor" schemaLocation="ItemVendor.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/itemCustomer" schemaLocation="ItemCustomer.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/planItem" schemaLocation="PlanItem.xsd"/>
+    <xs:element name="items" type="ItemCollection"/>
+    <xs:complexType name="ItemCollection">
+        <xs:sequence>
+            <xs:element name="item" type="ItemType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ItemType">
+        <xs:sequence>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+            <xs:element name="facility" type="xs:string" minOccurs="0"/>
+            <!-- business key -->
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="classType" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="shortDescription" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="longDescription" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="dimension" type="t:DimensionType" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="itemWeight" type="t:WeightType" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="abcCategory" minOccurs="1" maxOccurs="1" nillable="true">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="A"/>
+                        <xs:enumeration value="B"/>
+                        <xs:enumeration value="C"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="productCode" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="originCountry" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="cycleCount" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="tradingPartner" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="purchaseCost" type="xs:double" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="unitPrice" type="xs:double" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="bornOnDateRequired" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="expirationDateRequired" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="receiveDateRequired" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="quarantineRequired" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="inspectionRequired" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="catchWeightRequired" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="hazmat" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="hazmatCode" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="intangibleItemFlag" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="inventoryTrackingEnabled" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="lotTrackingEnabled" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="serialTrackingEnabled" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="shippable" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="purchased" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="receiveOverTolerance" type="xs:double" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="receiveUnderTolerance" type="xs:double" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="cycleCountFrequency" type="xs:int" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="reorderQuantity" type="xs:int" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="accountingType" type="xs:string" minOccurs="0" />
+            <xs:element name="defaultLedgerAccount" type="xs:string" minOccurs="0" />
+            <xs:element name="cogsAccount" type="xs:string" minOccurs="0" />
+            <xs:element name="customFields" type="t:CustomFieldCollection" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="carrierSpecialServices" type="t:CarrierSpecialServiceCollection" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="extendedEntities" type="t:ExtendedEntityCollection" minOccurs="0"/>
+            <xs:element name="channels" type="t:ChannelsListing" minOccurs="0"/>
+            <xs:element name="packs" type="pack:PackCollection" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="upcs" type="upc:UPCCollection" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="productCategory" type="xs:string" minOccurs="0"/>
+            <xs:element name="styleNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="styleName" type="xs:string" minOccurs="0"/>
+            <xs:element name="colorName" type="xs:string" minOccurs="0"/>
+            <xs:element name="colorCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="size" type="xs:string" minOccurs="0"/>
+            <xs:element name="nmfcNumber" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="harmonizedCode" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="mixLots" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="transportationClass" type="xs:string" minOccurs="0" maxOccurs="1" nillable="true"/>
+            <xs:element name="customMappings" type="t:CustomMapCollection" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="components" type="KitCollection" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="itemVendors" type="itemVendor:ItemVendorCollection" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="itemCustomers" type="itemCustomer:ItemCustomerCollection" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="customAttribute1" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="customAttribute2" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="customAttribute3" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="customAttribute4" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="customAttribute5" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="ule" type="xs:double" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="uleUom" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="kitOrderOnly" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="kitStockOnly" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="createdDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="updatedDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="brandName" type="xs:string" minOccurs="0"/>
+            <xs:element name="assemblyCost" type="xs:double" minOccurs="0"/>
+            <xs:element name="handlingCost" type="xs:double" minOccurs="0"/>
+            <xs:element name="storageCost" type="xs:double" minOccurs="0"/>
+            <xs:element name="externalImageUrl" type="xs:string" minOccurs="0"/>
+            <xs:element name="taxable" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="bornOnDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="assembleToOrderFlag" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="itemOptions" type="t:ItemOptionCollection" minOccurs="0"/>
+            <xs:element name="serialCapturePoint" type="xs:string" minOccurs="0"/>
+            <xs:element name="salesEnabledFlag" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="reorderPoint" type="xs:int" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="pickStrategy" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="qcPercent" type="xs:double" minOccurs="0"/>
+            <xs:element name="planItems" type="PlanItemCollection"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="KitCollection">
+        <xs:sequence>
+            <xs:element name="component" type="KitComponentType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="KitComponentType">
+        <xs:sequence>
+            <xs:element name="componentItem" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="quantity" type="xs:int" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="PlanItemCollection">
+        <xs:sequence>
+            <xs:element name="PlanItemType" type="planItem:PlanItemType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

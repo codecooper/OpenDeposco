@@ -1,0 +1,23 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:container="http://integration.deposco.com/container"
+           targetNamespace="http://integration.deposco.com/returnLabel"
+           xmlns="http://integration.deposco.com/returnLabel"
+           elementFormDefault="unqualified">
+  <xs:import namespace="http://integration.deposco.com/container" schemaLocation="Container.xsd"/>
+  <xs:element name="returnLabels" type="ReturnLabelCollection"/>
+  <xs:complexType name="ReturnLabelCollection">
+    <xs:sequence>
+      <xs:element name="returnLabel" type="ReturnLabelType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReturnLabelType">
+    <xs:sequence>
+      <xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+      <xs:element name="createdBy" type="xs:string" minOccurs="0"/>
+      <xs:element name="customerReturnNumber" type="xs:string"/>
+      <xs:element name="returnShipVia" type="xs:string" minOccurs="0"/>
+      <xs:element name="returnShipOption" type="xs:string" minOccurs="0"/>
+      <xs:element name="containers" type="container:ContainerCollection" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

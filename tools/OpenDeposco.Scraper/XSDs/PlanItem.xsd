@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/planItem"
+           xmlns="http://integration.deposco.com/planItem"
+           elementFormDefault="unqualified">
+
+    <xs:complexType name="PlanItemType">
+        <xs:sequence>
+            <xs:element name="tradingPartner" type="xs:string" minOccurs="0"/>
+            <xs:element name="facility" type="xs:string" minOccurs="0"/>
+            <xs:element name="reorderQuantity" type="xs:int" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="reorderPoint" type="xs:int" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="reorderLeadTime" type="xs:int" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="safetyStock" type="xs:int" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="rounding" type="xs:int" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="orderCycle" type="xs:int" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="minVendorOrderQuantity" type="xs:int" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="autoReorderPoint" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="autoPreferredSafetyStock" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="autoReorderLeadTime" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="makeOrBuy" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

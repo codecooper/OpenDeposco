@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://integration.deposco.com/coheader"
+           xmlns="http://integration.deposco.com/coheader"
+           xmlns:line="http://integration.deposco.com/coline"
+           xmlns:t="http://integration.deposco.com/types"
+           xmlns:c="http://integration.deposco.com/cocontact"
+           xmlns:paymentTerm="http://integration.deposco.com/copaymentterm"
+           xmlns:tax="http://integration.deposco.com/cotax"
+           xmlns:ca="http://integration.deposco.com/cochargeallowance"
+           xmlns:ohd="http://integration.deposco.com/codate"
+           xmlns:ohr="http://integration.deposco.com/coreference"
+           xmlns:pay="http://integration.deposco.com/copayment"
+           xmlns:con="http://integration.deposco.com/conotice"
+           xmlns:ref="http://integration.deposco.com/corefund"
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/coline" schemaLocation="CoLine.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/cocontact" schemaLocation="CoContact.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/copaymentterm" schemaLocation="CoPaymentTerm.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/cotax" schemaLocation="CoTax.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/cochargeallowance" schemaLocation="CoChargeAllowance.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/codate" schemaLocation="CoDate.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/coreference" schemaLocation="CoReference.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/copayment" schemaLocation="CoPayment.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/conotice" schemaLocation="CoNotice.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/corefund" schemaLocation="CoRefund.xsd"/>
+
+    <xs:element name="customerOrders" type="CustomerOrderCollection"/>
+
+    <xs:complexType name="CustomerOrderCollection">
+        <xs:sequence>
+            <xs:element name="customerOrder" type="CustomerOrderType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+	<xs:element name="customerOrder" type="CustomerOrderType" />
+		<xs:complexType name="CustomerOrderType">
+			<xs:sequence>
+				<!-- Number identifies the order as a business key. Together with type it represents a unique OrderHeader entity -->
+                <xs:element name="id" type="xs:long" minOccurs="0"/>
+				<xs:element name="businessUnit" type="xs:string" minOccurs="0" />
+				<xs:element name="number" type="xs:string" minOccurs="0" />
+				<xs:element name="status" type="xs:string" default="Draft" minOccurs="0" />
+				<xs:element name="accountNumber" type="xs:string" minOccurs="0" />
+				<xs:element name="revisionType" type="xs:string" default="Create" minOccurs="0" />
+				<xs:element name="externalOrderNumber" type="xs:string" minOccurs="0" />
+				<xs:element name="otherReferenceNumber" type="xs:string" minOccurs="0" />
+				<xs:element name="otherReferenceNumber2" type="xs:string" minOccurs="0" />
+				<xs:element name="relatedOrderNumber" type="xs:string" minOccurs="0" />
+				<xs:element name="contractNumber" type="xs:string" minOccurs="0" />
+				<xs:element name="coManagementProfileId" type="xs:long" minOccurs="0" />
+				<xs:element name="discountSubTotal" type="xs:double" minOccurs="0" />
+				<xs:element name="shippingTotal" type="xs:double" minOccurs="0" />
+				<xs:element name="shipTaxTotal" type="xs:double" minOccurs="0" />
+				<xs:element name="taxableTotal" type="xs:double" minOccurs="0" />
+				<xs:element name="untaxableTotal" type="xs:double" minOccurs="0" />
+				<xs:element name="subTotal" type="xs:double" minOccurs="0" />
+				<xs:element name="insuranceTotal" type="xs:double" minOccurs="0" />
+				<xs:element name="taxTotal" type="xs:double" minOccurs="0" />
+				<xs:element name="total" type="xs:double" minOccurs="0" />
+				<xs:element name="saleConditionCode" type="xs:string" minOccurs="0" />
+				<xs:element name="taxable" type="xs:boolean" minOccurs="0" />
+				<xs:element name="incotermsType" type="xs:string" minOccurs="0" />
+				<xs:element name="department" type="xs:string" minOccurs="0" />
+				<xs:element name="division" type="xs:string" minOccurs="0" />
+				<xs:element name="releaseNumber" type="xs:string" minOccurs="0" />
+				<xs:element name="currencyCode" type="xs:string" minOccurs="0" />
+				<xs:element name="promotionDealNumber" type="xs:string" minOccurs="0" />
+				<xs:element name="exchangeRate" type="xs:double" minOccurs="0" />
+				<xs:element name="primarySalesChannel" type="xs:string" minOccurs="0" />
+				<xs:element name="fulfillmentSalesChannel" type="xs:string" minOccurs="0" />
+				<xs:element name="externalCustomerNumber" type="xs:string" minOccurs="0" />
+				<xs:element name="billToAddress" type="c:CoContactType" minOccurs="0" />
+				<xs:element name="shipToAddress" type="c:CoContactType" minOccurs="0" />
+				<xs:element name="shipFromAddress" type="c:CoContactType" minOccurs="0" />
+				<xs:element name="shipFromFacility" type="xs:string" minOccurs="0" />
+				<xs:element name="freightBillToAddress" type="c:CoContactType" minOccurs="0" />
+				<xs:element name="remitToAddress" type="c:CoContactType" minOccurs="0" />
+				<xs:element name="sellerAddress" type="c:CoContactType" minOccurs="0" />
+				<xs:element name="salesRepAddress" type="c:CoContactType" minOccurs="0" />
+				<xs:element name="returnToAddress" type="c:CoContactType" minOccurs="0" />
+				<xs:element name="freightBillToAccount" type="xs:string" minOccurs="0" />
+				<xs:element name="tradingPartner" type="xs:string" minOccurs="0" />
+				<xs:element name="createdDate" type="xs:dateTime" minOccurs="0" />
+				<xs:element name="updatedDate" type="xs:dateTime" minOccurs="0" />
+				<xs:element name="parentOrder" type="xs:string" minOccurs="0" />
+				<xs:element name="scacCode" type="xs:string" minOccurs="0" />
+				<xs:element name="transMethodCode" type="xs:string" minOccurs="0" />
+				<xs:element name="routingNumber" type="xs:string" minOccurs="0" />
+				<xs:element name="equipmentDescCode" type="xs:string" minOccurs="0" />
+				<xs:element name="equipmentInitial" type="xs:string" minOccurs="0" />
+				<xs:element name="equipmentNumber" type="xs:string" minOccurs="0" />
+				<xs:element name="equipmentType" type="xs:string" minOccurs="0" />
+				<xs:element name="shippingClass" type="xs:string" minOccurs="0" />
+				<xs:element name="shipVia" type="xs:string" minOccurs="0" />
+				<xs:element name="shipVendor" type="xs:string" minOccurs="0" />
+				<xs:element name="returnShippingClass" type="xs:string" minOccurs="0" />
+				<xs:element name="weight" type="xs:double" minOccurs="0" />
+				<xs:element name="weightUOM" type="xs:string" minOccurs="0" />
+				<xs:element name="orderSummary" type="xs:string" minOccurs="0" />
+				<xs:element name="saturdayDelivery" type="xs:boolean" minOccurs="0" />
+				<xs:element name="homeDelivery" type="xs:boolean" minOccurs="0" />
+				<xs:element name="residential" type="xs:boolean" minOccurs="0" />
+				<xs:element name="deliveryConfirmation" type="xs:string" minOccurs="0" />
+				<xs:element name="verbalConfirmationName" type="xs:string" minOccurs="0" />
+				<xs:element name="verbalConfirmationPhoneNumber" type="xs:string" minOccurs="0" />
+				<xs:element name="returnRequired" type="xs:boolean" minOccurs="0" />
+				<xs:element name="insuranceRequired" type="xs:boolean" minOccurs="0" />
+				<xs:element name="placedDate" type="xs:dateTime" minOccurs="0" />
+				<xs:element name="customAttribute1" type="xs:string" minOccurs="0" />
+				<xs:element name="customAttribute2" type="xs:string" minOccurs="0" />
+				<xs:element name="customAttribute3" type="xs:string" minOccurs="0" />
+				<xs:element name="customAttribute4" type="xs:string" minOccurs="0" />
+				<xs:element name="customAttribute5" type="xs:string" minOccurs="0" />
+				<xs:element name="customAttribute6" type="xs:string" minOccurs="0" />
+				<xs:element name="customAttribute7" type="xs:string" minOccurs="0" />
+				<xs:element name="customAttribute8" type="xs:string" minOccurs="0" />
+				<xs:element name="customAttribute9" type="xs:string" minOccurs="0" />
+				<xs:element name="customAttribute10" type="xs:string" minOccurs="0" />
+				<xs:element name="importType" type="xs:string" minOccurs="0" />
+				<xs:element name="orderSource" type="xs:string" minOccurs="0" />
+                <xs:element name="secondaryOrderSource" type="xs:string" minOccurs="0" />
+				<xs:element name="orderPriority" type="xs:int" minOccurs="0" />
+				<xs:element name="freight" type="t:FreightType" minOccurs="0" />
+				<xs:element name="orderType" type="xs:string" minOccurs="0" />
+				<xs:element name="deliveryType" type="xs:string" minOccurs="0" />
+				<xs:element name="archived" type="xs:boolean" minOccurs="0" />
+				<xs:element name="customer" type="xs:string" minOccurs="0" />
+				<xs:element name="priceList" type="xs:string" minOccurs="0" />
+				<xs:element name="returnShipOption" type="xs:string" minOccurs="0" />
+				<xs:element name="tradingPartnerSite" type="xs:string" minOccurs="0" />
+                <xs:element name="markForSite" type="xs:string" minOccurs="0"/>
+				<xs:element name="integrationPoint" type="xs:string" minOccurs="0" />
+				<xs:element name="integrationSourceId" type="xs:string" minOccurs="0" />
+				<xs:element name="dutyPaidBy" type="xs:string" minOccurs="0" />
+				<xs:element name="channels" type="t:ChannelsCollection" minOccurs="0" />
+				<xs:element name="orderLines" type="line:OrderLineCollection" minOccurs="0" />
+				<xs:element name="retailActivities" type="t:RetailActCollection" minOccurs="0"/>
+				<xs:element name="paymentTerms" type="paymentTerm:PaymentTermCollection" minOccurs="0" />
+				<xs:element name="taxes" type="tax:TaxCollection" minOccurs="0" />
+				<xs:element name="chargesAllowances" type="ca:ChargeAllowanceCollection" minOccurs="0" />
+				<xs:element name="coDates" type="ohd:CoDateCollection" minOccurs="0" />
+				<xs:element name="references" type="ohr:CoReferenceCollection" minOccurs="0" />
+				<xs:element name="notes" type="t:NoteCollection" minOccurs="0"/>
+				<xs:element name="payments" type="pay:CoPaymentCollection" minOccurs="0" />
+				<xs:element name="notices" type="con:NoticeCollection" minOccurs="0"/>
+                <xs:element name="refunds" type="ref:CoRefundCollection" minOccurs="0"/>
+				<xs:element name="carrierSpecialServices" type="t:CarrierSpecialServiceCollection" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+</xs:schema>

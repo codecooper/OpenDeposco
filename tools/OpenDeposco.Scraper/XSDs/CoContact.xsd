@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/cocontact"
+	xmlns="http://integration.deposco.com/cocontact"
+	xmlns:t="http://integration.deposco.com/types"
+     elementFormDefault="unqualified">
+     
+     <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+     
+     <xs:element name="contact" type="CoContactType"/>
+    
+      <xs:complexType name="CoContactType">
+    		<xs:sequence>
+    			<xs:element name="name" type="xs:string" minOccurs="0"/>
+    			<xs:element name="firstName" type="xs:string" minOccurs="0"/>
+    			<xs:element name="middleName" type="xs:string" minOccurs="0"/>
+    			<xs:element name="lastName" type="xs:string" minOccurs="0"/>
+    			<xs:element name="nameSuffix" type="xs:string" minOccurs="0"/>
+    			<xs:element name="namePrefix" type="xs:string" minOccurs="0"/>
+    			<xs:element name="attention" type="xs:string" minOccurs="0"/>
+    			<xs:element name="contactName" type="xs:string" minOccurs="0"/>
+    			<xs:element name="type" type="xs:string" minOccurs="0"/>
+    			<xs:element name="phone1" type="xs:string" minOccurs="0"/>
+    			<xs:element name="phone2" type="xs:string" minOccurs="0"/>
+    			<xs:element name="email1" type="xs:string" minOccurs="0"/>
+    			<xs:element name="email2" type="xs:string" minOccurs="0"/>
+    			<xs:element name="addressNumber" type="xs:string" minOccurs="0"/>
+    			<xs:element name="address" type="t:AddressType" minOccurs="0"/>
+    			<xs:element name="createdDate" type="xs:dateTime" minOccurs="0"/>
+    			<xs:element name="updatedDate" type="xs:dateTime" minOccurs="0"/>
+    			<xs:element name="code" type="xs:string" minOccurs="0"/>
+    		</xs:sequence>
+    	</xs:complexType>
+</xs:schema>

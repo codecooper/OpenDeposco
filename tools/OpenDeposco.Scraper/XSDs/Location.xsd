@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:zone="http://integration.deposco.com/zone"
+           targetNamespace="http://integration.deposco.com/location"
+           xmlns="http://integration.deposco.com/location"
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/zone" schemaLocation="Zone.xsd"/>
+    <xs:element name="locations" type="LocationCollection"/>
+
+    <xs:complexType name="LocationCollection">
+        <xs:sequence>
+            <xs:element name="location" type="LocationType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LocationType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="locator"  type="xs:string"/>
+            <xs:element name="name"  type="xs:string"/>
+            <xs:element name="description"  type="xs:string" minOccurs="0"/>
+            <xs:element name="inventoryContainer" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="pickAssignmentArea" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="receivingStagingArea" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="shippingStagingArea" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="xcoordinate" type="xs:int" minOccurs="0"/>
+            <xs:element name="ycoordinate" type="xs:int" minOccurs="0"/>
+            <xs:element name="zcoordinate" type="xs:int" minOccurs="0"/>
+            <xs:element name="type">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Bulk Picking"/>
+                        <xs:enumeration value="Damaged"/>
+                        <xs:enumeration value="Permanent"/>
+                        <xs:enumeration value="Rack Picking"/>
+                        <xs:enumeration value="Reconcile"/>
+                        <xs:enumeration value="Rejected Return Goods"/>
+                        <xs:enumeration value="Staging"/>
+                        <xs:enumeration value="Station"/>
+                        <xs:enumeration value="Temporary"/>
+                        <xs:enumeration value="Transient"/>
+                        <xs:enumeration value="Value Added Service"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="countUom" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Each"/>
+                        <xs:enumeration value="Case"/>
+                        <xs:enumeration value="Pallet"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="depthUom" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="IN"/>
+                        <xs:enumeration value="CM"/>
+                        <xs:enumeration value="FT"/>
+                        <xs:enumeration value="M"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="heightUom" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="IN"/>
+                        <xs:enumeration value="CM"/>
+                        <xs:enumeration value="FT"/>
+                        <xs:enumeration value="M"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="volumeUom" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="CU IN"/>
+                        <xs:enumeration value="CU CM"/>
+                        <xs:enumeration value="CU FT"/>
+                        <xs:enumeration value="CU M"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="weightUom" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="LB"/>
+                        <xs:enumeration value="KG"/>
+                        <xs:enumeration value="OZ"/>
+                        <xs:enumeration value="G"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="widthUom" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="IN"/>
+                        <xs:enumeration value="CM"/>
+                        <xs:enumeration value="FT"/>
+                        <xs:enumeration value="M"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="lengthUom" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="IN"/>
+                        <xs:enumeration value="CM"/>
+                        <xs:enumeration value="FT"/>
+                        <xs:enumeration value="M"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="count" type="xs:double" minOccurs="0"/>
+            <xs:element name="depth" type="xs:double" minOccurs="0"/>
+            <xs:element name="height" type="xs:double" minOccurs="0"/>
+            <xs:element name="volume" type="xs:double" minOccurs="0"/>
+            <xs:element name="weight" type="xs:double" minOccurs="0"/>
+            <xs:element name="width" type="xs:double" minOccurs="0"/>
+            <xs:element name="length" type="xs:double" minOccurs="0"/>
+            <xs:element name="pickSequence" type="xs:int" minOccurs="0"/>
+            <xs:element name="putawaySequence" type="xs:int" minOccurs="0"/>
+            <xs:element name="storageType">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Damaged"/>
+                        <xs:enumeration value="Full Case Picking"/>
+                        <xs:enumeration value="Hazmat"/>
+                        <xs:enumeration value="Inspection"/>
+                        <xs:enumeration value="Mixed Bin"/>
+                        <xs:enumeration value="Putwall Slot"/>
+                        <xs:enumeration value="Putwall Staging"/>
+                        <xs:enumeration value="Quarantine"/>
+                        <xs:enumeration value="Receiving"/>
+                        <xs:enumeration value="Reserve Storage"/>
+                        <xs:enumeration value="Returned"/>
+                        <xs:enumeration value="Shipping"/>
+                        <xs:enumeration value="Split Case Picking"/>
+                        <xs:enumeration value="Staging"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="volumeRemaining" type="xs:double" minOccurs="0"/>
+            <xs:element name="mixedItemThreshold" minOccurs="0">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Single Item"/>
+                        <xs:enumeration value="Multi Item"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="createdDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="updatedDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="status" default="Ready">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Cycle Count"/>
+                        <xs:enumeration value="Miscount"/>
+                        <xs:enumeration value="On Hold"/>
+                        <xs:enumeration value="Ready"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="cycleCount" type="xs:boolean" minOccurs="0" default="false"/>
+            <xs:element name="pickable" type="xs:boolean" minOccurs="0" default="false"/>
+            <xs:element name="reserved" type="xs:boolean" minOccurs="0"  default="false"/>
+            <xs:element name="pickFromLPN" type="xs:boolean" minOccurs="0"  default="false"/>
+            <xs:element name="lpnControlled" type="xs:boolean" minOccurs="0"  default="false"/>
+            <xs:element name="lastCountedDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="cycleCountFrequency" type="xs:int" minOccurs="0"/>
+            <xs:element name="useForKit" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="kitSequence" type="xs:int" minOccurs="0"/>
+            <xs:element name="travelAisleId" type="xs:int" minOccurs="0"/>
+            <xs:element name="customAttribute1" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute2"  type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute3"  type="xs:string" minOccurs="0"/>
+            <xs:element name="facility" type="xs:string"/>
+            <xs:element name="parent" type="xs:string" minOccurs="0"/>
+            <xs:element name="pdLocation" type="xs:string" minOccurs="0"/>
+            <xs:element name="replenishmentStagingZone" type="xs:string" minOccurs="0"/>
+            <xs:element name="createdBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="updatedBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="company" type="xs:string" minOccurs="0"/>
+            <xs:element name="costCenterAccount" type="xs:string" minOccurs="0"/>
+            <xs:element name="allocatedToBusinessUnit" type="xs:string" minOccurs="0"/>
+            <xs:element name="zones" type="zone:ZoneCollection" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

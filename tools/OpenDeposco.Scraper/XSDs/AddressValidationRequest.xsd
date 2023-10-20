@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://integration.deposco.com/addressvalidation"
+           xmlns:t="http://integration.deposco.com/types"
+           targetNamespace="http://integration.deposco.com/addressvalidation"
+           elementFormDefault="unqualified">
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:complexType name="AddressValidationRequest">
+        <xs:sequence>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+            <xs:element name="address" type="t:AddressType" minOccurs="1"/>
+            <xs:element name="addressValidationOptions" type="t:AddressValidationOptionsType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

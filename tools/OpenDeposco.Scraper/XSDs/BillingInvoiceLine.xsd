@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/billinginvoiceline"
+    xmlns="http://integration.deposco.com/billinginvoiceline"
+    elementFormDefault="unqualified">
+
+    <xs:element name="billingInvoiceLines" type="BillingInvoiceLineCollection"/>
+
+    <xs:complexType name="BillingInvoiceLineCollection">
+        <xs:sequence>
+            <xs:element name="billingInvoiceLine" type="BillingInvoiceLineType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BillingInvoiceLineType">
+        <xs:sequence>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+            <xs:element name="lineNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="billingTransactionType" type="xs:string" minOccurs="0"/>
+			<xs:element name="billingTransactionDateTime" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="quantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="totalPrice" type="xs:double" minOccurs="0"/>
+			<xs:element name="itemNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="locationNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="billingInvoiceNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="createdDateTime" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="updatedDateTime" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="createdBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="updatedBy" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

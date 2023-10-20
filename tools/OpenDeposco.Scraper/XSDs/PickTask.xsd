@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/picktask"
+           xmlns="http://integration.deposco.com/picktask"
+           xmlns:order="http://integration.deposco.com/order"
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/order" schemaLocation="OrderHeader.xsd"/>
+
+    <xs:element name="pickTasks" type="PickTaskCollection"/>
+
+    <xs:complexType name="PickTaskCollection">
+        <xs:sequence>
+            <xs:element name="pickTask" type="PickTaskType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PickTaskType">
+        <xs:sequence>
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="state" type="xs:string"/>
+            <xs:element name="businessUnit" type="xs:string"/>
+            <xs:element name="description" type="xs:string"/>
+            <xs:element name="packQuantity" type="xs:int"/>
+            <xs:element name="quantityToPick" type="xs:double"/>
+            <xs:element name="quantityPicked" type="xs:double"/>
+            <xs:element name="orderHeaderNumber" type="xs:string"/>
+            <xs:element name="pickWaveNumber" type="xs:string"/>
+            <xs:element name="item" type="xs:string"/>
+            <xs:element name="pack" type="xs:string"/>
+            <xs:element name="stagingContainer" type="xs:string"/>
+            <xs:element name="cartonizationContainer" type="xs:string"/>
+            <xs:element name="containerToPick" type="xs:string"/>
+            <xs:element name="location" type="xs:string"/>
+            <xs:element name="workGroup" type="xs:string"/>
+            <xs:element name="createdDateTime" type="xs:dateTime"/>
+            <xs:element name="updatedDateTime" type="xs:dateTime"/>
+            <xs:element name="createdBy" type="xs:string"/>
+            <xs:element name="updatedBy" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

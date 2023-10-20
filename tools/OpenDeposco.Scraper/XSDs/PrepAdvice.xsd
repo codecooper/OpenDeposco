@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/prepadvice"
+           xmlns="http://integration.deposco.com/prepadvice"
+           xmlns:detail="http://integration.deposco.com/prepadvicedetail"
+           xmlns:t="http://integration.deposco.com/types"
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/pack" schemaLocation="Pack.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/prepadvicedetail" schemaLocation="PrepAdviceDetail.xsd" />
+
+    <xs:element name="prepAdvices" type="PrepAdviceCollection"/>
+    <xs:complexType name="PrepAdviceCollection">
+        <xs:sequence>
+            <xs:element name="prepAdvice" type="PrepAdviceType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PrepAdviceType">
+        <xs:sequence>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="1"/>
+            <xs:element name="tradingPartner" type="xs:string" minOccurs="0"/>
+            <xs:element name="productCategory" type="xs:string" minOccurs="0"/>
+            <xs:element name="name" type="xs:string" minOccurs="1"/>
+            <xs:element name="source" type="xs:string" minOccurs="0"/>
+            <xs:element name="note" type="xs:string" minOccurs="0"/>
+            <xs:choice>
+                <xs:element name="prepAdviceDetails" type="detail:PrepAdviceDetailCollection" />
+                <xs:element name="prepItemPacks" type="PrepItemPackCollection" />
+            </xs:choice>
+            <xs:element name="channels" type="t:ChannelsCollection" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PrepItemPackCollection">
+        <xs:sequence>
+            <xs:element name="prepItemPack" type="PrepItemPackType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PrepItemPackType">
+        <xs:sequence>
+            <xs:element name="itemNumber" type="xs:string" />
+            <xs:element name="packQuantity" type="xs:int" />
+            <xs:element name="prepAdviceDetails" type="detail:PrepAdviceDetailCollection" />
+            <xs:element name="channels" type="t:ChannelsCollection" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

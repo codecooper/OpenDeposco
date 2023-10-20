@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/colinesite"
+	xmlns="http://integration.deposco.com/colinesite"
+ 	xmlns:olsd="http://integration.deposco.com/codate"
+ 	xmlns:olsr="http://integration.deposco.com/coreference"
+    elementFormDefault="unqualified">
+    
+    
+    <xs:import namespace="http://integration.deposco.com/codate" schemaLocation="CoDate.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/coreference" schemaLocation="CoReference.xsd"/>
+    
+     <xs:element name="orderLineSites" type="OrderLineSiteCollection"/>
+
+    <xs:complexType name="OrderLineSiteCollection">
+        <xs:sequence>
+            <xs:element name="orderLineSite" type="OrderLineSiteType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OrderLineSiteType">
+    		<xs:sequence>
+			<xs:element name="tradingPartnerSite" type="xs:string" minOccurs="0"/>
+			<xs:element name="orderQuantity" type="xs:double" minOccurs="0"/>
+			<xs:element name="shippedQuantity" type="xs:double" minOccurs="0"/>
+			<xs:element name="canceledQuantity" type="xs:double" minOccurs="0"/>
+			
+			<xs:element name="coDates" type="olsd:CoDateCollection" minOccurs="0"/>
+            <xs:element name="references" type="olsr:CoReferenceCollection" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

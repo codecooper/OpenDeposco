@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/pack"
+    xmlns="http://integration.deposco.com/pack"
+    xmlns:t="http://integration.deposco.com/types"
+    xmlns:upc="http://integration.deposco.com/upc"
+    elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/upc" schemaLocation="UPC.xsd"/>
+
+    <xs:element name="packs" type="PackCollection"/>
+
+    <xs:complexType name="PackCollection">
+        <xs:sequence>
+            <xs:element name="pack" type="PackType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PackType">
+        <xs:sequence>
+            <xs:element name="itemNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="quantity" type="xs:int"/>
+            <xs:element name="weight" type="xs:double" minOccurs="0"/>
+            <xs:element name="weightUOM" type="xs:string" minOccurs="0"/>
+            <xs:element name="boxTypes" type="BoxTypeCollection" minOccurs="0"/>
+			<xs:element name="dimension" type="t:DimensionType" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="upcs" type="upc:UPCCollection" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="newPackFlag" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="lpnTrackingEnabled" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="readyToShip" type="xs:int" minOccurs="0"/>
+			<xs:element name="customMappings" type="t:CustomMapCollection" minOccurs="1" maxOccurs="1" nillable="true"/>
+			<xs:element name="cartonGroup" type="xs:string" minOccurs="0"/>
+			<xs:element name="preferredCartonType" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BoxTypeCollection">
+        <xs:sequence>
+            <xs:element name="boxType" type="BoxTypeType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BoxTypeType">
+        <xs:sequence>
+            <xs:element name="itemNumber" type="xs:string"/>
+            <xs:element name="quantity" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

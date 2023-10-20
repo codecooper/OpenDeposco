@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/prepadvicedetail"
+           xmlns="http://integration.deposco.com/prepadvicedetail"
+           elementFormDefault="unqualified">
+
+    <xs:element name="prepAdviceDetails" type="PrepAdviceDetailCollection"/>
+
+    <xs:complexType name="PrepAdviceDetailCollection">
+        <xs:sequence>
+            <xs:element name="prepAdviceDetail" type="PrepAdviceDetailType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PrepAdviceDetailType">
+        <xs:sequence>
+            <xs:element name="prepType" type="xs:string" />
+            <xs:element name="note" type="xs:string" minOccurs="0"/>
+            <xs:element name="effectiveCost" type="xs:double" minOccurs="0" />
+            <xs:element name="currencyCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="effectiveStartDate" type="xs:dateTime" minOccurs="0" />
+            <xs:element name="effectiveEndDate" type="xs:dateTime" minOccurs="0" />
+            <xs:element name="customAttribute1" type="xs:string" minOccurs="0" />
+            <xs:element name="customAttribute2" type="xs:string" minOccurs="0" />
+            <xs:element name="customAttribute3" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

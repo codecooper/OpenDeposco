@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://integration.deposco.com/coretailactivity"
+           xmlns="http://integration.deposco.com/coretailactivity"
+           xmlns:t="http://integration.deposco.com/types"
+           xmlns:pay="http://integration.deposco.com/copayment"
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd" />
+    <xs:import namespace="http://integration.deposco.com/copayment" schemaLocation="CoPayment.xsd" />
+
+    <xs:element name="retailActivities" type="RetailActivityCollection"/>
+
+    <xs:complexType name="RetailActivityCollection">
+        <xs:sequence>
+            <xs:element name="retailActivity" type="RetailActivityType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+
+    <xs:complexType name="RetailActivityType">
+        <xs:sequence>
+            <xs:element name="batch" type="xs:string" minOccurs="0"/>
+            <xs:element name="transactionSource" type="xs:string" minOccurs="0"/>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+            <xs:element name="tradingPartner" type="xs:string" minOccurs="0"/>
+            <xs:element name="retailTransaction" type="RetailTransactionType" minOccurs="1"/>
+            <xs:element name="createdDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="updatedDate" type="xs:dateTime" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="RetailTransactionType">
+        <xs:sequence>
+            <xs:element name="batchSequenceNumber" type="xs:long" minOccurs="0"/>
+            <xs:element name="type" type="xs:string" minOccurs="1"/>
+            <xs:element name="retailTransactionId" type="xs:string" minOccurs="0"/>
+            <xs:element name="externalCustomerNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="sequenceNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="referenceNumber" type="xs:string"  minOccurs="1"/>
+            <xs:element name="status" type="xs:string" minOccurs="0" default="Complete"/>
+            <xs:element name="facility" type="xs:string" minOccurs="1"/>
+            <xs:element name="register" type="xs:string" minOccurs="0"/>
+            <xs:element name="associate" type="xs:string" minOccurs="0"/>
+            <xs:element name="user" type="xs:string" minOccurs="0"/>
+            <xs:element name="till" type="xs:string" minOccurs="0"/>
+            <xs:element name="transactionStartDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="transactionEndDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="businessDayDate" type="xs:date" minOccurs="0"/>
+            <xs:element name="customer" type="CoContactType" minOccurs="0"/>
+            <xs:element name="primarySalesChannel" type="xs:string" minOccurs="1"/>
+            <xs:element name="fulfillmentSalesChannel" type="xs:string" minOccurs="0"/>
+            <xs:element name="currencyCode" type="xs:string" minOccurs="0" default="USD"/>
+            <xs:element name="reasonCode" type="xs:string" minOccurs="0" />
+            <xs:element name="voided" type="xs:boolean"  minOccurs="0" />
+            <xs:element name="testTransaction" type="xs:boolean" minOccurs="0" />
+            <xs:element name="division" type="xs:string" minOccurs="0" />
+            <xs:element name="department" type="xs:string" minOccurs="0"/>
+            <xs:element name="saleReturnLines" type="SalesReturnLineCollection" minOccurs="1"/>
+            <xs:element name="paymentStatus" type="xs:string" minOccurs="0"/>
+            <xs:element name="payments" type="pay:CoPaymentCollection" minOccurs="0" />
+            <xs:element name="notes" type="t:NoteCollection" minOccurs="0"/>
+            <xs:element name="totals" type="TotalCollection" minOccurs="0"/>
+            <xs:element name="channels" type="t:ChannelsCollection" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SalesReturnLineCollection">
+        <xs:sequence>
+            <xs:element name="saleReturnLine" type="SalesReturnLineType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SalesReturnLineType">
+        <xs:sequence>
+            <xs:element name="externalLineNumber" type="xs:string" minOccurs="1"/>
+            <xs:element name="item" type="xs:string" minOccurs="1"/>
+            <xs:element name="pack" type="xs:string" minOccurs="1"/> <!--  TODO : check with Mark if we have to follow the same notation as bright order
+    		orderQuantityInPack and orderQuantityUOM and if customerPackKey ?  -->
+            <xs:element name="vendorPartNumber" type="xs:string" minOccurs="1"/>
+            <xs:element name="status" type="xs:string" minOccurs="0" default="Complete"/>
+            <xs:element name="saleQuantity" type="xs:double" minOccurs="0" default="0.00"/>
+            <xs:element name="returnedQuantity" type="xs:double" minOccurs="0" default="0.00"/>
+            <xs:element name="shippedQuantity" type="xs:double" minOccurs="0" default="0.00"/>
+            <xs:element name="orderQuantityInPack" type="xs:double" minOccurs="0" default="0.00"/>
+            <xs:element name="unitPrice" type="xs:double" minOccurs="0" default="0.00"/>
+            <xs:element name="netPrice" type="xs:double" minOccurs="0" default="0.00"/>
+            <xs:element name="lineTotal" type="xs:double" minOccurs="0" default="0.00"/>
+            <xs:element name="extendedTotal" type="xs:double" minOccurs="0" default="0.00"/>
+            <xs:element name="discountAmount" type="xs:double" minOccurs="0" default="0.00"/>
+            <xs:element name="taxAmount" type="xs:double" minOccurs="0" default="0.00"/>
+            <xs:element name="taxable" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="shipFromFacility" type="xs:string" minOccurs="0"/>
+            <xs:element name="channels" type="t:ChannelsCollection" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TotalCollection">
+        <xs:sequence>
+            <xs:element name="taxable" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="taxTotal" type="xs:double" minOccurs="0" default="0.00"/>
+            <xs:element name="discountAmount" type="xs:double" minOccurs="0" default="0.00"/>
+            <xs:element name="subtotal" type="xs:double" minOccurs="0" default="0.00"/>
+            <xs:element name="total" type="xs:double" minOccurs="0" default="0.00"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CoContactType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+            <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+            <xs:element name="middleName" type="xs:string" minOccurs="0"/>
+            <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+            <xs:element name="nameSuffix" type="xs:string" minOccurs="0"/>
+            <xs:element name="namePrefix" type="xs:string" minOccurs="0"/>
+            <xs:element name="attention" type="xs:string" minOccurs="0"/>
+            <xs:element name="contactName" type="xs:string" minOccurs="0"/>
+            <xs:element name="type" type="xs:string" minOccurs="0"/>
+            <xs:element name="phone1" type="xs:string" minOccurs="0"/>
+            <xs:element name="phone2" type="xs:string" minOccurs="0"/>
+            <xs:element name="email1" type="xs:string" minOccurs="0"/>
+            <xs:element name="email2" type="xs:string" minOccurs="0"/>
+            <xs:element name="addressNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="address" type="AddressType" minOccurs="0"/>
+            <xs:element name="code" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="AddressType">
+        <xs:sequence>
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+            <xs:element name="contactName" type="xs:string" minOccurs="0"/>
+            <xs:element name="attention" type="xs:string" minOccurs="0"/>
+            <xs:element name="email" type="xs:string" minOccurs="0"/>
+            <xs:element name="phone" type="xs:string" minOccurs="0"/>
+            <xs:element name="phone2" type="xs:string" minOccurs="0"/>
+            <xs:element name="line1" type="xs:string"/>
+            <xs:element name="line2" type="xs:string" minOccurs="0"/>
+            <xs:element name="line3" type="xs:string" minOccurs="0"/>
+            <xs:element name="line4" type="xs:string" minOccurs="0"/>
+            <xs:element name="city" type="xs:string"/>
+            <xs:element name="stateProvinceCode" type="xs:string"/>
+            <xs:element name="postalCode" type="xs:string"/>
+            <xs:element name="countryCode" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

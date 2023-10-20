@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/inventory"
+    xmlns="http://integration.deposco.com/inventory"
+    xmlns:t="http://integration.deposco.com/types"
+    elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+
+    <xs:element name="inventoryItems" type="InventoryItemCollection"/>
+
+    <xs:complexType name="InventoryItemCollection">
+        <xs:sequence>
+            <xs:element name="inventoryItem" type="InventoryItemType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="InventoryItemType">
+        <xs:sequence>
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="quantity" type="xs:double"/>
+            <xs:element name="transactionId" type="xs:string" minOccurs="0"/>
+            <xs:element name="businessUnitCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="trandingPartnerCode" type="xs:string" minOccurs="0"/>
+            <!--   Facility field is deprecated. Please use adjustment facility -->
+            <xs:element name="facility" type="xs:string" minOccurs="0"/>
+            <xs:element name="adjustmentFacility" type="xs:string" minOccurs="0"/>
+            <xs:element name="adjustmentLocation" type="xs:string" minOccurs="0"/>
+            <xs:element name="actionType" type="xs:string" minOccurs="0"/>
+            <xs:element name="processCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="effectiveDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="packType" type="xs:string" minOccurs="0"/>
+            <xs:element name="importReference" type="xs:string" minOccurs="0"/>
+            <xs:element name="reasonCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="lotNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="purchaseOrderNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="purchasingCompany" type="xs:string"/>
+            <xs:element name="accountNumber" type="xs:string"/>
+            <xs:element name="code" type="xs:string"/>
+            <xs:element name="price" type="xs:double"/>
+            <xs:element name="address" type="t:AddressType"/>
+            <xs:element name="inventoryLineNumber" type="xs:string"/>
+            <xs:element name="customField1" type="xs:string"/>
+            <xs:element name="customField2" type="xs:string"/>
+            <xs:element name="customField3" type="xs:string"/>
+            <xs:element name="transactionNumber" type="xs:string"/>
+            <xs:element name="inventoryCondition" type="xs:string"/>
+            <xs:element name="inventoryAttribute1" type="xs:string"/>
+            <xs:element name="inventoryAttribute2" type="xs:string"/>
+            <xs:element name="serialNumber" type="xs:string"/>
+            <xs:element name="bornOnDate" type="xs:dateTime"/>
+            <xs:element name="expirationDate" type="xs:dateTime"/>
+            <xs:element name="workOrderNumber" type="xs:string"/>
+
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

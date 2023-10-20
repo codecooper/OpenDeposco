@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/bulkUpdateResponse"
+           xmlns="http://integration.deposco.com/bulkUpdateResponse"
+           elementFormDefault="unqualified">
+
+
+    <xs:element name="bulkUpdateResponse" type="BulkUpdateResponseType"/>
+
+    <xs:complexType name="BulkUpdateResponseType">
+        <xs:sequence>
+            <xs:element name="requestId" type="xs:string"/>
+            <xs:element name="uniqueToken" type="xs:string"/>
+            <xs:element name="progress" type="xs:long"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="details" type="bulkUpdateDetailCollection"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="bulkUpdateDetailCollection">
+        <xs:sequence>
+            <xs:element name="requestDetails" type="bulkUpdateDetail" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="bulkUpdateDetail">
+        <xs:sequence>
+            <xs:element name="entityNumber" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="comment" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="BulkUpdateResponseCollection">
+        <xs:sequence>
+            <xs:element name="bulkUpdate" type="BulkUpdateResponseType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,985 @@
+[
+  {
+    "FileName": "AddressValidationRequest.xsd",
+    "FileLink": "/schema/AddressValidationRequest.xsd",
+    "Size": "0.8 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/addressvalidation",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "AddressValidationResponse.xsd",
+    "FileLink": "/schema/AddressValidationResponse.xsd",
+    "Size": "0.8 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/addressvalidation",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "BillableTransaction.xsd",
+    "FileLink": "/schema/BillableTransaction.xsd",
+    "Size": "2.0 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/billabletransaction",
+    "Imports": [
+      "http://integration.deposco.com/billabletransactionconfig"
+    ]
+  },
+  {
+    "FileName": "BillableTransactionConfig.xsd",
+    "FileLink": "/schema/BillableTransactionConfig.xsd",
+    "Size": "2.6 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/billabletransactionconfig",
+    "Imports": []
+  },
+  {
+    "FileName": "BillingInvoiceHeader.xsd",
+    "FileLink": "/schema/BillingInvoiceHeader.xsd",
+    "Size": "1.9 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/billinginvoice",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/billinginvoiceline"
+    ]
+  },
+  {
+    "FileName": "BillingInvoiceLine.xsd",
+    "FileLink": "/schema/BillingInvoiceLine.xsd",
+    "Size": "1.6 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/billinginvoiceline",
+    "Imports": []
+  },
+  {
+    "FileName": "BulkUpdate.xsd",
+    "FileLink": "/schema/BulkUpdate.xsd",
+    "Size": "1.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/bulkUpdate",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/shipment",
+      "http://integration.deposco.com/order",
+      "http://integration.deposco.com/item"
+    ]
+  },
+  {
+    "FileName": "BulkUpdateResponse.xsd",
+    "FileLink": "/schema/BulkUpdateResponse.xsd",
+    "Size": "1.5 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/bulkUpdateResponse",
+    "Imports": []
+  },
+  {
+    "FileName": "ChannelListing.xsd",
+    "FileLink": "/schema/ChannelListing.xsd",
+    "Size": "2.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/channellisting",
+    "Imports": []
+  },
+  {
+    "FileName": "ChannelLookup.xsd",
+    "FileLink": "/schema/ChannelLookup.xsd",
+    "Size": "1.5 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/channellookup",
+    "Imports": []
+  },
+  {
+    "FileName": "CoChargeAllowance.xsd",
+    "FileLink": "/schema/CoChargeAllowance.xsd",
+    "Size": "1.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/cochargeallowance",
+    "Imports": []
+  },
+  {
+    "FileName": "CoContact.xsd",
+    "FileLink": "/schema/CoContact.xsd",
+    "Size": "1.7 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/cocontact",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "CoDate.xsd",
+    "FileLink": "/schema/CoDate.xsd",
+    "Size": "0.7 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/codate",
+    "Imports": []
+  },
+  {
+    "FileName": "CoHeader.xsd",
+    "FileLink": "/schema/CoHeader.xsd",
+    "Size": "10.5 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/coheader",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/coline",
+      "http://integration.deposco.com/cocontact",
+      "http://integration.deposco.com/copaymentterm",
+      "http://integration.deposco.com/cotax",
+      "http://integration.deposco.com/cochargeallowance",
+      "http://integration.deposco.com/codate",
+      "http://integration.deposco.com/coreference",
+      "http://integration.deposco.com/copayment",
+      "http://integration.deposco.com/conotice",
+      "http://integration.deposco.com/corefund"
+    ]
+  },
+  {
+    "FileName": "CoLine.xsd",
+    "FileLink": "/schema/CoLine.xsd",
+    "Size": "10.1 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/coline",
+    "Imports": [
+      "http://integration.deposco.com/item",
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/coretailactivity",
+      "http://integration.deposco.com/pack",
+      "http://integration.deposco.com/colinesite",
+      "http://integration.deposco.com/copaymentterm",
+      "http://integration.deposco.com/cotax",
+      "http://integration.deposco.com/cochargeallowance",
+      "http://integration.deposco.com/cocontact",
+      "http://integration.deposco.com/codate",
+      "http://integration.deposco.com/coreference",
+      "http://integration.deposco.com/colineallocation",
+      "http://integration.deposco.com/corefund"
+    ]
+  },
+  {
+    "FileName": "CoLineAllocation.xsd",
+    "FileLink": "/schema/CoLineAllocation.xsd",
+    "Size": "0.9 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/colineallocation",
+    "Imports": []
+  },
+  {
+    "FileName": "CoLineSite.xsd",
+    "FileLink": "/schema/CoLineSite.xsd",
+    "Size": "1.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/colinesite",
+    "Imports": [
+      "http://integration.deposco.com/codate",
+      "http://integration.deposco.com/coreference"
+    ]
+  },
+  {
+    "FileName": "CoManagementProfile.xsd",
+    "FileLink": "/schema/CoManagementProfile.xsd",
+    "Size": "0.8 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/coManagementProfile",
+    "Imports": []
+  },
+  {
+    "FileName": "CoNotice.xsd",
+    "FileLink": "/schema/CoNotice.xsd",
+    "Size": "1.2 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/conotice",
+    "Imports": []
+  },
+  {
+    "FileName": "CoPayment.xsd",
+    "FileLink": "/schema/CoPayment.xsd",
+    "Size": "2.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/copayment",
+    "Imports": []
+  },
+  {
+    "FileName": "CoPaymentTerm.xsd",
+    "FileLink": "/schema/CoPaymentTerm.xsd",
+    "Size": "1.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/copaymentterm",
+    "Imports": []
+  },
+  {
+    "FileName": "CoReference.xsd",
+    "FileLink": "/schema/CoReference.xsd",
+    "Size": "1.0 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/coreference",
+    "Imports": []
+  },
+  {
+    "FileName": "CoRefund.xsd",
+    "FileLink": "/schema/CoRefund.xsd",
+    "Size": "1.1 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/corefund",
+    "Imports": []
+  },
+  {
+    "FileName": "CoRetailActivity.xsd",
+    "FileLink": "/schema/CoRetailActivity.xsd",
+    "Size": "8.8 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/coretailactivity",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/copayment"
+    ]
+  },
+  {
+    "FileName": "CoTax.xsd",
+    "FileLink": "/schema/CoTax.xsd",
+    "Size": "0.8 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/cotax",
+    "Imports": []
+  },
+  {
+    "FileName": "Company.xsd",
+    "FileLink": "/schema/Company.xsd",
+    "Size": "5.1 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/company",
+    "Imports": [
+      "http://integration.deposco.com/order",
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "Container.xsd",
+    "FileLink": "/schema/Container.xsd",
+    "Size": "2.5 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/container",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "ConveyorScanRequest.xsd",
+    "FileLink": "/schema/ConveyorScanRequest.xsd",
+    "Size": "1.1 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/conveyorscanrequest",
+    "Imports": []
+  },
+  {
+    "FileName": "ConveyorScanResponse.xsd",
+    "FileLink": "/schema/ConveyorScanResponse.xsd",
+    "Size": "1.0 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/conveyorscanresponse",
+    "Imports": []
+  },
+  {
+    "FileName": "Cube.xsd",
+    "FileLink": "/schema/Cube.xsd",
+    "Size": "4.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/cube",
+    "Imports": []
+  },
+  {
+    "FileName": "CxCustomer.xsd",
+    "FileLink": "/schema/CxCustomer.xsd",
+    "Size": "5.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/customer",
+    "Imports": [
+      "http://integration.deposco.com/address",
+      "http://integration.deposco.com/contactmethod",
+      "http://integration.deposco.com/tradingPartnerSite",
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/coheader"
+    ]
+  },
+  {
+    "FileName": "CxCustomerAddress.xsd",
+    "FileLink": "/schema/CxCustomerAddress.xsd",
+    "Size": "1.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/address",
+    "Imports": []
+  },
+  {
+    "FileName": "CxCustomerContactMethod.xsd",
+    "FileLink": "/schema/CxCustomerContactMethod.xsd",
+    "Size": "0.9 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/contactmethod",
+    "Imports": []
+  },
+  {
+    "FileName": "DecisionService.xsd",
+    "FileLink": "/schema/DecisionService.xsd",
+    "Size": "2.0 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/decisionService",
+    "Imports": []
+  },
+  {
+    "FileName": "EntityImage.xsd",
+    "FileLink": "/schema/EntityImage.xsd",
+    "Size": "1.0 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/entityimage",
+    "Imports": []
+  },
+  {
+    "FileName": "Facility.xsd",
+    "FileLink": "/schema/Facility.xsd",
+    "Size": "0.9 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/facility",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "FacilityInventory.xsd",
+    "FileLink": "/schema/FacilityInventory.xsd",
+    "Size": "1.2 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/inventory",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "GeneralLedger.xsd",
+    "FileLink": "/schema/GeneralLedger.xsd",
+    "Size": "3.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/gl",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "InvAdjustment.xsd",
+    "FileLink": "/schema/InvAdjustment.xsd",
+    "Size": "2.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/invadjustment",
+    "Imports": [
+      "http://integration.deposco.com/gl",
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "InvSegmentationPlan.xsd",
+    "FileLink": "/schema/InvSegmentationPlan.xsd",
+    "Size": "0.8 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/invsegmentationplan",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "Inventory.xsd",
+    "FileLink": "/schema/Inventory.xsd",
+    "Size": "3.1 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/inventory",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "InventoryNoticeActivity.xsd",
+    "FileLink": "/schema/InventoryNoticeActivity.xsd",
+    "Size": "1.9 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/inventorynoticeactivity",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "InvoiceHeader.xsd",
+    "FileLink": "/schema/InvoiceHeader.xsd",
+    "Size": "3.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/invoice",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/invoiceLine",
+      "http://integration.deposco.com/payment"
+    ]
+  },
+  {
+    "FileName": "InvoiceLine.xsd",
+    "FileLink": "/schema/InvoiceLine.xsd",
+    "Size": "3.0 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/invoiceLine",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/item",
+      "http://integration.deposco.com/pack",
+      "http://integration.deposco.com/receiptline",
+      "http://integration.deposco.com/invoicedQuantityDetail"
+    ]
+  },
+  {
+    "FileName": "InvoicedQuantityDetail.xsd",
+    "FileLink": "/schema/InvoicedQuantityDetail.xsd",
+    "Size": "1.5 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/invoicedQuantityDetail",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/item",
+      "http://integration.deposco.com/pack",
+      "http://integration.deposco.com/receiptline"
+    ]
+  },
+  {
+    "FileName": "Item.xsd",
+    "FileLink": "/schema/Item.xsd",
+    "Size": "21.0 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/item",
+    "Imports": [
+      "http://integration.deposco.com/pack",
+      "http://integration.deposco.com/upc",
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/itemVendor",
+      "http://integration.deposco.com/itemCustomer",
+      "http://integration.deposco.com/planItem"
+    ]
+  },
+  {
+    "FileName": "ItemATP.xsd",
+    "FileLink": "/schema/ItemATP.xsd",
+    "Size": "1.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": null,
+    "Imports": []
+  },
+  {
+    "FileName": "ItemCustomer.xsd",
+    "FileLink": "/schema/ItemCustomer.xsd",
+    "Size": "1.9 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/itemCustomer",
+    "Imports": [
+      "http://integration.deposco.com/item",
+      "http://integration.deposco.com/pack"
+    ]
+  },
+  {
+    "FileName": "ItemPrice.xsd",
+    "FileLink": "/schema/ItemPrice.xsd",
+    "Size": "1.5 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/itemprice",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/item",
+      "http://integration.deposco.com/pricelist",
+      "http://integration.deposco.com/pricelistdetail"
+    ]
+  },
+  {
+    "FileName": "ItemVendor.xsd",
+    "FileLink": "/schema/ItemVendor.xsd",
+    "Size": "5.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/itemVendor",
+    "Imports": [
+      "http://integration.deposco.com/item"
+    ]
+  },
+  {
+    "FileName": "JAXBBindings.xsd",
+    "FileLink": "/schema/JAXBBindings.xsd",
+    "Size": "0.8 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "bindings",
+    "Imports": []
+  },
+  {
+    "FileName": "KitDetail.xsd",
+    "FileLink": "/schema/KitDetail.xsd",
+    "Size": "1.6 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/kitdetail",
+    "Imports": [
+      "http://integration.deposco.com/pack"
+    ]
+  },
+  {
+    "FileName": "KitHeader.xsd",
+    "FileLink": "/schema/KitHeader.xsd",
+    "Size": "1.8 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/kitheader",
+    "Imports": [
+      "http://integration.deposco.com/kitdetail",
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "Location.xsd",
+    "FileLink": "/schema/Location.xsd",
+    "Size": "10.1 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/location",
+    "Imports": [
+      "http://integration.deposco.com/zone"
+    ]
+  },
+  {
+    "FileName": "MultiStatusResponse.xsd",
+    "FileLink": "/schema/MultiStatusResponse.xsd",
+    "Size": "4.0 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/multistatus",
+    "Imports": []
+  },
+  {
+    "FileName": "OrderHeader.xsd",
+    "FileLink": "/schema/OrderHeader.xsd",
+    "Size": "16.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/order",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/line",
+      "http://integration.deposco.com/payment"
+    ]
+  },
+  {
+    "FileName": "OrderLine.xsd",
+    "FileLink": "/schema/OrderLine.xsd",
+    "Size": "8.2 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/line",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/item",
+      "http://integration.deposco.com/pack",
+      "http://integration.deposco.com/receiptline",
+      "http://integration.deposco.com/container"
+    ]
+  },
+  {
+    "FileName": "OrderStatus.xsd",
+    "FileLink": "/schema/OrderStatus.xsd",
+    "Size": "5.2 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/orderstatus",
+    "Imports": [
+      "http://integration.deposco.com/pack"
+    ]
+  },
+  {
+    "FileName": "OrderStatusUpdate.xsd",
+    "FileLink": "/schema/OrderStatusUpdate.xsd",
+    "Size": "6.0 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/orderStatusUpdate",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "Pack.xsd",
+    "FileLink": "/schema/Pack.xsd",
+    "Size": "2.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/pack",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/upc"
+    ]
+  },
+  {
+    "FileName": "Payment.xsd",
+    "FileLink": "/schema/Payment.xsd",
+    "Size": "3.1 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/payment",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "PickConfirm.xsd",
+    "FileLink": "/schema/PickConfirm.xsd",
+    "Size": "2.0 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/pickconfirm",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "PickTask.xsd",
+    "FileLink": "/schema/PickTask.xsd",
+    "Size": "2.1 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/picktask",
+    "Imports": [
+      "http://integration.deposco.com/order"
+    ]
+  },
+  {
+    "FileName": "PickTaskForStockUnit.xsd",
+    "FileLink": "/schema/PickTaskForStockUnit.xsd",
+    "Size": "1.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/picktaskforstockunit",
+    "Imports": [
+      "http://integration.deposco.com/stockunit",
+      "http://integration.deposco.com/picktask",
+      "http://integration.deposco.com/zone"
+    ]
+  },
+  {
+    "FileName": "PickWave.xsd",
+    "FileLink": "/schema/PickWave.xsd",
+    "Size": "1.5 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/pickwave",
+    "Imports": [
+      "http://integration.deposco.com/order"
+    ]
+  },
+  {
+    "FileName": "PlanItem.xsd",
+    "FileLink": "/schema/PlanItem.xsd",
+    "Size": "1.6 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/planItem",
+    "Imports": []
+  },
+  {
+    "FileName": "PostShipment.xsd",
+    "FileLink": "/schema/PostShipment.xsd",
+    "Size": "1.8 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/postshipment",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/container"
+    ]
+  },
+  {
+    "FileName": "PrepAdvice.xsd",
+    "FileLink": "/schema/PrepAdvice.xsd",
+    "Size": "2.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/prepadvice",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/pack",
+      "http://integration.deposco.com/prepadvicedetail"
+    ]
+  },
+  {
+    "FileName": "PrepAdviceDetail.xsd",
+    "FileLink": "/schema/PrepAdviceDetail.xsd",
+    "Size": "1.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/prepadvicedetail",
+    "Imports": []
+  },
+  {
+    "FileName": "PriceList.xsd",
+    "FileLink": "/schema/PriceList.xsd",
+    "Size": "2.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/pricelist",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/pricelistdetail",
+      "http://integration.deposco.com/tradingPartner",
+      "http://integration.deposco.com/facility"
+    ]
+  },
+  {
+    "FileName": "PriceListDetail.xsd",
+    "FileLink": "/schema/PriceListDetail.xsd",
+    "Size": "1.7 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/pricelistdetail",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/item",
+      "http://integration.deposco.com/pricelist",
+      "http://integration.deposco.com/itemprice"
+    ]
+  },
+  {
+    "FileName": "ProductCategory.xsd",
+    "FileLink": "/schema/ProductCategory.xsd",
+    "Size": "4.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/productCategory",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "PutConfirm.xsd",
+    "FileLink": "/schema/PutConfirm.xsd",
+    "Size": "2.0 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/putconfirm",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "ReceiptAdvice.xsd",
+    "FileLink": "/schema/ReceiptAdvice.xsd",
+    "Size": "1.6 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/receiptadvice",
+    "Imports": [
+      "http://integration.deposco.com/receiptitemadvice"
+    ]
+  },
+  {
+    "FileName": "ReceiptItemAdvice.xsd",
+    "FileLink": "/schema/ReceiptItemAdvice.xsd",
+    "Size": "1.9 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/receiptitemadvice",
+    "Imports": [
+      "http://integration.deposco.com/pack",
+      "http://integration.deposco.com/container"
+    ]
+  },
+  {
+    "FileName": "ReceiptLine.xsd",
+    "FileLink": "/schema/ReceiptLine.xsd",
+    "Size": "3.9 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/receiptline",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "ReturnLabel.xsd",
+    "FileLink": "/schema/ReturnLabel.xsd",
+    "Size": "1.1 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/returnLabel",
+    "Imports": [
+      "http://integration.deposco.com/container"
+    ]
+  },
+  {
+    "FileName": "RoutingResponse.xsd",
+    "FileLink": "/schema/RoutingResponse.xsd",
+    "Size": "3.6 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/RoutingResponse",
+    "Imports": []
+  },
+  {
+    "FileName": "Shipment.xsd",
+    "FileLink": "/schema/Shipment.xsd",
+    "Size": "9.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/shipment",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/pack",
+      "http://integration.deposco.com/container"
+    ]
+  },
+  {
+    "FileName": "StockUnit.xsd",
+    "FileLink": "/schema/StockUnit.xsd",
+    "Size": "2.7 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/stockunit",
+    "Imports": [
+      "http://integration.deposco.com/order",
+      "http://integration.deposco.com/pack"
+    ]
+  },
+  {
+    "FileName": "Storage.xsd",
+    "FileLink": "/schema/Storage.xsd",
+    "Size": "1.7 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/storage",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/pack"
+    ]
+  },
+  {
+    "FileName": "TradingPartner.xsd",
+    "FileLink": "/schema/TradingPartner.xsd",
+    "Size": "8.2 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/tradingPartner",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "TradingPartnerSite.xsd",
+    "FileLink": "/schema/TradingPartnerSite.xsd",
+    "Size": "2.8 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/tradingPartnerSite",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "Types.xsd",
+    "FileLink": "/schema/Types.xsd",
+    "Size": "22.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/types",
+    "Imports": [
+      "http://integration.deposco.com/pack"
+    ]
+  },
+  {
+    "FileName": "UPC.xsd",
+    "FileLink": "/schema/UPC.xsd",
+    "Size": "0.5 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/upc",
+    "Imports": []
+  },
+  {
+    "FileName": "User.xsd",
+    "FileLink": "/schema/User.xsd",
+    "Size": "1.0 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/user",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "Webhook.xsd",
+    "FileLink": "/schema/Webhook.xsd",
+    "Size": "1.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/webhook",
+    "Imports": []
+  },
+  {
+    "FileName": "WorkGroup.xsd",
+    "FileLink": "/schema/WorkGroup.xsd",
+    "Size": "1.3 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/workgroup",
+    "Imports": [
+      "http://integration.deposco.com/order"
+    ]
+  },
+  {
+    "FileName": "Workorder.xsd",
+    "FileLink": "/schema/Workorder.xsd",
+    "Size": "2.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/workorder",
+    "Imports": [
+      "http://integration.deposco.com/types",
+      "http://integration.deposco.com/workorderdetail"
+    ]
+  },
+  {
+    "FileName": "WorkorderDetail.xsd",
+    "FileLink": "/schema/WorkorderDetail.xsd",
+    "Size": "1.6 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/workorderdetail",
+    "Imports": [
+      "http://integration.deposco.com/types"
+    ]
+  },
+  {
+    "FileName": "Zone.xsd",
+    "FileLink": "/schema/Zone.xsd",
+    "Size": "1.8 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/zone",
+    "Imports": [
+      "http://integration.deposco.com/location"
+    ]
+  },
+  {
+    "FileName": "containerpackage.xsd",
+    "FileLink": "/schema/containerpackage.xsd",
+    "Size": "0.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/container",
+    "Imports": []
+  },
+  {
+    "FileName": "inventorypackage.xsd",
+    "FileLink": "/schema/inventorypackage.xsd",
+    "Size": "0.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/inventory",
+    "Imports": []
+  },
+  {
+    "FileName": "itempackage.xsd",
+    "FileLink": "/schema/itempackage.xsd",
+    "Size": "0.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/item",
+    "Imports": []
+  },
+  {
+    "FileName": "linepackage.xsd",
+    "FileLink": "/schema/linepackage.xsd",
+    "Size": "0.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/line",
+    "Imports": []
+  },
+  {
+    "FileName": "orderpackage.xsd",
+    "FileLink": "/schema/orderpackage.xsd",
+    "Size": "0.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/order",
+    "Imports": []
+  },
+  {
+    "FileName": "postshipmentpackage.xsd",
+    "FileLink": "/schema/postshipmentpackage.xsd",
+    "Size": "0.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/postshipment",
+    "Imports": []
+  },
+  {
+    "FileName": "shipmentpackage.xsd",
+    "FileLink": "/schema/shipmentpackage.xsd",
+    "Size": "0.4 kb",
+    "LastModified": "Wed, 18 Oct 2023 22:04:11 GMT",
+    "NameSpace": "http://integration.deposco.com/shipment",
+    "Imports": []
+  }
+]

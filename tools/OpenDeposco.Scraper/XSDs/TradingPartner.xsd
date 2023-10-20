@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/tradingPartner"
+    xmlns:t="http://integration.deposco.com/types"
+    xmlns="http://integration.deposco.com/tradingPartner" elementFormDefault="unqualified">
+    
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+      
+    <xs:element name="TradingPartners" type="TradingPartnerCollection"/>
+
+    <xs:complexType name="TradingPartnerCollection">
+        <xs:sequence>
+            <xs:element name="TradingPartner" type="TradingPartnerType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ItemCollection">
+        <xs:sequence>
+            <xs:element name="ItemNumber" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+                
+    <xs:complexType name="TradingPartnerType">
+        <xs:sequence>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+            <xs:element name="code" type="xs:string" minOccurs="0"/>
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+            <xs:element name="contactFirstName" type="xs:string" minOccurs="0"/>
+            <xs:element name="contactLastName" type="xs:string" minOccurs="0"/>
+            <xs:element name="contactPhone" type="xs:string" minOccurs="0"/>
+            <xs:element name="contactEmail" type="xs:string" minOccurs="0"/>
+            <xs:element name="line1" type="xs:string" minOccurs="0"/>
+            <xs:element name="line2" type="xs:string" minOccurs="0"/>
+            <xs:element name="line3" type="xs:string" minOccurs="0"/>
+            <xs:element name="line4" type="xs:string" minOccurs="0"/>
+            <xs:element name="city" type="xs:string" minOccurs="0"/>
+            <xs:element name="postalCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+            <xs:element name="industry" type="xs:string" minOccurs="0"/>
+            <xs:element name="ticker" type="xs:string" minOccurs="0"/>
+            <xs:element name="website" type="xs:string" minOccurs="0"/>
+            <xs:element name="assetCarryingRatePercent" type="xs:string" minOccurs="0"/>
+            <xs:element name="doingBusinessAs" type="xs:string" minOccurs="0"/>
+            <xs:element name="faxNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="naics" type="xs:string" minOccurs="0"/>
+            <xs:element name="numberOfEmployees" type="xs:string" minOccurs="0"/>
+            <xs:element name="sic" type="xs:string" minOccurs="0"/>
+            <xs:element name="accountNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="accountStatus" type="xs:string" minOccurs="0"/>
+            <xs:element name="scacProNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="ucceanCompanyNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="iataCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="partnershipType" type="xs:string" minOccurs="0"/>
+            <xs:element name="taxable" type="xs:string" minOccurs="0"/>
+            <xs:element name="stateProvince" type="xs:string" minOccurs="0"/>
+            <xs:element name="country" type="xs:string" minOccurs="0"/>
+            <xs:element name="sendAsn" type="xs:string" minOccurs="0"/>
+            <xs:element name="requiresShippingAuthorization" type="xs:string" minOccurs="0"/>
+            <xs:element name="billThirdParty" type="xs:string" minOccurs="0"/>
+            <xs:element name="upsAccountNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="dropshipFee" type="xs:string" minOccurs="0"/>
+            <xs:element name="tradingPartnerProfile" type="xs:string" minOccurs="0"/>
+            <xs:element name="fedexAccountNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="taxpayerIdentificationNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="uspsAccount_number" type="xs:string" minOccurs="0"/>
+            <xs:element name="endiciaAccountNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipToAttention" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToFirstName" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToLastName" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToPhone" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToEmail" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToLine1" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToLine2" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToLine3" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToLine4" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToCity" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToPostalCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToFaxNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToStateProvince" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToCountry" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToAttention" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipVia" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute1" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute2" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute3" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute4" type="xs:string" minOccurs="0"/>
+            <xs:element name="packingSlipReport" type="xs:string" minOccurs="0"/>
+            <xs:element name="wavePackingSlipReport" type="xs:string" minOccurs="0"/>
+            <xs:element name="items" type="ItemCollection"/>
+            <xs:element name="channels" type="t:ChannelsCollection" minOccurs="0"/>
+            <xs:element name="priceListCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="annualRevenue" type="xs:double" minOccurs="0"/>
+            <xs:element name="partnerAccountNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="createdDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="updatedDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="fedexMeterNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="importReference1" type="xs:string" minOccurs="0"/>
+			<xs:element name="importReference2" type="xs:string" minOccurs="0"/>
+			<xs:element name="exportReference1" type="xs:string" minOccurs="0"/>
+			<xs:element name="exportReference2" type="xs:string" minOccurs="0"/>
+			<xs:element name="useShipFromForShipments" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="packingSlipLevel" type="xs:string" minOccurs="0"/>
+			<xs:element name="groupAsnBy" type="xs:string" minOccurs="0"/>
+			<xs:element name="groupInvBy" type="xs:string" minOccurs="0"/>
+			<xs:element name="ssccNumbersRequiredForTrip" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="preventPickToReusedPallet" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="calculateCheckDigit" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="fedexUserKey" type="xs:string" minOccurs="0"/>
+			<xs:element name="fedexUserPassword" type="xs:string" minOccurs="0"/>
+			<xs:element name="requireThirdPartyTerms" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="requireCollectTerms" type="xs:boolean" minOccurs="0"/>
+			<xs:element name="requirePrepaidTerms" type="xs:boolean" minOccurs="0"/>			
+            <xs:element name="zplLabelReport" type="xs:string" minOccurs="0"/>
+            <xs:element name="sequenceSSCCBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="groupPalletBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="taxRate" type="xs:double" minOccurs="0"/>
+            <xs:element name="qualityControlPercent" type="xs:double" minOccurs="0"/>
+            <xs:element name="useDensityPricingForUpsFreight" type="xs:int" minOccurs="0"/>
+            <xs:element name="retailPartnerCode" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!-- Documentation -->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/pricelist"
+    xmlns="http://integration.deposco.com/pricelist"
+    xmlns:t="http://integration.deposco.com/types"
+    xmlns:detail="http://integration.deposco.com/pricelistdetail"
+    xmlns:partner="http://integration.deposco.com/tradingPartner"
+    xmlns:fac="http://integration.deposco.com/facility"
+    elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/pricelistdetail" schemaLocation="PriceListDetail.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/tradingPartner" schemaLocation="TradingPartner.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/facility" schemaLocation="Facility.xsd"/>
+    
+    <xs:element name="priceLists" type="PriceListCollection"/>
+
+    <xs:complexType name="PriceListCollection">
+        <xs:sequence>
+            <xs:element name="priceList" type="PriceListType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PriceListType">
+        <xs:sequence>
+        		<xs:element name="id" type="xs:long" minOccurs="0"/>
+			<xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+            <!-- business key -->
+            <xs:element name="code" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="markupPercentage" type="xs:double" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="isActive" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="createdDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="updatedDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="tradingPartners" type="partner:TradingPartnerCollection" minOccurs="0"/>
+			<xs:element name="facilities" type="fac:FacilityCollection" minOccurs="0"/>
+			<xs:element name="itemPrices" type="detail:PriceListDetailCollection" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

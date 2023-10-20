@@ -1,0 +1,14 @@
+<xs:schema elementFormDefault="qualified" version="1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    jaxb:version="2.0"
+    targetNamespace="http://integration.deposco.com/order">
+    <xs:annotation>
+        <xs:appinfo>
+            <jaxb:schemaBindings>
+                <jaxb:package name="com.deposco.integration.order"/>
+            </jaxb:schemaBindings>
+        </xs:appinfo>
+    </xs:annotation>
+</xs:schema>
+

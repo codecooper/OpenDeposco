@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/contactmethod"
+           xmlns="http://integration.deposco.com/contactmethod"
+           elementFormDefault="unqualified">
+    <xs:element name="contactmethods" type="CxContactMethodCollection"/>
+
+    <xs:complexType name="CxContactMethodCollection">
+        <xs:sequence>
+            <xs:element name="contactMethod" type="CxCustomerContactMethodType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CxCustomerContactMethodType">
+        <xs:sequence>
+            <xs:element name="type" type="xs:string" minOccurs="1"/>
+            <xs:element name="value" type="xs:string" minOccurs="1"/>
+            <xs:element name="status" type="xs:string" minOccurs="1" default="Active"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

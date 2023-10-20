@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/stockunit"
+           xmlns="http://integration.deposco.com/stockunit"
+           xmlns:order="http://integration.deposco.com/order"
+           xmlns:pack="http://integration.deposco.com/pack"
+           xmlns:item="http://integration.deposco.com/item"
+           elementFormDefault="unqualified">
+    <xs:import namespace="http://integration.deposco.com/order" schemaLocation="OrderHeader.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/pack" schemaLocation="Pack.xsd"/>
+
+    <xs:element name="stockUnits" type="StockUnitCollection"/>
+    <xs:complexType name="StockUnitCollection">
+        <xs:sequence>
+            <xs:element name="stockUnit" type="StockUnitType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="StockUnitType">
+        <xs:sequence>
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="quantity" type="xs:int"/>
+            <xs:element name="lotNumber" type="xs:string"/>
+            <xs:element name="lpnNumber" type="xs:string"/>
+            <xs:element name="masterLpnNumber" type="xs:string"/>
+            <xs:element name="serialNumber" type="xs:string"/>
+            <xs:element name="arrivalDate" type="xs:dateTime"/>
+            <xs:element name="bornOnDate" type="xs:dateTime"/>
+            <xs:element name="expirationDate" type="xs:dateTime"/>
+            <xs:element name="appearance" type="xs:string"/>
+            <xs:element name="locationZoneName" type="xs:string"/>
+            <xs:element name="unitPrice" type="xs:double"/>
+            <xs:element name="itemNumber" type="xs:string" minOccurs="0" />
+            <xs:element name="pack" type="pack:PackType"/>
+            <xs:element name="location" type="xs:string"/>
+            <xs:element name="inventoryCondition" type="xs:string"/>
+            <xs:element name="inventoryAttribute1" type="xs:string"/>
+            <xs:element name="inventoryAttribute2" type="xs:string"/>
+            <xs:element name="allocatedOrder" type="xs:string"/>
+            <xs:element name="allocatedOrderLine" type="xs:string"/>
+            <xs:element name="containerNumber" type="xs:string"/>
+            <xs:element name="receiptLineNumber" type="xs:string"/>
+            <xs:element name="allocatedOrderNumber" type="xs:string"/>
+            <xs:element name="allocatedOrderLineNumber" type="xs:string"/>
+            <xs:element name="createdDate" type="xs:dateTime" />
+            <xs:element name="updatedDate" type="xs:dateTime" />
+            <xs:element name="businessUnit" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

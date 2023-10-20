@@ -1,0 +1,38 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/kitheader"
+	xmlns="http://integration.deposco.com/kitheader"
+    xmlns:kd="http://integration.deposco.com/kitdetail"
+    xmlns:t="http://integration.deposco.com/types"
+    elementFormDefault="unqualified">
+	
+	<xs:import namespace="http://integration.deposco.com/kitdetail" schemaLocation="KitDetail.xsd"/>
+	<xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+	
+	<xs:element name="kitHeaders" type="KitHeaderCollection"/>
+	
+	<xs:complexType name="KitHeaderCollection">
+        <xs:sequence>
+            <xs:element name="kitHeader" type="KitHeaderType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="KitHeaderType">
+    	<xs:sequence>
+    		<xs:element name="id" type="xs:long" minOccurs="0"/>
+			<xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="name" type="xs:string" minOccurs="0"/>
+			<xs:element name="maxWorkorderSize" type="xs:int" minOccurs="0"/>
+			<xs:element name="minWorkorderSize" type="xs:int" minOccurs="0"/>
+			<xs:element name="kitUsage" type="xs:string" minOccurs="0"/>
+			<xs:element name="customAttribute1" type="xs:string" minOccurs="0"/>
+			<xs:element name="customAttribute2" type="xs:string" minOccurs="0"/>
+			<xs:element name="customAttribute3" type="xs:string" minOccurs="0"/>
+			<xs:element name="createdDateTime" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="updatedDateTime" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="createdBy" type="xs:string" minOccurs="0"/>
+			<xs:element name="updatedBy" type="xs:string" minOccurs="0"/>
+			<xs:element name="kitDetails" type="kd:KitDetailCollection"/>
+			<xs:element name="channels" type="t:ChannelsCollection" minOccurs="0"/>
+    	</xs:sequence>
+    </xs:complexType>
+	
+</xs:schema>

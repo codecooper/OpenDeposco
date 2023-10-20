@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/invoice" xmlns="http://integration.deposco.com/invoice"
+    xmlns:invoiceLine="http://integration.deposco.com/invoiceLine"
+    xmlns:t="http://integration.deposco.com/types"
+    elementFormDefault="unqualified">
+
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/invoiceLine" schemaLocation="InvoiceLine.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/payment" schemaLocation="Payment.xsd"/>
+
+    <xs:element name="invoices" type="invoiceCollection"/>
+
+    <xs:complexType name="invoiceCollection">
+        <xs:sequence>
+            <xs:element name="invoice" type="invoiceType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="invoiceType">
+        <xs:sequence>
+            <!-- Number identifies the invoice as a business key. Together with type it represents a unique invoiceHeader entity-->
+            <xs:element name="businessUnit" type="xs:string" minOccurs="1"/>
+            <xs:element name="number" type="xs:string" minOccurs="1"/>
+            <xs:element name="status" type="xs:string" minOccurs="1"/>
+            <xs:element name="transactionType" type="xs:string" minOccurs="0"/>
+            <xs:element name="termsType" type="xs:string" minOccurs="0"/>
+            <xs:element name="termsBasis" type="xs:string" minOccurs="0"/>
+            <xs:element name="termsDiscount" type="xs:double" minOccurs="0"/>
+            <xs:element name="termsDiscountDue" type="xs:int" minOccurs="0"/>
+            <xs:element name="remitAttention" type="xs:string" minOccurs="0"/>
+            <xs:element name="remitAddress" type="t:AddressType" minOccurs="0"/>
+            <xs:element name="note" type="xs:string" minOccurs="0"/>
+            <xs:element name="currency" type="xs:string" minOccurs="0"/>
+            <xs:element name="identificationCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToAddress" type="t:AddressType" minOccurs="0"/>
+            <xs:element name="shipToAddress" type="t:AddressType" minOccurs="0"/>
+            <xs:element name="tradingPartner" type="xs:string" minOccurs="0"/>
+            <xs:element name="importReference" type="xs:string" minOccurs="0"/>
+            <xs:element name="exportReference" type="xs:string" minOccurs="0"/>
+            <xs:element name="notificationCode1" type="xs:string" minOccurs="0"/>
+            <xs:element name="notificationCode2" type="xs:string" minOccurs="0"/>
+            <xs:element name="notificationCode3" type="xs:string" minOccurs="0"/>
+            <xs:element name="createdDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="updatedDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="shipToReference" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToAccountNumber" type="xs:string" minOccurs="0"/>
+            
+            <xs:element name="orderNumber" type="xs:string" minOccurs="0"/> <!-- Validate OrderLines if OrderHeader given -->
+
+            <xs:element name="invoiceLines" type="invoiceLine:InvoiceLineCollection" minOccurs="0"/>
+            <xs:element name="invoiceConfig" type="xs:string" minOccurs="1"/>
+
+            <xs:element name="channels" type="t:ChannelsCollection" minOccurs="0"/>
+
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/copaymentterm"
+	xmlns="http://integration.deposco.com/copaymentterm"
+     elementFormDefault="unqualified">
+     
+    <xs:element name="paymentTerms" type="PaymentTermCollection"/>
+
+    <xs:complexType name="PaymentTermCollection">
+        <xs:sequence>
+            <xs:element name="paymentTerm" type="PaymentTermType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PaymentTermType">
+    		<xs:sequence>
+    			<xs:element name="termsType" type="xs:string" minOccurs="0"/>
+    			<xs:element name="description" type="xs:string" minOccurs="0"/>
+    			<xs:element name="termsBasisDateCode" type="xs:string" minOccurs="0"/>
+    			<xs:element name="discountPercentage" type="xs:double" minOccurs="0"/>
+    			<xs:element name="discountDate" type="xs:dateTime" minOccurs="0"/>
+    			<xs:element name="discountDueDays" type="xs:double" minOccurs="0"/>
+    			<xs:element name="discountRate" type="xs:double" minOccurs="0"/>
+    			<xs:element name="netDueDate" type="xs:dateTime" minOccurs="0"/>
+    			<xs:element name="netDueDays" type="xs:double" minOccurs="0"/>
+    			<xs:element name="discountAmount" type="xs:double" minOccurs="0"/>
+    		</xs:sequence>
+    	</xs:complexType>
+</xs:schema>

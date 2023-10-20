@@ -1,0 +1,21 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/invsegmentationplan"
+    xmlns="http://integration.deposco.com/invsegmentationplan"
+    xmlns:t="http://integration.deposco.com/types"
+    elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    
+    <xs:element name="invSegmentationPlans" type="InvSegmentationPlanCollection"/>
+
+    <xs:complexType name="InvSegmentationPlanCollection">
+        <xs:sequence>
+            <xs:element name="invSegmentationPlan" type="InvSegmentationPlanType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="InvSegmentationPlanType">
+        <xs:sequence>
+        		<xs:element name="code" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

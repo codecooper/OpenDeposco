@@ -1,0 +1,7 @@
+﻿<xsd xmlns='http://microsoft.com/dotnet/tools/xsd/'>
+	<generateClasses language='CS' namespace='AddressValidation'>
+		<schema>A2.xsd</schema>
+		<schema>A21.xsd</schema>
+		<schema>.\A22.xsd</schema>
+	</generateClasses>
+</xsd>

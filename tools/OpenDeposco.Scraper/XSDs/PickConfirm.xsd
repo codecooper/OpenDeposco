@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:types="http://integration.deposco.com/types" targetNamespace="http://integration.deposco.com/pickconfirm"
+           xmlns="http://integration.deposco.com/pickconfirm"
+           elementFormDefault="unqualified">
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+
+
+    <xs:element name="pickConfirms" type="PickConfirmsCollection"/>
+
+    <xs:complexType name="PickConfirmsCollection">
+        <xs:sequence>
+            <xs:element name="pickConfirm" type="PickConfirmType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PickConfirmType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="orderNumber" type="xs:string"/>
+                <xs:element name="pickTask" type="xs:string"/>
+            </xs:choice>
+            <xs:element name="location" type="xs:string" minOccurs="1"/>
+            <xs:element name="qtyToPick" type="xs:int" minOccurs="1"/>
+            <xs:element name="qtyPicked" type="xs:int" minOccurs="1"/>
+            <xs:element name="item" type="xs:string" minOccurs="0"/>
+            <xs:element name="container" type="xs:string" minOccurs="1"/>
+            <xs:element name="exceptionCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="exceptionReason" type="xs:string" minOccurs="0"/>
+            <xs:element name="user" type="xs:string" minOccurs="1"/>
+            <xs:element name="facility" type="xs:string" minOccurs="1"/>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="1"/>
+            <xs:element name="startTaskTime" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="endTaskTime" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="pickSystem" type="xs:string" minOccurs="1"/>
+            <xs:element name="channel" type="types:ChannelFieldType" minOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

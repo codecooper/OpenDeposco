@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/cotax"
+	xmlns="http://integration.deposco.com/cotax"
+     elementFormDefault="unqualified">
+     
+      <xs:element name="taxes" type="TaxCollection" />
+      
+      <xs:complexType name="TaxCollection">
+        <xs:sequence>
+            <xs:element name="tax" type="TaxType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TaxType">
+    		<xs:sequence>
+    			<xs:element name="taxType" type="xs:string" minOccurs="0"/>
+    			<xs:element name="taxExemptCode" type="xs:string" minOccurs="0"/>
+    			<xs:element name="taxAmount" type="xs:double" minOccurs="0"/>
+    			<xs:element name="taxPercentage" type="xs:double" minOccurs="0"/>
+    		</xs:sequence>
+    	</xs:complexType>
+</xs:schema>

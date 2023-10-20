@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/invoicedQuantityDetail"
+           xmlns="http://integration.deposco.com/invoicedQuantityDetail"
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/item" schemaLocation="Item.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/pack" schemaLocation="Pack.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/receiptline" schemaLocation="ReceiptLine.xsd"/>
+
+    <xs:element name="invoicedQuantityDetails" type="invoicedQuantityDetailCollection"/>
+
+    <xs:complexType name="invoicedQuantityDetailCollection">
+        <xs:sequence>
+            <xs:element name="invoicedQuantityDetail" type="InvoicedQuantityDetailType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="InvoicedQuantityDetailType">
+        <xs:sequence>
+            <xs:element name="shipmentLine" type="xs:string" minOccurs="0"/>
+            <xs:element name="fullyInvoiced" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="shippedQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="invoicedQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="createdDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="updatedDate" type="xs:dateTime" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

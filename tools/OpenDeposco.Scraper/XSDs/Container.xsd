@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/container"
+    xmlns:t="http://integration.deposco.com/types"
+    xmlns="http://integration.deposco.com/container" elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    
+    <xs:element name="containers" type="ContainerCollection" />
+
+    <xs:complexType name="ContainerCollection">
+        <xs:sequence>
+            <xs:element name="container" type="ContainerType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ContainerType">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="lpn" type="xs:string"/>
+                <xs:element name="number" type="xs:string"/>
+            </xs:choice>
+            <xs:element name="trackingNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="status" type="xs:string" minOccurs="0"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+            <xs:element name="dimension" type="t:DimensionType" minOccurs="0"/>
+            <xs:element name="weight" type="t:WeightType" minOccurs="0"/>
+            <xs:element name="billingWeight" type="xs:double" minOccurs="0"/>
+            <xs:element name="shipMethod" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipVendor" type="xs:string" minOccurs="0"/>
+            <xs:element name="totalCharges" type="xs:double" minOccurs="0"/>
+            <xs:element name="voidIndicator" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="notes" type="t:NoteCollection" minOccurs="0"/>
+			<xs:element name="customAttributes" type="t:CustomAttributeCollection" minOccurs="0"/>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="facility" type="xs:string" minOccurs="0"/>
+			<xs:element name="referenceNumber1" type="xs:string" minOccurs="0"/>
+			<xs:element name="depthUOM" type="xs:string" minOccurs="0"/>
+            <xs:element name="returnTrackingNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="type" type="xs:string" minOccurs="0"/>
+            <xs:element name="secondaryType" type="xs:string" minOccurs="0"/>
+            <xs:element name="shippingLabel" type="xs:string" minOccurs="0"/>
+            <xs:element name="shippingLabelType" type="xs:string" minOccurs="0"/>
+            <xs:element name="masterLpnNumber" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

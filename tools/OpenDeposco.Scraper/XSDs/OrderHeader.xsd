@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+    This schema defines the types used by the order resource.
+
+    All URLs below are relative to the base URL:
+    https://integration.deposco.com/integration/{company}
+
+    The following operations are allowed on order resources:
+
+    *******************************************************************
+
+    GET /orders/{type}/{number}
+
+    Accepts: application/xml
+    Returns: application/xml
+
+    Fetches a single order.  Returns a response code of 200 and the XML
+    representation of the order in the response.  If the order cannot be
+    found, a 404 response code is returned, along with a plain text error
+    message in the response.
+
+    *******************************************************************
+
+    PUT /orders/{type}/{number}
+
+    Accepts: application/xml
+    Returns: text/plain
+
+    Creates or updates a single order.  Note that this is *not* a partial
+    update: the input document completely replaces the existing order, meaning
+    that items not specified in the input document will be cleared on the
+    existing order.
+
+    If the order is created, a 201 response code is returned, and the Location
+    header is set to the URI of the created resource.
+
+    If the order is updated, a 200 response code is returned, and the Location
+    header is set to the URI of the updated resource.
+
+    If the order cannot be created or updated, an appropriate 4xx or 5xx
+    response code is returned along with a plain text error message in the
+    response.
+
+    *******************************************************************
+
+    POST /orders
+
+    Accepts: application/xml
+    Returns: application/xml
+
+    Imports a batch of multiple orders.  Returns a response code of 207, and a
+    Multistatus XML document containing the results of each order in the
+    batch.  Responses for individual orders are the same as described for the
+    PUT operation above.
+
+    Each order is imported in a separate transaction, so that a single failed
+    import will not cause the entire batch to fail.
+
+    NOTE: This operation is intended for importing new orders only; existing
+    orders will *not* be overwritten.
+
+
+    *******************************************************************
+
+    POST /orders/updates
+
+    Accepts: application/xml
+    Returns: application/xml
+
+    Updates or imports a batch of multiple orders.  This operation is
+    identical to the import operation above, except that existing orders will
+    be updated.
+
+    *******************************************************************
+
+                           PARTIAL UPDATE OPERATIONS
+
+    *******************************************************************
+
+    POST /orders/{type}/{number}
+
+    Accepts: application/x-www-form-urlencoded
+    Returns: text/plain
+
+    This operation will update one or more fields of an order without
+    requiring the entire order document to be sent.  The order must already
+    exist.
+
+    This operation may only be used to update top-level, simple elements.
+    Complex elements such as lines or custom fields may *not* be updated with
+    this operation, though there may be other mechanisms for updating those
+    elements.
+
+    Returns a 200 response code if the order was successfully updated, or if
+    the update fails an appropriate 4xx or 5xx response code along with a
+    plain text error message in the response.
+
+    *******************************************************************
+
+    POST /orders/statusUpdates
+
+    Accepts: application/x-www-form-urlencoded
+    Returns: text/plain
+
+    This operation is used to update the status of a batch of multiple orders.
+    The input consists of 3 form parameters:
+      status - the status to set. must be a valid status as defined in the
+               OrderStatusType below
+      type - a list of order types. must be a valid type as defined in the
+             type enumeration below
+      number - a list of order numbers to modify.
+    The number and type lists must have the same number of elements.
+
+    Returns a 200 response code if the order was successfully updated, or if
+    the update fails an appropriate 4xx or 5xx response code along with a
+    plain text error message in the response.
+
+    *******************************************************************
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/order" xmlns="http://integration.deposco.com/order"
+    xmlns:line="http://integration.deposco.com/line"
+    xmlns:t="http://integration.deposco.com/types"
+    xmlns:payment="http://integration.deposco.com/payment"
+    elementFormDefault="unqualified">
+
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/line" schemaLocation="OrderLine.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/payment" schemaLocation="Payment.xsd"/>
+
+    <xs:element name="orders" type="OrderCollection"/>
+
+    <xs:complexType name="OrderCollection">
+        <xs:sequence>
+            <xs:element name="order" type="OrderType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OrderType">
+        <xs:sequence>
+            <xs:element name="persistable" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="facility" type="xs:string" minOccurs="0"/>
+            <xs:element name="zoneNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <!-- Number identifies the order as a business key. Together with type it represents a unique OrderHeader entity-->
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="type">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Sales Order"/>
+                        <xs:enumeration value="Purchase Order"/>
+                        <xs:enumeration value="Customer Order"/>
+                        <xs:enumeration value="Event Order"/>
+                        <xs:enumeration value="Customer Return"/>
+                        <xs:enumeration value="Vendor Return"/>
+                        <xs:enumeration value="Pending Order"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+
+			<xs:element name="status" type="xs:string" default="New"/>
+            <xs:element name="orderPriority" type="xs:long" default="1000" minOccurs="0"/>
+            <xs:element name="otherReferenceNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="importReference" type="xs:string" minOccurs="0"/>
+            <xs:element name="integrationSourceId" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipFromAddressNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipFromAddress" type="t:AddressType" minOccurs="0"/>
+            <xs:element name="shipToAddressNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipToAddress" type="t:AddressType" minOccurs="0"/>
+            <xs:element name="billToAddressNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToAccountNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToAddress" type="t:AddressType" minOccurs="0"/>
+            <xs:element name="freight" type="t:FreightType" minOccurs="0"/>
+            <xs:element name="shipMethod" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipVendor" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipVia" type="xs:string" minOccurs="0"/>
+            <xs:element name="returnShipVia" type="xs:string" minOccurs="0"/>
+            <xs:element name="returnShipOption" type="xs:string" minOccurs="0"/>
+            <xs:element name="dropShip" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="orderSource" type="xs:string" minOccurs="0"/>
+            <xs:element name="secondaryOrderSource" type="xs:string" minOccurs="0"/>
+            <xs:element name="seller" type="xs:string" minOccurs="0"/>
+            <xs:element name="buyer" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipperPartner" type="xs:string" minOccurs="0"/>
+            <xs:element name="tradingPartner" type="xs:string" minOccurs="0"/>
+            <xs:element name="tradingPartnerSite" type="xs:string" minOccurs="0"/>
+            <xs:element name="billToPartner" type="xs:string" minOccurs="0"/>
+            <xs:element name="customer" type="xs:string" minOccurs="0"/>
+            <xs:element name="customerOrderNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipToEmail" type="xs:string" minOccurs="0"/>
+            <xs:element name="orderSummary" type="xs:string" minOccurs="0"/>
+
+            <xs:element name="orderSubTotal" type="xs:double" minOccurs="0"/>
+            <xs:element name="orderTaxableTotal" type="xs:double" minOccurs="0"/>
+            <xs:element name="orderUntaxableTotal" type="xs:double" minOccurs="0"/>
+            <xs:element name="orderShipTotal" type="xs:double" minOccurs="0"/>
+            <xs:element name="orderShippingTotal" type="xs:double" minOccurs="0"/>
+            <xs:element name="taxable" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="orderTaxTotal" type="xs:double" minOccurs="0"/>
+            <xs:element name="shippingTaxTotal" type="xs:double" minOccurs="0"/>
+            <xs:element name="orderTotal" type="xs:double" minOccurs="0"/>
+            <xs:element name="hubId" type="xs:string" minOccurs="0"/>
+
+            <xs:element name="customAttribute1" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute2" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute3" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute4" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute5" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute6" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute7" type="xs:string" minOccurs="0"/>
+            <xs:element name="relatedOrderNumber" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="createdDateTime" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="updatedDateTime" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="createdBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="updatedBy" type="xs:string" minOccurs="0"/>
+
+            <xs:element name="notes" type="t:NoteCollection" minOccurs="0"/>
+            <xs:element name="customFields" type="t:CustomFieldCollection" minOccurs="0"/>
+            <xs:element name="carrierSpecialServices" type="t:CarrierSpecialServiceCollection" minOccurs="0"/>
+            <xs:element name="extendedEntities" type="t:ExtendedEntityCollection" minOccurs="0"/>
+            <xs:element name="channels" type="t:ChannelsCollection" minOccurs="0"/>
+            <xs:element name="orderLines" type="line:OrderLineCollection" minOccurs="0"/>
+
+            <xs:element name="payments" type="payment:PaymentCollection" minOccurs="0"/>
+            <xs:element name="currencyCode" type="xs:string" minOccurs="0"/>
+
+            <xs:element name="coHeader" type="xs:string" minOccurs="0"/>
+            <xs:element name="parentOrderNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="parentOrderType" type="xs:string" minOccurs="0"/>
+            <xs:element name="customMappings" type="t:CustomMapCollection" minOccurs="1" maxOccurs="1" nillable="true"/>
+            <xs:element name="otherReferenceNumber2" type="xs:string" minOccurs="0"/>
+            <xs:element name="orderDiscountSubtotal" type="xs:double" minOccurs="0"/>
+            <xs:element name="partnerInvoiceNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="contractNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="importType" type="xs:string" minOccurs="0"/>
+            <xs:element name="deliveryConfirmation" type="xs:string" minOccurs="0"/>
+            <xs:element name="invSegmentPlanCode" type="xs:string" minOccurs="0"/>
+
+            <xs:element name="placedDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="plannedArrivalDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="plannedReleaseDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="plannedShipDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="actualShipDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="cancelByArrivalDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="cancelByReleaseDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="cancelByShipDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="earliestShipDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="earliestDeliveryDate" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="actualArrivalDate" type="xs:dateTime" minOccurs="0"/>
+
+            <xs:element name="shippingStatus" type="xs:int" minOccurs="0"/>
+            <xs:element name="sendASN" type="xs:int" minOccurs="0"/>
+
+			<xs:element name="dutyPaidBy" type="xs:string" minOccurs="0"/>
+            <xs:element name="residentialDelivery" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="homeDelivery" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="insuranceRequired" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="returnRequired" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="incotermsType" type="xs:string" minOccurs="0"/>
+            <xs:element name="saturdayDelivery" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="notificationCode1" type="xs:string" minOccurs="0"/>
+            <xs:element name="notificationCode2" type="xs:string" minOccurs="0"/>
+            <xs:element name="notificationCode3" type="xs:string" minOccurs="0"/>
+            <xs:element name="shipTo" type="xs:string" minOccurs="0"/>
+            <xs:element name="saleConditionCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="termsTypePortOrPlace" type="xs:string" minOccurs="0"/>
+            <xs:element name="onTime" type="xs:boolean" minOccurs="0"/>
+
+            <xs:element name="verbalConfirmationName" type="xs:string" minOccurs="0"/>
+            <xs:element name="verbalConfirmationPhoneNumber" type="xs:string" minOccurs="0"/>
+
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="OrderStatusType">
+        <xs:restriction base="xs:string">
+            <!-- Valid types defined in ATTRIBUTE_VALUE -->
+            <xs:enumeration value="Accepted"/>
+            <xs:enumeration value="Back Ordered"/>
+            <xs:enumeration value="Canceled"/>
+            <xs:enumeration value="Closed"/>
+            <xs:enumeration value="Complete"/>
+            <xs:enumeration value="Cross Ship"/>
+            <xs:enumeration value="Downgraded"/>
+            <xs:enumeration value="In-Transit"/>
+            <xs:enumeration value="Incomplete"/>
+            <xs:enumeration value="Needs Attention"/>
+            <xs:enumeration value="New"/>
+            <xs:enumeration value="Open"/>
+            <xs:enumeration value="Packed"/>
+            <xs:enumeration value="Packing"/>
+            <xs:enumeration value="Partial Receipt"/>
+            <xs:enumeration value="Picking"/>
+            <xs:enumeration value="Planned"/>
+            <xs:enumeration value="Ready"/>
+            <xs:enumeration value="Received"/>
+            <xs:enumeration value="Receiving"/>
+            <xs:enumeration value="Rejected"/>
+            <xs:enumeration value="Released"/>
+            <xs:enumeration value="Suspended"/>
+            <xs:enumeration value="Processing"/>
+            <xs:enumeration value="Returning"/>
+            <xs:enumeration value="Sent For Invoice"/>
+            <xs:enumeration value="Invoiced"/>
+            <xs:enumeration value="Hold"/>
+            <xs:enumeration value="Moved to OMNI"/>
+            <xs:enumeration value="Voided"/>
+            <xs:enumeration value="Returned"/>
+            <xs:enumeration value="PARTIAL_RETURN"/>
+            <xs:enumeration value="Draft"/>
+            <xs:enumeration value="PARTIAL_PAYMENT"/>
+            <xs:enumeration value="Refunded"/>
+            <xs:enumeration value="PARTIAL_REFUND"/>
+
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

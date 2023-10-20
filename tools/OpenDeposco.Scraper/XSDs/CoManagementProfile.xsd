@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/coManagementProfile"
+	xmlns="http://integration.deposco.com/coManagementProfile"
+     elementFormDefault="unqualified">
+   
+    <xs:element name="managementProfile" type="ManagementProfileType"/>
+    
+    <xs:complexType name="ManagementProfileType">
+    		<xs:sequence>
+    			<xs:element name="name" type="xs:string" minOccurs="0"/>
+     		<xs:element name="fulfillmentMode" type="xs:string" minOccurs="0"/>
+     		<xs:element name="acknowledgementType" type="xs:string" minOccurs="0"/>
+     		<xs:element name="coRevisionMode" type="xs:string" minOccurs="0"/>
+   			<xs:element name="orderType" type="xs:string" minOccurs="0"/>
+    		</xs:sequence>
+    	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/receiptitemadvice" 
+xmlns="http://integration.deposco.com/receiptitemadvice" elementFormDefault="unqualified"
+xmlns:pack="http://integration.deposco.com/pack"
+xmlns:containers="http://integration.deposco.com/container">
+	<xs:import namespace="http://integration.deposco.com/pack" schemaLocation="Pack.xsd"/>
+	<xs:import namespace="http://integration.deposco.com/container" schemaLocation="Container.xsd"/>
+
+	<xs:element name="receiptItemAdvices" type="ReceiptItemAdviceCollection" />
+	<xs:complexType name="ReceiptItemAdviceCollection">
+		<xs:sequence>
+			<xs:element name="receiptItem" type="ReceiptItemAdviceType" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReceiptItemAdviceType">
+		<xs:sequence>
+			<xs:element name="businessUnit" type="xs:string" minOccurs="0" />
+			<xs:element name="lineNumber" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="status" type="xs:string" minOccurs="0" />
+			<xs:element name="receivedPackQuantity" type="xs:double" minOccurs="0" />
+			<xs:element name="receivedDamagedPackQuantity" type="xs:double" minOccurs="0" />
+			<xs:element name="confirmedPackQuantity" type="xs:double" minOccurs="0" />
+			<xs:element name="customerLineNumber" type="xs:string" minOccurs="0" />
+			<xs:element name="itemNumber" type="xs:string" minOccurs="0" />
+			<xs:element name="pack" type="pack:PackType" minOccurs="0" />
+			<xs:element name="purchaseOrderLineNumber" type="xs:string" minOccurs="0" />
+			<xs:element name="relatedOrderLineNumber" type="xs:string" minOccurs="0" />
+			<xs:element name="createdDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="updatedDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="containers" type="containers:ContainerCollection" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

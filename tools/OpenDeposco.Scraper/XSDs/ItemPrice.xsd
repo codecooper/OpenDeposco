@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/itemprice"
+    xmlns="http://integration.deposco.com/itemprice"
+    xmlns:item="http://integration.deposco.com/item"
+    xmlns:t="http://integration.deposco.com/types"
+    xmlns:plist="http://integration.deposco.com/pricelist"
+    xmlns:detail="http://integration.deposco.com/pricelistdetail"
+    elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/item" schemaLocation="Item.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/pricelist" schemaLocation="PriceList.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/pricelistdetail" schemaLocation="PriceListDetail.xsd"/>
+
+    <xs:element name="prices" type="ItemPriceCollection"/>
+
+    <xs:complexType name="ItemPriceCollection">
+        <xs:sequence>
+            <xs:element name="price" type="ItemPriceType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ItemPriceType">
+        <xs:sequence>
+        		<xs:element name="fixedPrice" type="xs:double" minOccurs="0"/>
+        		<xs:element name="salesPrice" type="xs:float" minOccurs="0"/>
+        		<xs:element name="start" type="xs:dateTime" minOccurs="0"/>
+        		<xs:element name="end" type="xs:dateTime" minOccurs="0"/>
+        		<xs:element name="active" type="xs:boolean" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

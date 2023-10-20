@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/invoiceLine"
+           xmlns="http://integration.deposco.com/invoiceLine"
+           xmlns:pack="http://integration.deposco.com/pack"
+           xmlns:iqd="http://integration.deposco.com/invoicedQuantityDetail"
+           xmlns:t="http://integration.deposco.com/types"
+
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/item" schemaLocation="Item.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/pack" schemaLocation="Pack.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/receiptline" schemaLocation="ReceiptLine.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/invoicedQuantityDetail" schemaLocation="InvoicedQuantityDetail.xsd"/>
+
+    <xs:element name="invoiceLine" type="InvoiceLineCollection"/>
+
+    <xs:complexType name="InvoiceLineCollection">
+        <xs:sequence>
+            <xs:element name="invoiceLine" type="InvoiceLineType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="InvoiceLineType">
+        <xs:sequence>
+            <xs:element name="number" type="xs:string" minOccurs="0"/>
+            <xs:element name="complete" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="orderPackQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="shippedPackQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="invoicePackQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="canceledPackQuantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+
+
+            <xs:element name="itemNumber" type="xs:string" minOccurs="1"/>
+            <xs:element name="pack" type="pack:PackType" minOccurs="1"/>
+            <xs:element name="orderLineNumber" type="xs:string" minOccurs="1"/>
+
+            <xs:element name="pricePerUnit" type="xs:double" minOccurs="0"/>
+            <xs:element name="lineDiscount" type="xs:double" minOccurs="0"/>
+            <xs:element name="extendedPrice" type="xs:double" minOccurs="0"/>
+            <xs:element name="salesTax" type="xs:double" minOccurs="0"/>
+
+            <xs:element name="trackingNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="lpnNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="importReference" type="xs:string" minOccurs="0"/>
+            <xs:element name="exportReference" type="xs:string" minOccurs="0"/>
+
+            <xs:element name="channels" type="t:ChannelsCollection" minOccurs="0"/>
+            <xs:element name="shipmentNumber" type="xs:string" minOccurs="0"/>
+
+            <xs:element name="invoicedQuantityDetails" type="iqd:invoicedQuantityDetailCollection" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

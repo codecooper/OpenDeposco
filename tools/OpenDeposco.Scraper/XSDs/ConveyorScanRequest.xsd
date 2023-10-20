@@ -1,0 +1,24 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://integration.deposco.com/conveyorscanrequest"
+           xmlns="http://integration.deposco.com/conveyorscanrequest">
+
+    <xs:element name="conveyorScanRequest" type="ConveyorScanRequest"/>
+
+    <xs:complexType name="ConveyorScanRequest">
+        <xs:sequence>
+            <xs:element name="facility" type="xs:string" />
+            <xs:element name="businessUnit" type="xs:string" />
+            <xs:element name="stationNumber" type="xs:string" />
+            <xs:element name="barcode" type="xs:string" />
+            <xs:element name="importReference" type="xs:string" />
+            <xs:element name="customAttribute1" type="xs:string" />
+            <xs:element name="customAttribute2" type="xs:string" />
+            <xs:element name="customAttribute3" type="xs:string" />
+            <xs:element name="customAttribute4" type="xs:string" />
+            <xs:element name="customAttribute5" type="xs:string" />
+            <xs:element name="weight" type="xs:string" />
+            <xs:element name="weightUOM" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

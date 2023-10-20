@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/corefund"
+           xmlns="http://integration.deposco.com/corefund"
+           elementFormDefault="unqualified">
+
+    <xs:element name="refunds" type="CoRefundCollection"/>
+
+    <xs:complexType name="CoRefundCollection">
+        <xs:sequence>
+            <xs:element name="refund" type="CoRefundType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CoRefundType">
+        <xs:sequence>
+            <xs:element name="referenceNumber" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="type" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="currencyCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="total" type="xs:double" minOccurs="0" />
+            <xs:element name="subTotal" type="xs:double" minOccurs="0"/>
+            <xs:element name="taxTotal" type="xs:double" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/copayment"
+	xmlns="http://integration.deposco.com/copayment"
+     elementFormDefault="unqualified">
+     
+      <xs:element name="payments" type="CoPaymentCollection" />
+      
+      <xs:complexType name="CoPaymentCollection">
+        <xs:sequence>
+            <xs:element name="payment" type="CoPaymentType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="CoPaymentType">
+    		<xs:sequence>
+    			<xs:element name="type" type="PaymentType" minOccurs="1" maxOccurs="1"/>
+    			<xs:element name="currencyCode" type="xs:string" minOccurs="0"/>
+				<xs:element name="amount" type="xs:double" minOccurs="0" />
+    			<xs:element name="cardType" type="xs:string" minOccurs="0"/>
+    			<xs:element name="debitCard" type="xs:boolean" minOccurs="0"/>
+    			<xs:element name="customerPresent" type="xs:boolean" minOccurs="0"/>
+    			<xs:element name="authorizationNumber" type="xs:string" minOccurs="0"/>
+    			<xs:element name="authorizationDate" type="xs:dateTime" minOccurs="0"/>
+    			<xs:element name="authorizationCode" type="xs:string" minOccurs="0"/>
+    			<xs:element name="authorizationMessage" type="xs:string" minOccurs="0"/>
+    			<xs:element name="authorized" type="xs:boolean" minOccurs="0"/>
+    			<xs:element name="authorizationOnly" type="xs:boolean" minOccurs="0"/>
+    			<xs:element name="paymentNumber" type="xs:string" minOccurs="0"/>
+    			<xs:element name="parentPaymentNumber" type="xs:string" minOccurs="0"/>
+    			<xs:element name="paymentMethod" type="xs:string" minOccurs="0"/>
+    			<xs:element name="gatewayName" type="xs:string" minOccurs="0"/>
+    			<xs:element name="voided" type="xs:boolean" minOccurs="0"/>
+    			<xs:element name="additionalData" type="xs:string" minOccurs="0"/>
+    			<xs:element name="testTransaction" type="xs:boolean" minOccurs="0"/>
+    		</xs:sequence>
+    	</xs:complexType>
+		<xs:simpleType name="PaymentType">
+			<xs:restriction base="xs:string">
+                <xs:enumeration value="Sale"/>
+                <xs:enumeration value="Return"/>
+                <xs:enumeration value="Authorization"/>
+                <xs:enumeration value="Capture"/>
+                <xs:enumeration value="Payment"/>
+                <xs:enumeration value="Refund"/>
+                <xs:enumeration value="Void"/>
+            </xs:restriction>
+		</xs:simpleType>
+</xs:schema>

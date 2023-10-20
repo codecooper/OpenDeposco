@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/channellisting"
+    xmlns="http://integration.deposco.com/channellisting"
+    elementFormDefault="unqualified">
+    
+    <xs:element name="channelListings" type="ChannelListingCollection"/>
+    
+    <xs:complexType name="ChannelListingCollection">
+    	<xs:sequence>
+            <xs:element name="channelListing" type="ChannelListingType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ChannelListingType">
+		<xs:sequence>
+			<xs:element name="itemNumber" type="xs:string" minOccurs="0" />
+			<xs:element name="listingDescription" type="xs:string" minOccurs="0"/>
+			<xs:element name="listingPrice" type="xs:double" minOccurs="0"/>
+			<xs:element name="itemCondition" type="xs:string" minOccurs="0"/>
+			<xs:element name="saleable" type="xs:boolean" minOccurs="0" />
+			<xs:element name="listingStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="packQuantity" type="xs:double" minOccurs="0"/>
+			<xs:element name="syncInventory" type="xs:boolean" minOccurs="0" />
+			<xs:element name="ref1" type="xs:string" minOccurs="0"/>
+			<xs:element name="secRef1" type="xs:string" minOccurs="0"/>
+			<xs:element name="ref2" type="xs:string" minOccurs="0"/>
+			<xs:element name="secRef2" type="xs:string" minOccurs="0"/>
+			<xs:element name="ref3" type="xs:string" minOccurs="0"/>
+			<xs:element name="secRef3" type="xs:string" minOccurs="0"/>
+			<xs:element name="ref4" type="xs:string" minOccurs="0"/>
+			<xs:element name="secRef4" type="xs:string" minOccurs="0"/>
+			<xs:element name="ref5" type="xs:string" minOccurs="0"/>
+			<xs:element name="secRef5" type="xs:string" minOccurs="0"/>
+			<xs:element name="secRef6" type="xs:string" minOccurs="0"/>
+			<xs:element name="secRef7" type="xs:string" minOccurs="0"/>
+			<xs:element name="secRef8" type="xs:string" minOccurs="0"/>
+			<xs:element name="secRef9" type="xs:string" minOccurs="0"/>
+			<xs:element name="secRef10" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="integrationPoint" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="createdDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="updatedDate" type="xs:dateTime" minOccurs="0" />
+	    	<xs:element name="createdBy" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="updatedBy" type="xs:string" minOccurs="0"/>
+	    </xs:sequence>
+    </xs:complexType>
+</xs:schema>

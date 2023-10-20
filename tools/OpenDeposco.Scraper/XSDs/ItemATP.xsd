@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified">
+
+    <xs:element name="itemATPDTOes" type="ItemATPCollection"/>
+
+    <xs:complexType name="ItemATPCollection">
+        <xs:sequence>
+            <xs:element name="item-atp" type="ItemATPType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ItemTradingPartnerATP">
+        <xs:attribute name="code" type="xs:string" />
+    </xs:complexType>
+
+    <xs:complexType name="ItemATPType">
+        <xs:sequence>
+            <xs:element name="tradingPartner" type="ItemTradingPartnerATP" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="availableToPromise" type="xs:int"/>
+        <xs:attribute name="itemNumber" type="xs:string"/>
+        <xs:attribute name="productCode" type="xs:string"/>
+        <xs:attribute name="quantityOnBackOrdered" type="xs:int"/>
+        <xs:attribute name="quantityOnPurchaseOrder" type="xs:int"/>
+        <xs:attribute name="totalFullCaseItems" type="xs:int"/>
+        <xs:attribute name="totalItems" type="xs:int"/>
+        <xs:attribute name="totalReserveStockItems" type="xs:int"/>
+        <xs:attribute name="totalSplitCaseItems" type="xs:int"/>
+    </xs:complexType>
+</xs:schema>

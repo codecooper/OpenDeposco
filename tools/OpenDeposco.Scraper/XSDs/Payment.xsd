@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://integration.deposco.com/payment"
+           xmlns="http://integration.deposco.com/payment"
+           xmlns:t="http://integration.deposco.com/types"
+           elementFormDefault="unqualified">
+	<xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+	
+	<xs:element name="payments" type="PaymentCollection" />
+	<xs:complexType name="PaymentCollection">
+		<xs:sequence>
+			<xs:element name="payment" type="PaymentType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PaymentType">
+		<xs:sequence>
+			<xs:element name="id" type="xs:long" minOccurs="0" maxOccurs="1" />
+			<xs:element name="number" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="gateway" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="order" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="store" type="xs:string" minOccurs="0" />
+			<xs:element name="transType" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="type" type="xs:string" minOccurs="0" />
+			<xs:element name="amount" type="xs:float" minOccurs="1" maxOccurs="1" />
+			<xs:element name="changes" type="xs:float" minOccurs="1" maxOccurs="1" />
+			<xs:element name="shipping" type="xs:float" minOccurs="1" maxOccurs="1" />
+			<xs:element name="tax" type="xs:float" minOccurs="1" maxOccurs="1" />
+			<xs:element name="cityTax" type="xs:float" minOccurs="1" maxOccurs="1" />
+			<xs:element name="discount" type="xs:float" minOccurs="1" maxOccurs="1" />
+			<xs:element name="cardType" type="xs:string" minOccurs="0" />
+			<xs:element name="txType" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="txNumber" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="createdBy" type="xs:string" minOccurs="0" />
+			<xs:element name="createdDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="detail" type="PaymentDetailType" minOccurs="0" />
+			<xs:element name="channels" type="t:ChannelsCollection" minOccurs="0"/>
+			<xs:element name="channelSource" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PaymentDetailType">
+		<xs:sequence>
+			<xs:element name="credit" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="lastFour" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="authorized" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="historyId" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="orderId" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="authCode" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="additionalData" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="salePosted" type="xs:boolean" minOccurs="0" maxOccurs="1" />
+			<xs:element name="emvData" type="xs:string" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

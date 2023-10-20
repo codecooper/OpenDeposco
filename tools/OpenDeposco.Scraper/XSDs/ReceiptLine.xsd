@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   targetNamespace="http://integration.deposco.com/receiptline"
+		   xmlns="http://integration.deposco.com/receiptline"
+		   xmlns:t="http://integration.deposco.com/types"
+		   elementFormDefault="unqualified">
+	<xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+
+	<xs:element name="receiptLines" type="ReceiptLineCollection" />
+	<xs:complexType name="ReceiptLineCollection">
+		<xs:sequence>
+			<xs:element name="receiptLine" type="ReceiptLineType" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReceiptLineType">
+		<xs:sequence>
+			<xs:element name="orderType" type="xs:string" minOccurs="0" maxOccurs="1" default="Purchase Order"/>
+			<xs:element name="orderNumber" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="lineNumber" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="number" type="xs:string" minOccurs="0" />
+
+			<xs:element name="itemNumber" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="quantity" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="packType" type="xs:string" minOccurs="0" maxOccurs="1" default="Each" />
+			<xs:element name="packQty" type="xs:int" minOccurs="0" maxOccurs="1" default="1" />
+			<xs:element name="receivingFacility" type="xs:string" minOccurs="0"/>
+			<xs:element name="receivingLocation" type="xs:string" minOccurs="0" default="Receiving" />
+			<xs:element name="receivingContainer" type="xs:string" minOccurs="0" />
+			<xs:element name="receivingContainerType" type="xs:string" minOccurs="0" default="Pallet"/>
+			<xs:element name="receivedDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="status" type="xs:string" minOccurs="0" />
+
+			<xs:element name="unitPrice" type="xs:double" minOccurs="0" />
+			<xs:element name="lotNumber" type="xs:string" minOccurs="0" />
+            <xs:element name="disposition" type="xs:string" minOccurs="0" />
+			<xs:element name="serialNumber" type="xs:string" minOccurs="0" />
+			<xs:element name="bornOnDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="expirationDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="catchWeight" type="xs:double" minOccurs="0" />
+			<xs:element name="damaged" type="xs:boolean" minOccurs="0" />
+			<xs:element name="damagedQuantity" type="xs:int" minOccurs="0" />
+			<xs:element name="createInventory" type="xs:boolean" minOccurs="0" default="true"/>
+            <xs:element name="createPO" type="xs:boolean" default="false"/>
+            <xs:element name="createItem" type="xs:boolean" default="false"/>
+            <xs:element name="otherReferenceNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="parentNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="oldItemNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute1" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute2" type="xs:string" minOccurs="0"/>
+            <xs:element name="customAttribute3" type="xs:string" minOccurs="0"/>
+            <xs:element name="inventoryCondition" type="xs:string" minOccurs="0"/>
+            <xs:element name="inventoryAttribute1" type="xs:string" minOccurs="0"/>
+            <xs:element name="inventoryAttribute2" type="xs:string" minOccurs="0"/>
+            <xs:element name="inventoryAttribute3" type="xs:string" minOccurs="0"/>
+            <xs:element name="inventoryAttribute4" type="xs:string" minOccurs="0"/>
+            <xs:element name="inventoryAttribute5" type="xs:string" minOccurs="0"/>
+            <xs:element name="inventoryAttribute6" type="xs:string" minOccurs="0"/>
+            <xs:element name="inventoryAttribute7" type="xs:string" minOccurs="0"/>
+			<xs:element name="channels" type="t:ChannelsCollection" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

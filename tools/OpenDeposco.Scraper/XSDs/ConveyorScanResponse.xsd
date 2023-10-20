@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://integration.deposco.com/conveyorscanresponse"
+           xmlns="http://integration.deposco.com/conveyorscanresponse">
+
+    <xs:element name="conveyorScanResponse" type="ConveyorScanResponse"/>
+
+    <xs:complexType name="ConveyorScanResponse">
+        <xs:sequence>
+            <xs:element name="facility" type="xs:string"/>
+            <xs:element name="businessUnit" type="xs:string"/>
+            <xs:element name="barcode" type="xs:string"/>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="statusDetail" type="xs:string"/>
+            <xs:element name="direction" type="xs:int"/>
+            <xs:element name="responseTime" type="xs:int"/>
+            <xs:element name="stationNumber" type="xs:string"/>
+            <xs:element name="importReference" type="xs:string"/>
+            <xs:element name="exportReference" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

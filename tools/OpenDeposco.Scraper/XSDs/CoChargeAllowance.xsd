@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/cochargeallowance"
+	xmlns="http://integration.deposco.com/cochargeallowance"
+     elementFormDefault="unqualified">
+     
+      <xs:element name="chargesAllowances" type="ChargeAllowanceCollection" />
+      
+      <xs:complexType name="ChargeAllowanceCollection">
+        <xs:sequence>
+            <xs:element name="chargeAllowance" type="ChargeAllowanceType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ChargeAllowanceType">
+    		<xs:sequence>
+    			<xs:element name="indicator" type="xs:string" minOccurs="0"/>
+    			<xs:element name="code" type="xs:string" minOccurs="0"/>
+    			<xs:element name="agency" type="xs:string" minOccurs="0"/>
+    			<xs:element name="agencyCode" type="xs:string" minOccurs="0"/>
+    			<xs:element name="allowChargeAmount" type="xs:double" minOccurs="0"/>
+    			<xs:element name="allowChargePercentBasis" type="xs:double" minOccurs="0"/>
+    			<xs:element name="allowChargePercent" type="xs:double" minOccurs="0"/>
+    			<xs:element name="allowChargeRate" type="xs:double" minOccurs="0"/>
+    			<xs:element name="allowChargeQtyUOM" type="xs:string" minOccurs="0"/>
+    			<xs:element name="allowChargeQty" type="xs:double" minOccurs="0"/>
+    		</xs:sequence>
+    	</xs:complexType>
+</xs:schema>

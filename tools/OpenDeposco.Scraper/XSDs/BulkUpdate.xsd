@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/bulkUpdate"
+           xmlns="http://integration.deposco.com/bulkUpdate"
+           xmlns:o="http://integration.deposco.com/order"
+           xmlns:s="http://integration.deposco.com/shipment"
+           xmlns:i="http://integration.deposco.com/item"
+           xmlns:t="http://integration.deposco.com/types"
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/shipment" schemaLocation="Shipment.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/order" schemaLocation="OrderHeader.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/item" schemaLocation="Item.xsd"/>
+
+    <xs:element name="bulkUpdates" type="BulkUpdateCollection"/>
+
+    <xs:complexType name="BulkUpdateType">
+        <xs:choice>
+            <xs:element name="order" type="o:OrderType" />
+            <xs:element name="item" type="i:ItemType"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="BulkUpdateCollection">
+        <xs:sequence>
+            <xs:element name="bulkUpdate" type="BulkUpdateType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

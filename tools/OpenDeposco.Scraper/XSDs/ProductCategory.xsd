@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- This schema defines the types used by the productCategory resource. 
+	All URLs below are relative to the base URL: https://integration.deposco.com/integration/{company} 
+	
+	The following operations are allowed on product category resources: 
+	
+	******************************************************************* 
+	GET /productCategories/{productCategoryCode}
+	 
+	Accepts: application/xml , application/json 
+	Returns: application/xml , application/json Fetches a single product category.
+	 
+	Returns a response code of 200 and the XML representation of the product 
+	category in the response. If the product category cannot be found, a 404 
+	response code is returned, along with a plain text error message in the response.
+	 
+	******************************************************************* 
+	
+	PUT /productCategories/updates/{productCategoryCode}
+	 
+	Accepts: application/xml , application/json 
+	Returns: application/xml, application/json 
+	
+	Creates / Updates a single product category. If the product category is created, 
+	a 201 response code is returned, and the Location header is set to the URI 
+	of the created resource. If the product category is updated, a 200 response 
+	code is returned, and the Location header is set to the URI of the updated 
+	resource. If the product category cannot be created or updated, an appropriate 
+	4xx or 5xx response code is returned along with a plain text error message 
+	in the response. 
+	
+	******************************************************************* 
+	
+	PUT /productCategories/updates 
+	
+	Accepts: application/xml , application/json 
+	Returns: application/xml , application/json 
+	
+	Creates / Updates a batch of 
+	product categories. Input is ProductCategoryCollection. Returns a response 
+	code of 207, and a Multistatus XML document containing the results for each 
+	product category in the batch. If the product category is created, a 201 
+	response code is returned, and the Location header is set to the URI of the 
+	created resource. If the product category is updated, a 200 response code 
+	is returned, and the Location header is set to the URI of the updated resource. 
+	If the product category cannot be created or updated, an appropriate 4xx 
+	or 5xx response code is returned along with the corresponding error message 
+	in the response. Each product category is imported in a separate transaction, 
+	so that a single failed import will not cause the entire batch to fail.
+	
+	 ******************************************************************* 
+	
+	POST /productCategories 
+	
+	Accepts: application/xml , application/json 
+	Returns: application/xml , application/json 
+	
+	This operation will update one or more 
+	fields of a product category without requiring the entire product category 
+	document to be sent. The product category must already exist. Returns a 200 
+	response code if the product category was successfully updated, or if the 
+	update fails an appropriate 4xx or 5xx response code along with the corresponding 
+	error message in the response.
+	
+	 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://integration.deposco.com/productCategory"
+	xmlns:t="http://integration.deposco.com/types" xmlns="http://integration.deposco.com/productCategory"
+	elementFormDefault="unqualified">
+
+	<xs:import namespace="http://integration.deposco.com/types"
+		schemaLocation="Types.xsd" />
+	<xs:element name="productCategories" type="ProductCategoryCollection" />
+
+	<xs:complexType name="ProductCategoryCollection">
+		<xs:sequence>
+			<xs:element name="productCategory" type="ProductCategoryType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ProductCategoryType">
+		<xs:sequence>
+			<xs:element name="code" type="xs:string" minOccurs="1" maxOccurs="1" nillable="false" />
+			<xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1" nillable="false" />
+			<xs:element name="parentCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="createdDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="updatedDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="businessUnit" type="xs:string" minOccurs="0" nillable="false" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

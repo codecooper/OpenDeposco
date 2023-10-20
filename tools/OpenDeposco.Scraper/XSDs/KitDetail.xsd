@@ -1,0 +1,33 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/kitdetail"
+		   xmlns="http://integration.deposco.com/kitdetail"
+		   xmlns:pack="http://integration.deposco.com/pack"
+    elementFormDefault="unqualified">
+
+	<xs:import namespace="http://integration.deposco.com/pack" schemaLocation="Pack.xsd"/>
+
+	<xs:element name="kitDetails" type="KitDetailCollection"/>
+	
+	<xs:complexType name="KitDetailCollection">
+        <xs:sequence>
+            <xs:element name="kitDetail" type="KitDetailType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="KitDetailType">
+    	<xs:sequence>
+    		<xs:element name="id" type="xs:long" minOccurs="0"/>
+			<xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+			<xs:element name="quantity" type="xs:int" minOccurs="0"/>
+			<xs:element name="rank" type="xs:int" minOccurs="0"/>
+			<xs:element name="type" type="xs:string" minOccurs="0"/>
+			<xs:element name="customAttribute1" type="xs:string" minOccurs="0"/>
+			<xs:element name="customAttribute2" type="xs:string" minOccurs="0"/>
+			<xs:element name="customAttribute3" type="xs:string" minOccurs="0"/>
+			<xs:element name="itemNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="createdDateTime" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="updatedDateTime" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="createdBy" type="xs:string" minOccurs="0"/>
+			<xs:element name="updatedBy" type="xs:string" minOccurs="0"/>
+			<xs:element name="pack" type="pack:PackType"/>
+    	</xs:sequence>
+    </xs:complexType>
+</xs:schema>

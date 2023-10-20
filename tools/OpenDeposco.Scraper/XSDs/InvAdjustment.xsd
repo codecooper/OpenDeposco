@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/invadjustment" xmlns="http://integration.deposco.com/invadjustment"
+	xmlns:gls="http://integration.deposco.com/gl" xmlns:t="http://integration.deposco.com/types"
+	elementFormDefault="unqualified">
+	<xs:import namespace="http://integration.deposco.com/gl" schemaLocation="GeneralLedger.xsd"/>
+	<xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+
+	<xs:element name="invAdjustments" type="InvAdjustmentCollection" />
+	<xs:complexType name="InvAdjustmentCollection">
+		<xs:sequence>
+			<xs:element name="invAdjustment" type="InvAdjustmentType" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InvAdjustmentType">
+		<xs:sequence>
+			<xs:element name="invAdjustmentId" type="xs:long" minOccurs="0" maxOccurs="1"  />
+			<xs:element name="actionType" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="facilityNumber" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="location" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="itemSku" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="reasonCode" type="xs:string" minOccurs="0" maxOccurs="1" />
+
+			<xs:element name="packKey" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="quantity" type="xs:int" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="importReference1" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="exportReference1" type="xs:string" minOccurs="0" maxOccurs="1" />
+			
+			<xs:element name="fromLocation" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="fromFacilityNumber" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="lastRanTime" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="createdDate" type="xs:dateTime" minOccurs="0"/>
+            
+            <xs:element name="details" type="gls:GLCollection" minOccurs="0" maxOccurs="1" />
+			<xs:element name="channels" type="t:ChannelsCollection" minOccurs="0"/>
+			<xs:element name="customAttribute1" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="customAttribute2" type="xs:string" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

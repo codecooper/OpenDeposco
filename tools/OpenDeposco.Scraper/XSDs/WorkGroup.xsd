@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/workgroup"
+           xmlns="http://integration.deposco.com/workgroup"
+           xmlns:order="http://integration.deposco.com/order"
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/order" schemaLocation="OrderHeader.xsd"/>
+
+    <xs:element name="workGroups" type="WorkGroupCollection"/>
+
+    <xs:complexType name="WorkGroupCollection">
+        <xs:sequence>
+            <xs:element name="workGroup" type="WorkGroupType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="WorkGroupType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="priority" type="xs:string" />
+            <xs:element name="number" type="xs:string"/>
+            <xs:element name="state" type="xs:string"/>
+            <xs:element name="businessUnit" type="xs:string"/>
+            <xs:element name="assignedUser" type="xs:string"/>
+            <xs:element name="pickWaveNumber" type="xs:string"/>
+            <xs:element name="workGroupType" type="xs:string"/>
+            
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:location="http://integration.deposco.com/location"
+           targetNamespace="http://integration.deposco.com/zone"
+           xmlns="http://integration.deposco.com/zone"
+           elementFormDefault="unqualified">
+    <xs:import namespace="http://integration.deposco.com/location" schemaLocation="Location.xsd"/>
+    <xs:element name="zones" type="ZoneCollection"/>
+
+    <xs:complexType name="ZoneCollection">
+        <xs:sequence>
+            <xs:element name="zone" type="ZoneType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ZoneType">
+        <xs:sequence>
+            <xs:element name="type" type="xs:string"/>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="facility" type="xs:string" minOccurs="0"/>
+            <xs:element name="pickRating" type="xs:double"/>
+            <xs:element name="defaultLocation" type="xs:string"/>
+            <xs:element name="pickProcessToUse" type="xs:string"/>
+            <xs:element name="allocateAllStockFromZone" type="xs:boolean"/>
+            <xs:element name="maxNumberOfUnitsToWorkGroup" type="xs:int"/>
+            <xs:element name="pickSystem" type="xs:string"/>
+            <xs:element name="businessUnit" type="xs:string"/>
+            <xs:element name="createdDateTime" type="xs:dateTime"/>
+            <xs:element name="updatedDateTime" type="xs:dateTime"/>
+            <xs:element name="createdBy" type="xs:string"/>
+            <xs:element name="updatedBy" type="xs:string"/>
+            <xs:element name="locations" type="location:LocationCollection"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

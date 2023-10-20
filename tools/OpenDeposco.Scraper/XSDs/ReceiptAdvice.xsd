@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/receiptadvice" xmlns="http://integration.deposco.com/receiptadvice" elementFormDefault="unqualified" 
+xmlns:receiptItemAdvice="http://integration.deposco.com/receiptitemadvice">
+	<xs:import namespace="http://integration.deposco.com/receiptitemadvice" schemaLocation="ReceiptItemAdvice.xsd" />
+	<xs:element name="receivingAdvice" type="ReceiptAdviceCollection" />
+	<xs:complexType name="ReceiptAdviceCollection">
+		<xs:sequence>
+			<xs:element name="receiptAdvice" type="ReceiptAdviceType" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReceiptAdviceType">
+		<xs:sequence>
+			<xs:element name="businessUnit" type="xs:string" minOccurs="0" />
+			<xs:element name="receiptAdviceNumber" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="status" type="xs:string" minOccurs="0" />
+			<xs:element name="orderNumber" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="receivingFacility" type="xs:string" minOccurs="0" />
+			<xs:element name="receivedDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="customerOrderNumber" type="xs:string" minOccurs="0" />
+			<xs:element name="asnNumber" type="xs:string" minOccurs="0" />
+			<xs:element name="createdDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="updatedDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="receiptItems" type="receiptItemAdvice:ReceiptItemAdviceCollection" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

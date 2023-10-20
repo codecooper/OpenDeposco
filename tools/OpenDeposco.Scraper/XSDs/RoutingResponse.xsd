@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+	targetNamespace="http://integration.deposco.com/RoutingResponse" 
+	xmlns="http://integration.deposco.com/RoutingResponse" 
+	elementFormDefault="unqualified">
+	
+	<xs:element name="routingResponse" type="ResponseCollection" />
+	
+	<xs:complexType name="ResponseCollection">
+		<xs:sequence>
+			<xs:element name="response" type="RoutingResponseType" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="RoutingResponseType">
+		<xs:sequence>
+			<xs:element name="businessUnit" type="xs:string" minOccurs="0" />
+			<xs:element name="routingRequest" type="xs:long" minOccurs="1"/>
+			<xs:element name="description" type="xs:string" minOccurs="0" />
+			<xs:element name="requestReference" type="xs:string" minOccurs="0"/>
+			<xs:element name="routingNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="scacCode" type="xs:string" minOccurs="0"/>
+			<xs:element name="estimatedCost" type="xs:double" minOccurs="0"/>
+			<xs:element name="details" type="ResponseDetailCollection" minOccurs="1" />
+			<xs:element name="contacts" type="ContactCollection" minOccurs="1" />
+			
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="ContactCollection">
+		<xs:sequence>
+			<xs:element name="contact" type="TransContactType" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TransContactType">
+		<xs:sequence>
+			<xs:element name="code" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="type" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="name" type="xs:string" minOccurs="1" maxOccurs="1" />
+			<xs:element name="line1" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="line2" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="line3" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="city" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="stateProvince" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="postalCode" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="country" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="location" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="email" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="phone" type="xs:string" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResponseDetailCollection">
+		<xs:sequence>
+			<xs:element name="detail" type="ResponseDetailType" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResponseDetailType">
+		<xs:sequence>
+			<xs:element name="businessUnit" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="poNumber" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="requestedShipDate" type="xs:dateTime" minOccurs="0" maxOccurs="1" />
+			<xs:element name="scheduledPickUpDate" type="xs:dateTime" minOccurs="0" maxOccurs="1" />
+			<xs:element name="scheduledQuantity" type="xs:double" minOccurs="0" maxOccurs="1" />
+			<xs:element name="scheduledQuantityDescription" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="shipmentWeight" type="xs:double" minOccurs="0" maxOccurs="1" />
+			<xs:element name="weightUOM" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="shipmentVolume" type="xs:double" minOccurs="0" maxOccurs="1" />
+			<xs:element name="volumeUOM" type="xs:string" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/multistatus" xmlns="http://integration.deposco.com/multistatus" elementFormDefault="unqualified">
+	<xs:complexType name="MessageCollection">
+		<xs:sequence>
+			<xs:element name="message" type="xs:string" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+    <xs:complexType name="NoticeCollection">
+        <xs:sequence>
+            <xs:element name="notice" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="entityType" type="xs:string" maxOccurs="1" />
+                        <xs:element name="entityBk" type="xs:string" maxOccurs="1" />
+                        <xs:element name="entityId" type="xs:string" maxOccurs="1" />
+                        <xs:element name="fieldName" type="xs:string" maxOccurs="1" />
+                        <xs:element name="providedValue" type="xs:string" maxOccurs="1" />
+                        <xs:element name="noticeType" type="xs:string" maxOccurs="1" />
+                        <xs:element name="code" type="xs:string" maxOccurs="1" />
+                        <xs:element name="message" type="xs:string" maxOccurs="1" />
+                        <xs:element name="status" type="xs:string" maxOccurs="1"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="multistatus">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="response" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="status" type="xs:string" maxOccurs="1"/>
+                            <xs:element name="href" type="xs:anyURI" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="type" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="entity" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="processedDate" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="requestStatus" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="warnings" type="MessageCollection" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="errors" type="MessageCollection" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="coHeaderStatus" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="importReference" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="notices" type="NoticeCollection" minOccurs="0" maxOccurs="1"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="putConfirmResponses">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="putConfirmResponse" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="status" type="xs:string" maxOccurs="1"/>
+                            <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="stagingContainer" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="stagingLocation" type="xs:string" minOccurs="0" maxOccurs="1"/>
+                            <xs:element name="putsCompleteForSlot" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

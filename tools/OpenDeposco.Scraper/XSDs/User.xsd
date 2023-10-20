@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/user"
+    xmlns="http://integration.deposco.com/user"
+    xmlns:t="http://integration.deposco.com/types"
+    elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+
+    <xs:element name="users" type="UserCollection"/>
+    
+    <xs:complexType name="UserCollection">
+        <xs:sequence>
+            <xs:element name="user" type="UserType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="UserType">
+        <xs:sequence>
+            <xs:element name="username" type="xs:string"/>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="enabled" type="xs:boolean"/>
+            
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+    This schema defines the types used by the item Vendor resource.
+
+    All URLs below are relative to the base URL:
+    https://integration.deposco.com/integration/{company}
+
+    The following operations are allowed on item Vendor resources:
+
+    *******************************************************************
+
+    GET /itemVendor/{itemNumber}/{tradingPartnerCode}
+
+    Accepts: application/xml
+    Returns: application/xml
+
+    Fetches a single item Vendor.  Returns a response code of 200 and the XML
+    representation of the item Vendor in the response.  If the item Vendor cannot be
+    found, a 404 response code is returned, along with a plain text error
+    message in the response.
+
+    *******************************************************************
+
+    GET /itemVendor/{itemNumber}/{trading partner code}
+
+    Accepts: application/xml
+    Returns: application/xml
+
+    Fetches a single item for particular business unit code. Returns a response
+    code of 200 and the XML representation of the item in the response.
+    If the item for business unit cannot be found, a 404 response code is
+    returned, along with a plain text error  message in the response.
+
+    *******************************************************************
+
+    POST /itemVendor/updates
+
+    Accepts: application/xml
+    Returns: text/plain
+
+    Creates or updates a batch of item Vendor records. Input is ItemVendorCollection.
+    Returns a response code of 207, and a Multistatus XML document containing
+    the results for each item Vendor in the batch.
+
+    If the item Vendor is created, a 201 response code is returned, and the Location
+    header is set to the URI of the created resource.
+
+    If the item Vendor is updated, a 200 response code is returned, and the Location
+    header is set to the URI of the updated resource.
+
+    If the item Vendor cannot be created or updated, an appropriate 4xx or 5xx
+    response code is returned along with a plain text error message in the
+    response.
+
+    Each item Vendor is imported in a separate transaction, so that a single failed
+    import will not cause the entire batch to fail.
+
+    *******************************************************************
+
+    DELETE /itemVendor/{itemNumber}/{tradingPartnerCode}
+
+    Accepts: application/xml
+    Returns: application/xml
+
+    Deletes a single item Vendor. If the item Vendor cannot be found, a 404 response
+    code is returned, along with a plain text error message in the response.
+    *******************************************************************
+
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://integration.deposco.com/itemVendor"
+	xmlns:item="http://integration.deposco.com/item"
+	targetNamespace="http://integration.deposco.com/itemVendor" elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/item" schemaLocation="Item.xsd"/>
+
+	<xs:element name="itemVendors" type="ItemVendorCollection" />
+
+	<xs:complexType name="ItemVendorCollection">
+		<xs:sequence>
+			<xs:element name="itemVendor" type="ItemVendorType" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ItemVendorType">
+		<xs:sequence>
+			<xs:element name="businessUnit" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true" />
+            <xs:choice>
+                <xs:element name="itemNumber" type="xs:string"/>
+                <xs:element name="item" type="item:ItemType"/>
+            </xs:choice>
+			<xs:element name="shortDescription" type="xs:string" minOccurs="0" maxOccurs="1" nillable="false" />
+			<xs:element name="longDescription" type="xs:string" minOccurs="0" maxOccurs="1" nillable="false" />
+
+			<xs:element name="tradingPartnerCode" type="xs:string" minOccurs="1" maxOccurs="1" nillable="true" />
+			<xs:element name="reorderQuantity" type="xs:int" minOccurs="0" maxOccurs="1" nillable="false" />
+			<xs:element name="reorderPoint" type="xs:int" minOccurs="0" maxOccurs="1" nillable="false" />
+			<xs:element name="reorderLeadTime" type="xs:int" minOccurs="0" maxOccurs="1" nillable="false" />
+			<xs:element name="unitCost" type="xs:double" minOccurs="0" maxOccurs="1" nillable="false" />
+			<xs:element name="fulfillmentType" type="xs:string" minOccurs="0" maxOccurs="1" nillable="false" />
+			<xs:element name="isPreferred" type="xs:boolean" minOccurs="0" maxOccurs="1" nillable="false" />
+			<xs:element name="isInventorySyncEnabled" type="xs:boolean" minOccurs="0" maxOccurs="1" nillable="false" />
+			<xs:element name="itemSkuUpc" type="xs:string" minOccurs="1" maxOccurs="1" nillable="false" />
+			<xs:element name="additionalCost" type="xs:double" minOccurs="0" maxOccurs="1" nillable="false" />
+			<xs:element name="quantity" type="xs:int" minOccurs="0" maxOccurs="1" nillable="false" />
+			<xs:element name="importReference1" type="xs:string" minOccurs="0" maxOccurs="1" nillable="false" />
+			<xs:element name="importReference2" type="xs:string" minOccurs="0" maxOccurs="1" nillable="false" />
+            <xs:element name="exportReference1" type="xs:string" minOccurs="0" maxOccurs="1" nillable="false" />
+            <xs:element name="exportReference2" type="xs:string" minOccurs="0" maxOccurs="1" nillable="false" />
+			<xs:element name="reorderLot" type="xs:int" minOccurs="0" maxOccurs="1" nillable="false" />
+
+			
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

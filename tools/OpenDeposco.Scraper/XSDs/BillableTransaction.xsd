@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/billabletransaction"
+           xmlns="http://integration.deposco.com/billabletransaction" xmlns:config="http://integration.deposco.com/billabletransactionconfig" elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/billabletransactionconfig" schemaLocation="BillableTransactionConfig.xsd"/>
+
+    <xs:element name="billableTransactions" type="BillableTransactionCollection"/>
+    <xs:complexType name="BillableTransactionCollection">
+        <xs:sequence>
+            <xs:element name="billableTransaction" type="BillableTransactionType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="BillableTransactionType">
+        <xs:sequence>
+            <xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+            <xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="transactionType" type="xs:string" minOccurs="0"/>
+            <xs:element name="containerNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="quantity" type="xs:double" minOccurs="0"/>
+            <xs:element name="totalCost" type="xs:double" minOccurs="0"/>
+            <xs:element name="totalPrice" type="xs:double" minOccurs="0"/>
+
+            <xs:element name="billableTransactionConfig" type="config:BillableTransactionConfigType" minOccurs="0"/>
+
+            <xs:element name="itemNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="orderHeaderNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="locationNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="facilityNumber" type="xs:string" minOccurs="0"/>
+
+            <xs:element name="createdDateTime" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="createdBy" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:types="http://integration.deposco.com/types"
+           targetNamespace="http://integration.deposco.com/company"
+           xmlns="http://integration.deposco.com/company"
+           elementFormDefault="unqualified">
+    <xs:import namespace="http://integration.deposco.com/order" schemaLocation="OrderHeader.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+
+    <xs:element name="companies" type="CompanyCollection"/>
+    <xs:complexType name="CompanyCollection">
+        <xs:sequence>
+            <xs:element name="company" type="CompanyType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="CompanyType">
+        <xs:sequence>
+            <xs:element name="code" type="xs:string"/>
+            <xs:element name="name" type="xs:string" minOccurs="0"/>
+            <xs:element name="contactFirstName" type="xs:string" minOccurs="0"/>
+            <xs:element name="contactLastName" type="xs:string" minOccurs="0"/>
+            <xs:element name="address" type="types:AddressType" minOccurs="0"/>
+            <xs:element name="description" type="xs:string" minOccurs="0"/>
+            <xs:element name="industry" type="xs:string" minOccurs="0"/>
+            <xs:element name="ticker" type="xs:string" minOccurs="0"/>
+            <xs:element name="website" type="xs:string" minOccurs="0"/>
+            <xs:element name="annualRevenue" type="xs:double" minOccurs="0"/>
+            <xs:element name="assetCarryingRatePercent" type="xs:double" minOccurs="0"/>
+            <xs:element name="doingBusinessAs" type="xs:string" minOccurs="0"/>
+            <xs:element name="faxNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="naics" type="xs:string" minOccurs="0"/>
+            <xs:element name="numberOfEmployees" type="xs:double" minOccurs="0"/>
+            <xs:element name="sic" type="xs:string" minOccurs="0"/>
+            <xs:element name="accountNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="scacProNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="ucceanCompanyNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="iataCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="partnershipType" type="xs:string" minOccurs="0"/>
+            <xs:element name="partnerAccountNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="taxable" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="showBannerAd" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="showSkyScrapperAd" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="workflowPopupWidth" type="xs:int" minOccurs="0"/>
+            <xs:element name="workflowPopupHeight" type="xs:int" minOccurs="0"/>
+            <xs:element name="useSas70Compliance" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="lpnPattern" type="xs:string" minOccurs="0"/>
+            <xs:element name="hasOwnBranding" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="httpsOnly" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="active" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="allocateLocationType" type="xs:string" minOccurs="0"/>
+            <xs:element name="allocateStock" type="xs:string" minOccurs="0"/>
+            <xs:element name="postalAccountNumber" type="xs:string" minOccurs="0"/>
+            <xs:element name="postalPassPhrase" type="xs:string" minOccurs="0"/>
+            <xs:element name="postalServiceEnabled" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="useStockUnitPrice" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="buttonColor" type="xs:string" minOccurs="0"/>
+            <xs:element name="backButtonColor" type="xs:string" minOccurs="0"/>
+            <xs:element name="errorMessageColor" type="xs:string" minOccurs="0"/>
+            <xs:element name="screenLabelColor" type="xs:string" minOccurs="0"/>
+            <xs:element name="screenLabelValueColor" type="xs:string" minOccurs="0"/>
+            <xs:element name="cupsUrl" type="xs:string" minOccurs="0"/>
+            <xs:element name="applyProcessBranding" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="useDimensionalWeight" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="colorMenuButtons" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="deposcoApiEnabled" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="deposcoApiLoggingEnabled" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="deposcoApiLogPathFilter" type="xs:string" minOccurs="0"/>
+            <xs:element name="ssccExpansionDigit" type="xs:int" minOccurs="0"/>
+            <xs:element name="locale" type="xs:string" minOccurs="0"/>
+            <xs:element name="packingSlipLevel" type="xs:string" minOccurs="0"/>
+            <xs:element name="packingSlipReport" type="xs:string" minOccurs="0"/>
+            <xs:element name="parent" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

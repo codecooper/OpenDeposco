@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://integration.deposco.com/picktaskforstockunit"
+           xmlns="http://integration.deposco.com/picktaskforstockunit"
+           xmlns:stockUnit="http://integration.deposco.com/stockunit"
+           xmlns:pickTask="http://integration.deposco.com/picktask"
+           xmlns:zone="http://integration.deposco.com/zone"
+           elementFormDefault="unqualified">
+
+    <xs:import namespace="http://integration.deposco.com/stockunit" schemaLocation="StockUnit.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/picktask" schemaLocation="PickTask.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/zone" schemaLocation="Zone.xsd"/>
+
+    <xs:element name="picksForStockUnits" type="PicksForStocksCollection"/>
+    <xs:complexType name="PicksForStocksCollection">
+        <xs:sequence>
+            <xs:element name="picksForStockUnit" type="PicksForStocksType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PicksForStocksType">
+        <xs:sequence>
+            <xs:element name="stockUnit" type="stockUnit:StockUnitType" />
+            <xs:element name="pickTasks" type="pickTask:PickTaskCollection" />
+            <xs:element name="zone" type="zone:ZoneType" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

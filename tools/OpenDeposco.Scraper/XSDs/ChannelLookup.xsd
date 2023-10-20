@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/channellookup"
+    xmlns="http://integration.deposco.com/channellookup"
+    elementFormDefault="unqualified">
+    
+    <xs:element name="channelLookups" type="ChannelLookupCollection"/>
+    
+    <xs:complexType name="ChannelLookupCollection">
+    	<xs:sequence>
+            <xs:element name="channelLookup" type="ChannelLookupType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="ChannelLookupType">
+		<xs:sequence>
+	    	<xs:element name="businessUnit" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="tradingPartner" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="integrationPoint" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="channelName" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="type" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="subType" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="code" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="value" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="data" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="description" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="createdDate" type="xs:dateTime" minOccurs="0" />
+			<xs:element name="updatedDate" type="xs:dateTime" minOccurs="0" />
+	    	<xs:element name="createdBy" type="xs:string" minOccurs="0"/>
+	    	<xs:element name="updatedBy" type="xs:string" minOccurs="0"/>
+	    </xs:sequence>
+    </xs:complexType>
+</xs:schema>

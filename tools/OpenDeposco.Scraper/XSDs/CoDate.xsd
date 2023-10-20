@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://integration.deposco.com/codate"
+xmlns="http://integration.deposco.com/codate"
+    elementFormDefault="unqualified">
+        
+    <xs:element name="coDates" type="CoDateCollection"/>
+    
+    <xs:complexType name="CoDateCollection">
+        <xs:sequence>
+            <xs:element name="coDate" type="coDateType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+     <xs:complexType name="coDateType">
+    		<xs:sequence>
+			<xs:element name="qualifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="value" type="xs:dateTime" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

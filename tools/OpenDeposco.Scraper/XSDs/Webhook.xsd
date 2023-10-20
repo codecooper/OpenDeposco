@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://integration.deposco.com/webhook"
+           xmlns="http://integration.deposco.com/webhook">
+
+    <xs:element name="webhooks" type="WebhookCollection"/>
+
+    <xs:complexType name="WebhookType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long" minOccurs="0"/>
+            <xs:element name="events" type="Events" minOccurs="0"/>
+            <xs:element name="callbackUrl" type="xs:string" minOccurs="0"/>
+            <xs:element name="secretKey" type="xs:string" minOccurs="0"/>
+            <xs:element name="includeBusinessUnits" type="xs:boolean" minOccurs="0"/>
+            <xs:element name="createdDateTime" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="updatedDateTime" type="xs:dateTime" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="WebhookCollection">
+        <xs:choice>
+            <xs:element name="webhook" type="WebhookType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="count" type="xs:long"/>
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="Events">
+        <xs:sequence>
+            <xs:element name="event" type="xs:string" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
