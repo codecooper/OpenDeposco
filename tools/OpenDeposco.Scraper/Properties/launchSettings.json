@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "OpenDeposco.Scraper (shoff)": {
+      "commandName": "Project",
+      "commandLineArgs": "-c shoff"
+    }
+  }
+}

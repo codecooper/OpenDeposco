@@ -1,0 +1,13 @@
+[
+    {
+        "endpoint":"",
+        "method": "GET",
+        "parameters":[
+            {
+                "location": "route",
+                "type": "string",
+                "name": "code"
+            }
+        ]
+    }
+]

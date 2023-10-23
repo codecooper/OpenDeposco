@@ -1,0 +1,6 @@
+﻿<xsd xmlns='http://microsoft.com/dotnet/tools/xsd/'>
+	<generateClasses language='CS' namespace='OpenDeposco.ChannelListing'>
+		<schema>XSDs\ChannelListing.xsd</schema>
+		<schema>.\XMLConfigs\ChannelListing.xsd</schema>
+	</generateClasses>
+</xsd>

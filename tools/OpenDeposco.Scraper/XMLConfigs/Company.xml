@@ -1,0 +1,9 @@
+﻿<xsd xmlns='http://microsoft.com/dotnet/tools/xsd/'>
+	<generateClasses language='CS' namespace='OpenDeposco.Company'>
+		<schema>XSDs\Company.xsd</schema>
+		<schema>XSDs\Types.xsd</schema>
+		<schema>XSDs\Pack.xsd</schema>
+		<schema>XSDs\UPC.xsd</schema>
+		<schema>.\XMLConfigs\Company.xsd</schema>
+	</generateClasses>
+</xsd>

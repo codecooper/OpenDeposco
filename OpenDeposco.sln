@@ -11,7 +11,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{53B186CF-C00
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenDeposco.Scraper", "tools\OpenDeposco.Scraper\OpenDeposco.Scraper.csproj", "{C2AD2DBE-507C-44AF-846E-80523CCF3E28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenDeposco", "src\OpenDeposco\OpenDeposco.csproj", "{10CEB895-4B50-4DA8-B17C-4E1F666814B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenDeposco", "src\OpenDeposco\OpenDeposco.csproj", "{10CEB895-4B50-4DA8-B17C-4E1F666814B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenDeposco.Builder", "tools\OpenDeposco.Builder\OpenDeposco.Builder.csproj", "{8164BC7A-040A-485F-B78A-596215E2C92F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenDeposco.Domain", "tools\OpenDeposco.Domain\OpenDeposco.Domain.csproj", "{610BBE1C-C21B-4FDE-B53F-8F80AA366204}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenDeposco.ClientGenerator", "tools\OpenDeposco.ClientGenerator\OpenDeposco.ClientGenerator.csproj", "{09558815-328D-4FAF-A688-3760150CDE55}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{40E91B62-AD8F-47F2-8B13-7FDEA46ADD81}"
+	ProjectSection(SolutionItems) = preProject
+		open-deposco.yaml = open-deposco.yaml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenDeposco.Tests", "tests\OpenDeposco.Tests\OpenDeposco.Tests.csproj", "{E3761400-6713-4522-9426-263C1A5606B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +40,22 @@ Global
 		{10CEB895-4B50-4DA8-B17C-4E1F666814B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10CEB895-4B50-4DA8-B17C-4E1F666814B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10CEB895-4B50-4DA8-B17C-4E1F666814B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8164BC7A-040A-485F-B78A-596215E2C92F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8164BC7A-040A-485F-B78A-596215E2C92F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8164BC7A-040A-485F-B78A-596215E2C92F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8164BC7A-040A-485F-B78A-596215E2C92F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{610BBE1C-C21B-4FDE-B53F-8F80AA366204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{610BBE1C-C21B-4FDE-B53F-8F80AA366204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{610BBE1C-C21B-4FDE-B53F-8F80AA366204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{610BBE1C-C21B-4FDE-B53F-8F80AA366204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09558815-328D-4FAF-A688-3760150CDE55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09558815-328D-4FAF-A688-3760150CDE55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09558815-328D-4FAF-A688-3760150CDE55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09558815-328D-4FAF-A688-3760150CDE55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3761400-6713-4522-9426-263C1A5606B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3761400-6713-4522-9426-263C1A5606B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3761400-6713-4522-9426-263C1A5606B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3761400-6713-4522-9426-263C1A5606B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,6 +63,10 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C2AD2DBE-507C-44AF-846E-80523CCF3E28} = {1AE4F7CA-6A18-4F1D-B01D-6AFC311DBCA2}
 		{10CEB895-4B50-4DA8-B17C-4E1F666814B7} = {53B186CF-C000-450D-9DC4-39ED54043A06}
+		{8164BC7A-040A-485F-B78A-596215E2C92F} = {1AE4F7CA-6A18-4F1D-B01D-6AFC311DBCA2}
+		{610BBE1C-C21B-4FDE-B53F-8F80AA366204} = {1AE4F7CA-6A18-4F1D-B01D-6AFC311DBCA2}
+		{09558815-328D-4FAF-A688-3760150CDE55} = {1AE4F7CA-6A18-4F1D-B01D-6AFC311DBCA2}
+		{E3761400-6713-4522-9426-263C1A5606B6} = {F836B07F-E2CF-4A65-8756-4152B974FCEB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ACDFA828-7817-4BC4-AB24-53FFCCA108AE}

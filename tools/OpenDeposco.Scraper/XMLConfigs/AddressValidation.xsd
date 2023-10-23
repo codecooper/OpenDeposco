@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://integration.deposco.com/addressvalidation"
+           targetNamespace="http://integration.deposco.com/addressvalidation"
+           elementFormDefault="unqualified">
+    <xs:import namespace="http://integration.deposco.com/addressvalidation" schemaLocation="AddressValidationRequest.xsd"/>
+    <xs:import namespace="http://integration.deposco.com/addressvalidation" schemaLocation="AddressValidationResponse.xsd"/>
+    
+    <xs:element name="addressValidationRequest" type="AddressValidationRequest"/>
+    <xs:element name="addressValidationResponse" type="AddressValidationResponse"/>
+</xs:schema>

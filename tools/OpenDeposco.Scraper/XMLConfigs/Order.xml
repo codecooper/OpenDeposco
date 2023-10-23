@@ -1,0 +1,18 @@
+﻿<xsd xmlns='http://microsoft.com/dotnet/tools/xsd/'>
+	<generateClasses language='CS' namespace='OpenDeposco.Order'>
+		<schema>XSDs\OrderHeader.xsd</schema>
+		<schema>XSDs\OrderLine.xsd</schema>
+		<schema>XSDs\MultiStatusResponse.xsd</schema>
+		<schema>XSDs\Types.xsd</schema>
+		<schema>XSDs\Pack.xsd</schema>
+		<schema>XSDs\UPC.xsd</schema>
+		<schema>XSDs\Item.xsd</schema>
+		<schema>XSDs\ItemCustomer.xsd</schema>
+		<schema>XSDs\ItemVendor.xsd</schema>
+		<schema>XSDs\PlanItem.xsd</schema>
+		<schema>XSDs\ReceiptLine.xsd</schema>
+		<schema>XSDs\Container.xsd</schema>
+		<schema>XSDs\Payment.xsd</schema>
+		<schema>.\XMLConfigs\Order.xsd</schema>
+	</generateClasses>
+</xsd>

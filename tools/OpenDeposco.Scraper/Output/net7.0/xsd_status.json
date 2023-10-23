@@ -1,0 +1,170 @@
+[
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\AddressValidation.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\AddressValidation.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\Bulk.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\n\r\nIf you would like more help, please type \u0022xsd /?\u0022.\r\n",
+    "Error": "Error: Could not find file \u0022c:\\users\\shipoffers\\repos\\opendeposco\\tools\\opendeposco.scraper\\output\\net7.0\\bulk.xsd\u0022.\r\n"
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\CarrierSpecialService.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\CarrierSpecialService.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\ChannelListing.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\ChannelListing.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\Company.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\Company.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\Container.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\Container.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\Cube.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\Cube.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\CustomerOrder.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\CustomerOrder.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\Inventory.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\Inventory.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\Item.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\Item.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\Kit.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\Kit.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\Location.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\Location.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\Order.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\Order.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\OrderStatus.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\OrderStatus.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\PriceList.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\PriceList.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\ReceiptAdvice.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\ReceiptAdvice.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\ReceiptLine.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\ReceiptLine.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\RetailActivity.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\RetailActivity.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\ReturnLabel.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\ReturnLabel.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\ReturnMerchandiseAuthorization.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\ReturnMerchandiseAuthorization.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\RoutingResponse.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\RoutingResponse.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\Shipment.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\Shipment.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\Storage.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\Storage.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\TradingPartner.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\TradingPartner.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\TradingPartnerSite.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\TradingPartnerSite.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\User.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\User.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\Workorder.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\Workorder.cs\u0027.\r\n",
+    "Error": ""
+  },
+  {
+    "FileName": "",
+    "Command": "/c /p:XMLConfigs\\Zone.xml /o:../../../OpenDeposco.Domain",
+    "Output": "Microsoft (R) Xml Schemas/DataTypes support utility\r\n[Microsoft (R) .NET Framework, Version 4.8.3928.0]\r\nCopyright (C) Microsoft Corporation. All rights reserved.\r\nWriting file \u0027../../../OpenDeposco.Domain\\Zone.cs\u0027.\r\n",
+    "Error": ""
+  }
+]

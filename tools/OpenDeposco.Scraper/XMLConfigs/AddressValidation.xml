@@ -1,0 +1,10 @@
+﻿<xsd xmlns='http://microsoft.com/dotnet/tools/xsd/'>
+	<generateClasses language='CS' namespace='OpenDeposco.AddressValidation'>
+		<schema>XSDs\AddressValidationRequest.xsd</schema>
+		<schema>XSDs\AddressValidationResponse.xsd</schema>
+		<schema>XSDs\Types.xsd</schema>
+		<schema>XSDs\Pack.xsd</schema>
+		<schema>XSDs\UPC.xsd</schema>
+		<schema>.\XMLConfigs\AddressValidation.xsd</schema>
+	</generateClasses>
+</xsd>

@@ -1,0 +1,3552 @@
+openapi: 3.0.1
+info:
+  title: Depesco API
+  description: This document is created and maintained by the community and is designed to be a non-state specific specification. Please refer to your regions documentation for specific details and deviations.Please keep in mind that there are rate limits and other terms of use enforced by Depesco. This document is only designed to give developers a standard used for code generation and testing.
+  version: v1
+servers:
+  - url: https://api.deposco.com
+    description: Production environment
+  - url: https://sandboxapi.deposco.com/ua
+    description: UA environment
+paths:
+  '/integration/{code}/addressvalidation':
+    post:
+      tags:
+        - AddressValidation
+      summary: The response from the API indicates whether the address is valid or invalid.
+      description: 'The address is validated by either UPS or FedEx. If the address is invalid, then a list of suggested addresses is provided.'
+      operationId: ValidateAddress
+      parameters:
+        - name: code
+          in: path
+          description: Company code for your Deposco environment
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AddressValidationRequest'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressValidationResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/AddressValidationResponse'
+  '/integration/{code}/bulk':
+    post:
+      tags:
+        - Bulk
+      summary: Use the POST method to send an asynchronous bulk request to create and update multiple items or orders.
+      description: "Each request should include either orders or items, but not both types of entities.\r\nA DocStoreDetail record is created in Deposco for the bulk request.DocStoreResponse records are created for each entity in the request."
+      operationId: BulkUpsertItemsOrders
+      parameters:
+        - name: code
+          in: path
+          description: Company code for your Deposco environment
+          required: true
+          schema:
+            type: string
+        - name: uniqueToken
+          in: query
+          description: Optionally enter your own ID to identify the bulk request. You can then check the status of the request by using the token
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkUpdateCollection'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/BulkUpdateCollection'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MultistatusResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/MultistatusResponse'
+  '/integration/{code}/bulk/{requestID}/details':
+    get:
+      tags:
+        - Bulk
+      summary: Get the status of a bulk request by request ID
+      operationId: GetBulkStatusByRequestId
+      parameters:
+        - name: code
+          in: path
+          description: Company code for your Deposco environment
+          required: true
+          schema:
+            type: string
+        - name: requestID
+          in: path
+          description: ID of the bulk request to get the status of. This ID is returned in the href field of the response for the POST request.
+          required: true
+          schema:
+            type: string
+        - name: includeSuccessDetails
+          in: query
+          description: 'Set to true to include details for entities that were successfully created or updated. The default value is false, which includes details only for entities that could not be created or updated'
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkUpdateResponseCollection'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BulkUpdateResponseCollection'
+  '/integration/{code}/bulk/uniqueToken/{token}':
+    get:
+      tags:
+        - Bulk
+      summary: Get the status of a bulk request by your own unique token
+      operationId: GetBulkStatusByToken
+      parameters:
+        - name: code
+          in: path
+          description: Company code for your Deposco environment
+          required: true
+          schema:
+            type: string
+        - name: token
+          in: path
+          description: 'If you included a unique token as a query parameter on the POST request, then enter the token.'
+          required: true
+          schema:
+            type: string
+        - name: includeSuccessDetails
+          in: query
+          description: 'Set to true to include details for entities that were successfully created or updated. The default value is false, which includes details only for entities that could not be created or updated'
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkUpdateResponseCollection'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BulkUpdateResponseCollection'
+  '/integration/{code}/users':
+    put:
+      tags:
+        - User
+      summary: Use the PUT method to create a user with the user API.
+      operationId: CreateUser
+      parameters:
+        - name: code
+          in: path
+          description: Company code for your Deposco environment
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserType'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UserType'
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserType'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserType'
+    post:
+      tags:
+        - User
+      summary: Use the POST method to update a user with the user API
+      operationId: UpdateUser
+      parameters:
+        - name: code
+          in: path
+          description: Company code for your Deposco environment
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserType'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/UserType'
+        required: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserType'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserType'
+    get:
+      tags:
+        - User
+      summary: Use the GET method to retrieve all active users with the user API
+      operationId: GetUsers
+      parameters:
+        - name: code
+          in: path
+          description: Company code for your Deposco environment
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCollection'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserCollection'
+  '/integration/{code}/users/{username}':
+    get:
+      tags:
+        - User
+      summary: Use the GET method to retrieve a specific user with the user API
+      operationId: GetUser
+      parameters:
+        - name: code
+          in: path
+          description: Company code for your Deposco environment
+          required: true
+          schema:
+            type: string
+        - name: username
+          in: path
+          description: Username of the user to retrieve
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserType'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserType'
+components:
+  schemas:
+    AddressType:
+      required:
+        - addressLine1
+        - city
+        - countryCode
+        - postalCode
+        - stateProvinceCode
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        contactName:
+          type: string
+          nullable: true
+        attention:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        phone2:
+          type: string
+          nullable: true
+        addressLine1:
+          minLength: 1
+          type: string
+        addressLine2:
+          type: string
+          nullable: true
+        addressLine3:
+          type: string
+          nullable: true
+        addressLine4:
+          type: string
+          nullable: true
+        city:
+          minLength: 1
+          type: string
+        stateProvinceCode:
+          minLength: 1
+          type: string
+        postalCode:
+          minLength: 1
+          type: string
+        countryCode:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    AddressValidationOptionsType:
+      required:
+        - maxSuggestedAddresses
+      type: object
+      properties:
+        carrier:
+          type: string
+          nullable: true
+        profileName:
+          type: string
+          nullable: true
+        maxSuggestedAddresses:
+          minLength: 1
+          type: string
+        streetLevelValue:
+          type: boolean
+        streetLevelValueSpecified:
+          type: boolean
+        streetLevel:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    AddressValidationRequest:
+      required:
+        - address
+      type: object
+      properties:
+        businessUnit:
+          type: string
+          nullable: true
+        address:
+          $ref: '#/components/schemas/AddressType'
+        addressValidationOptions:
+          $ref: '#/components/schemas/AddressValidationOptionsType'
+      additionalProperties: false
+    AddressValidationResponse:
+      type: object
+      properties:
+        businessUnit:
+          type: string
+          nullable: true
+        quality:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        shipVendor:
+          type: string
+          nullable: true
+        suggestedAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressType'
+          nullable: true
+          readOnly: true
+        suggestedAddressesSpecified:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+      nullable: true
+    BoxTypeType:
+      required:
+        - itemNumber
+        - quantity
+      type: object
+      properties:
+        itemNumber:
+          minLength: 1
+          type: string
+        quantity:
+          type: integer
+          format: int32
+      additionalProperties: false
+    BulkUpdateCollection:
+      type: object
+      properties:
+        bulkUpdate:
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkUpdateType'
+          nullable: true
+          readOnly: true
+        bulkUpdateSpecified:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    BulkUpdateDetail:
+      required:
+        - comment
+        - entityNumber
+        - status
+      type: object
+      properties:
+        entityNumber:
+          minLength: 1
+          type: string
+        status:
+          minLength: 1
+          type: string
+        comment:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    BulkUpdateResponseCollection:
+      type: object
+      properties:
+        bulkUpdate:
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkUpdateResponseType'
+          nullable: true
+          readOnly: true
+        bulkUpdateSpecified:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+      nullable: true
+    BulkUpdateResponseType:
+      required:
+        - details
+        - progress
+        - requestId
+        - status
+        - uniqueToken
+      type: object
+      properties:
+        requestId:
+          minLength: 1
+          type: string
+        uniqueToken:
+          minLength: 1
+          type: string
+        progress:
+          type: integer
+          format: int64
+        status:
+          minLength: 1
+          type: string
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/BulkUpdateDetail'
+          readOnly: true
+      additionalProperties: false
+    BulkUpdateType:
+      type: object
+      properties:
+        order:
+          $ref: '#/components/schemas/OrderType'
+        item:
+          $ref: '#/components/schemas/ItemType'
+      additionalProperties: false
+    CarrierSpecialServiceType:
+      type: object
+      properties:
+        shipVendor:
+          type: string
+          nullable: true
+        saturdayDeliveryValue:
+          type: boolean
+        saturdayDeliveryValueSpecified:
+          type: boolean
+        saturdayDelivery:
+          type: boolean
+          nullable: true
+        saturdayPickupValue:
+          type: boolean
+        saturdayPickupValueSpecified:
+          type: boolean
+        saturdayPickup:
+          type: boolean
+          nullable: true
+        insideDeliveryValue:
+          type: boolean
+        insideDeliveryValueSpecified:
+          type: boolean
+        insideDelivery:
+          type: boolean
+          nullable: true
+        pharmacyDeliveryValue:
+          type: boolean
+        pharmacyDeliveryValueSpecified:
+          type: boolean
+        pharmacyDelivery:
+          type: boolean
+          nullable: true
+        printReturnLabelValue:
+          type: boolean
+        printReturnLabelValueSpecified:
+          type: boolean
+        printReturnLabel:
+          type: boolean
+          nullable: true
+        brokerSelectOptionValue:
+          type: boolean
+        brokerSelectOptionValueSpecified:
+          type: boolean
+        brokerSelectOption:
+          type: boolean
+          nullable: true
+        batteryValue:
+          type: boolean
+        batteryValueSpecified:
+          type: boolean
+        battery:
+          type: boolean
+          nullable: true
+        liftgateDeliveryValue:
+          type: boolean
+        liftgateDeliveryValueSpecified:
+          type: boolean
+        liftgateDelivery:
+          type: boolean
+          nullable: true
+        returnReceiptRequestedValue:
+          type: boolean
+        returnReceiptRequestedValueSpecified:
+          type: boolean
+        returnReceiptRequested:
+          type: boolean
+          nullable: true
+        notificationPriorToDeliveryValue:
+          type: boolean
+        notificationPriorToDeliveryValueSpecified:
+          type: boolean
+        notificationPriorToDelivery:
+          type: boolean
+          nullable: true
+        batteryMaterialValue:
+          $ref: '#/components/schemas/CarrierSpecialServiceTypeBatteryMaterial'
+        batteryMaterialValueSpecified:
+          type: boolean
+        batteryMaterial:
+          $ref: '#/components/schemas/CarrierSpecialServiceTypeBatteryMaterial'
+        batteryPackagingValue:
+          $ref: '#/components/schemas/CarrierSpecialServiceTypeBatteryPackaging'
+        batteryPackagingValueSpecified:
+          type: boolean
+        batteryPackaging:
+          $ref: '#/components/schemas/CarrierSpecialServiceTypeBatteryPackaging'
+        batteryRegulation:
+          type: string
+          nullable: true
+        freightBookingConfirmationNumber:
+          type: string
+          nullable: true
+        exportComplianceStatement:
+          type: string
+          nullable: true
+        deliverySignatureOptionValue:
+          $ref: '#/components/schemas/CarrierSpecialServiceTypeDeliverySignatureOption'
+        deliverySignatureOptionValueSpecified:
+          type: boolean
+        deliverySignatureOption:
+          $ref: '#/components/schemas/CarrierSpecialServiceTypeDeliverySignatureOption'
+        homeDeliveryOptionValue:
+          $ref: '#/components/schemas/CarrierSpecialServiceTypeHomeDeliveryOption'
+        homeDeliveryOptionValueSpecified:
+          type: boolean
+        homeDeliveryOption:
+          $ref: '#/components/schemas/CarrierSpecialServiceTypeHomeDeliveryOption'
+        collectOnDeliveryValue:
+          type: boolean
+        collectOnDeliveryValueSpecified:
+          type: boolean
+        collectOnDelivery:
+          type: boolean
+          nullable: true
+        codCollectionType:
+          type: string
+          nullable: true
+        codTinType:
+          type: string
+          nullable: true
+        dropOffType:
+          type: string
+          nullable: true
+        packagingType:
+          type: string
+          nullable: true
+        holdAtLocationValue:
+          type: boolean
+        holdAtLocationValueSpecified:
+          type: boolean
+        holdAtLocation:
+          type: boolean
+          nullable: true
+        fedexOneRateValue:
+          type: boolean
+        fedexOneRateValueSpecified:
+          type: boolean
+        fedexOneRate:
+          type: boolean
+          nullable: true
+        hazardClassValue:
+          type: number
+          format: double
+        hazardClassValueSpecified:
+          type: boolean
+        hazardClass:
+          type: number
+          format: double
+          nullable: true
+        properShippingName:
+          type: string
+          nullable: true
+        packingInstructions:
+          type: string
+          nullable: true
+        cargoAircraftOnlyValue:
+          type: boolean
+        cargoAircraftOnlyValueSpecified:
+          type: boolean
+        cargoAircraftOnly:
+          type: boolean
+          nullable: true
+        dangerousGoodsUom:
+          type: string
+          nullable: true
+        shipsWithDryIceValue:
+          type: boolean
+        shipsWithDryIceValueSpecified:
+          type: boolean
+        shipsWithDryIce:
+          type: boolean
+          nullable: true
+        dutiesPaidByAccount:
+          type: string
+          nullable: true
+        unNumber:
+          type: string
+          nullable: true
+        hazmatLimitedQuantity:
+          type: string
+          nullable: true
+        limitedQtyPackingInstructions:
+          type: string
+          nullable: true
+        hazmatExceptedQuantity:
+          type: string
+          nullable: true
+        technicalName:
+          type: string
+          nullable: true
+        alcoholValue:
+          type: boolean
+        alcoholValueSpecified:
+          type: boolean
+        alcohol:
+          type: boolean
+          nullable: true
+        medicalUseValue:
+          type: boolean
+        medicalUseValueSpecified:
+          type: boolean
+        medicalUse:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    CarrierSpecialServiceTypeBatteryMaterial:
+      type: integer
+      format: int32
+    CarrierSpecialServiceTypeBatteryPackaging:
+      type: integer
+      format: int32
+    CarrierSpecialServiceTypeDeliverySignatureOption:
+      type: integer
+      format: int32
+    CarrierSpecialServiceTypeHomeDeliveryOption:
+      type: integer
+      format: int32
+    ChannelFieldType:
+      required:
+        - feedName
+        - jobName
+        - ref1
+      type: object
+      properties:
+        value:
+          type: string
+          nullable: true
+        feedName:
+          minLength: 1
+          type: string
+        jobName:
+          minLength: 1
+          type: string
+        activeValue:
+          type: boolean
+        activeValueSpecified:
+          type: boolean
+        active:
+          type: boolean
+          nullable: true
+        ref1:
+          minLength: 1
+          type: string
+        ref2:
+          type: string
+          nullable: true
+        ref3:
+          type: string
+          nullable: true
+        ref4:
+          type: string
+          nullable: true
+        ref5:
+          type: string
+          nullable: true
+        secRef1:
+          type: string
+          nullable: true
+        secRef2:
+          type: string
+          nullable: true
+        secRef3:
+          type: string
+          nullable: true
+        secRef4:
+          type: string
+          nullable: true
+        secRef5:
+          type: string
+          nullable: true
+        customerPackKey:
+          type: string
+          nullable: true
+        quantityInPackValue:
+          type: integer
+          format: int32
+        quantityInPackValueSpecified:
+          type: boolean
+        quantityInPack:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    ChannelListingType:
+      required:
+        - feedName
+        - ref1
+      type: object
+      properties:
+        value:
+          type: string
+          nullable: true
+        feedName:
+          minLength: 1
+          type: string
+        jobName:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        priceValue:
+          type: number
+          format: double
+        priceValueSpecified:
+          type: boolean
+        price:
+          type: number
+          format: double
+          nullable: true
+        itemCondition:
+          type: string
+          nullable: true
+        listingStatus:
+          type: string
+          nullable: true
+        saleableValue:
+          type: boolean
+        saleableValueSpecified:
+          type: boolean
+        saleable:
+          type: boolean
+          nullable: true
+        activeValue:
+          type: boolean
+        activeValueSpecified:
+          type: boolean
+        active:
+          type: boolean
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        listingPriceValue:
+          type: number
+          format: double
+        listingPriceValueSpecified:
+          type: boolean
+        listingPrice:
+          type: number
+          format: double
+          nullable: true
+        packQuantityValue:
+          type: number
+          format: double
+        packQuantityValueSpecified:
+          type: boolean
+        packQuantity:
+          type: number
+          format: double
+          nullable: true
+        syncInventoryValue:
+          type: boolean
+        syncInventoryValueSpecified:
+          type: boolean
+        syncInventory:
+          type: boolean
+          nullable: true
+        optionValue:
+          type: string
+          nullable: true
+        optionName:
+          type: string
+          nullable: true
+        ref1:
+          minLength: 1
+          type: string
+        ref2:
+          type: string
+          nullable: true
+        ref3:
+          type: string
+          nullable: true
+        ref4:
+          type: string
+          nullable: true
+        ref5:
+          type: string
+          nullable: true
+        secRef1:
+          type: string
+          nullable: true
+        secRef2:
+          type: string
+          nullable: true
+        secRef3:
+          type: string
+          nullable: true
+        secRef4:
+          type: string
+          nullable: true
+        secRef5:
+          type: string
+          nullable: true
+      additionalProperties: false
+    ContainerType:
+      type: object
+      properties:
+        lpn:
+          type: string
+          nullable: true
+        number:
+          type: string
+          nullable: true
+        trackingNumber:
+          type: string
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        dimension:
+          $ref: '#/components/schemas/DimensionType'
+        weight:
+          $ref: '#/components/schemas/WeightType'
+        billingWeightValue:
+          type: number
+          format: double
+        billingWeightValueSpecified:
+          type: boolean
+        billingWeight:
+          type: number
+          format: double
+          nullable: true
+        shipMethod:
+          type: string
+          nullable: true
+        shipVendor:
+          type: string
+          nullable: true
+        totalChargesValue:
+          type: number
+          format: double
+        totalChargesValueSpecified:
+          type: boolean
+        totalCharges:
+          type: number
+          format: double
+          nullable: true
+        voidIndicatorValue:
+          type: boolean
+        voidIndicatorValueSpecified:
+          type: boolean
+        voidIndicator:
+          type: boolean
+          nullable: true
+        notes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteType'
+          nullable: true
+          readOnly: true
+        notesSpecified:
+          type: boolean
+          readOnly: true
+        customAttributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomAttributeType'
+          nullable: true
+          readOnly: true
+        customAttributesSpecified:
+          type: boolean
+          readOnly: true
+        businessUnit:
+          type: string
+          nullable: true
+        facility:
+          type: string
+          nullable: true
+        referenceNumber1:
+          type: string
+          nullable: true
+        depthUom:
+          type: string
+          nullable: true
+        returnTrackingNumber:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        secondaryType:
+          type: string
+          nullable: true
+        shippingLabel:
+          type: string
+          nullable: true
+        shippingLabelType:
+          type: string
+          nullable: true
+        masterLpnNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    CustomAttributeType:
+      required:
+        - name
+        - value
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    CustomFieldType:
+      required:
+        - name
+        - value
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+        type:
+          $ref: '#/components/schemas/CustomFieldTypeType'
+      additionalProperties: false
+    CustomFieldTypeType:
+      type: integer
+      format: int32
+    CustomMapType:
+      required:
+        - name
+        - value
+      type: object
+      properties:
+        name:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    DimensionType:
+      type: object
+      properties:
+        lengthValue:
+          type: number
+          format: double
+        lengthValueSpecified:
+          type: boolean
+        length:
+          type: number
+          format: double
+          nullable: true
+        widthValue:
+          type: number
+          format: double
+        widthValueSpecified:
+          type: boolean
+        width:
+          type: number
+          format: double
+          nullable: true
+        heightValue:
+          type: number
+          format: double
+        heightValueSpecified:
+          type: boolean
+        height:
+          type: number
+          format: double
+          nullable: true
+        volumeValue:
+          type: number
+          format: double
+        volumeValueSpecified:
+          type: boolean
+        volume:
+          type: number
+          format: double
+          nullable: true
+        volumeUom:
+          type: string
+          nullable: true
+        units:
+          type: string
+          default: Inch
+          nullable: true
+      additionalProperties: false
+    ExtendedEntityType:
+      required:
+        - keyField
+        - keyValue
+        - name
+      type: object
+      properties:
+        field:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtendedFieldType'
+          nullable: true
+          readOnly: true
+        fieldSpecified:
+          type: boolean
+          readOnly: true
+        name:
+          minLength: 1
+          type: string
+        keyField:
+          minLength: 1
+          type: string
+        keyValue:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    ExtendedFieldType:
+      type: object
+      properties:
+        value:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    FreightType:
+      type: object
+      properties:
+        termsTypeValue:
+          $ref: '#/components/schemas/FreightTypeTermsType'
+        termsTypeValueSpecified:
+          type: boolean
+        termsType:
+          $ref: '#/components/schemas/FreightTypeTermsType'
+        account:
+          type: string
+          nullable: true
+        billToPartner:
+          type: string
+          nullable: true
+        billToAddress:
+          $ref: '#/components/schemas/AddressType'
+      additionalProperties: false
+    FreightTypeTermsType:
+      type: integer
+      format: int32
+    ItemCustomerType:
+      required:
+        - tradingPartnerCode
+      type: object
+      properties:
+        businessUnit:
+          type: string
+          nullable: true
+        itemNumber:
+          type: string
+          nullable: true
+        item:
+          $ref: '#/components/schemas/ItemType'
+        tradingPartnerCode:
+          minLength: 1
+          type: string
+        buyerPartNumber:
+          type: string
+          nullable: true
+        vendorPartNumber:
+          type: string
+          nullable: true
+        consumerPackageCode:
+          type: string
+          nullable: true
+        ean:
+          type: string
+          nullable: true
+        gtin:
+          type: string
+          nullable: true
+        upcCaseCode:
+          type: string
+          nullable: true
+        nationalDrugCode:
+          type: string
+          nullable: true
+        isbn:
+          type: string
+          nullable: true
+        activeValue:
+          type: boolean
+        activeValueSpecified:
+          type: boolean
+        active:
+          type: boolean
+          nullable: true
+      additionalProperties: false
+    ItemOptionType:
+      required:
+        - optionName
+        - optionValue
+      type: object
+      properties:
+        value:
+          type: string
+          nullable: true
+        optionName:
+          minLength: 1
+          type: string
+        optionValue:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    ItemType:
+      required:
+        - abcCategory
+        - bornOnDateRequired
+        - carrierSpecialServices
+        - catchWeightRequired
+        - classType
+        - components
+        - customFields
+        - customMappings
+        - cycleCount
+        - cycleCountFrequency
+        - dimension
+        - expirationDateRequired
+        - harmonizedCode
+        - hazmat
+        - hazmatCode
+        - inspectionRequired
+        - intangibleItemFlag
+        - inventoryTrackingEnabled
+        - itemVendors
+        - itemWeight
+        - longDescription
+        - lotTrackingEnabled
+        - mixLots
+        - name
+        - nmfcNumber
+        - number
+        - originCountry
+        - packs
+        - pickStrategy
+        - planItems
+        - productCode
+        - purchaseCost
+        - purchased
+        - quarantineRequired
+        - receiveDateRequired
+        - receiveOverTolerance
+        - receiveUnderTolerance
+        - reorderPoint
+        - reorderQuantity
+        - serialTrackingEnabled
+        - shippable
+        - shortDescription
+        - tradingPartner
+        - unitPrice
+        - upcs
+      type: object
+      properties:
+        businessUnit:
+          type: string
+          nullable: true
+        facility:
+          type: string
+          nullable: true
+        number:
+          minLength: 1
+          type: string
+        name:
+          minLength: 1
+          type: string
+        classType:
+          minLength: 1
+          type: string
+        shortDescription:
+          minLength: 1
+          type: string
+        longDescription:
+          minLength: 1
+          type: string
+        dimension:
+          $ref: '#/components/schemas/DimensionType'
+        itemWeight:
+          $ref: '#/components/schemas/WeightType'
+        abcCategory:
+          $ref: '#/components/schemas/ItemTypeAbcCategory'
+        productCode:
+          minLength: 1
+          type: string
+        originCountry:
+          minLength: 1
+          type: string
+        cycleCount:
+          type: boolean
+        tradingPartner:
+          minLength: 1
+          type: string
+        purchaseCost:
+          type: number
+          format: double
+        unitPrice:
+          type: number
+          format: double
+        bornOnDateRequired:
+          type: boolean
+        expirationDateRequired:
+          type: boolean
+        receiveDateRequired:
+          type: boolean
+        quarantineRequired:
+          type: boolean
+        inspectionRequired:
+          type: boolean
+        catchWeightRequired:
+          type: boolean
+        hazmat:
+          type: boolean
+        hazmatCode:
+          minLength: 1
+          type: string
+        intangibleItemFlag:
+          type: boolean
+        inventoryTrackingEnabled:
+          type: boolean
+        lotTrackingEnabled:
+          type: boolean
+        serialTrackingEnabled:
+          type: boolean
+        shippable:
+          type: boolean
+        purchased:
+          type: boolean
+        receiveOverTolerance:
+          type: number
+          format: double
+        receiveUnderTolerance:
+          type: number
+          format: double
+        cycleCountFrequency:
+          type: integer
+          format: int32
+        reorderQuantity:
+          type: integer
+          format: int32
+        accountingType:
+          type: string
+          nullable: true
+        defaultLedgerAccount:
+          type: string
+          nullable: true
+        cogsAccount:
+          type: string
+          nullable: true
+        customFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomFieldType'
+          readOnly: true
+        carrierSpecialServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarrierSpecialServiceType'
+          readOnly: true
+        extendedEntities:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtendedEntityType'
+          nullable: true
+          readOnly: true
+        extendedEntitiesSpecified:
+          type: boolean
+          readOnly: true
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelListingType'
+          nullable: true
+          readOnly: true
+        channelsSpecified:
+          type: boolean
+          readOnly: true
+        packs:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackType'
+          readOnly: true
+        upcs:
+          $ref: '#/components/schemas/UpcCollection'
+        productCategory:
+          type: string
+          nullable: true
+        styleNumber:
+          type: string
+          nullable: true
+        styleName:
+          type: string
+          nullable: true
+        colorName:
+          type: string
+          nullable: true
+        colorCode:
+          type: string
+          nullable: true
+        size:
+          type: string
+          nullable: true
+        nmfcNumber:
+          minLength: 1
+          type: string
+        harmonizedCode:
+          minLength: 1
+          type: string
+        mixLots:
+          type: boolean
+        transportationClass:
+          type: string
+          nullable: true
+        customMappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomMapType'
+          readOnly: true
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/KitComponentType'
+          readOnly: true
+        itemVendors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemVendorType'
+          readOnly: true
+        itemCustomers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemCustomerType'
+          nullable: true
+          readOnly: true
+        itemCustomersSpecified:
+          type: boolean
+          readOnly: true
+        customAttribute1:
+          type: string
+          nullable: true
+        customAttribute2:
+          type: string
+          nullable: true
+        customAttribute3:
+          type: string
+          nullable: true
+        customAttribute4:
+          type: string
+          nullable: true
+        customAttribute5:
+          type: string
+          nullable: true
+        uleValue:
+          type: number
+          format: double
+        uleValueSpecified:
+          type: boolean
+        ule:
+          type: number
+          format: double
+          nullable: true
+        uleUom:
+          type: string
+          nullable: true
+        kitOrderOnlyValue:
+          type: boolean
+        kitOrderOnlyValueSpecified:
+          type: boolean
+        kitOrderOnly:
+          type: boolean
+          nullable: true
+        kitStockOnlyValue:
+          type: boolean
+        kitStockOnlyValueSpecified:
+          type: boolean
+        kitStockOnly:
+          type: boolean
+          nullable: true
+        createdDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        createdDateValueSpecified:
+          type: boolean
+        createdDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        updatedDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        updatedDateValueSpecified:
+          type: boolean
+        updatedDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        brandName:
+          type: string
+          nullable: true
+        assemblyCostValue:
+          type: number
+          format: double
+        assemblyCostValueSpecified:
+          type: boolean
+        assemblyCost:
+          type: number
+          format: double
+          nullable: true
+        handlingCostValue:
+          type: number
+          format: double
+        handlingCostValueSpecified:
+          type: boolean
+        handlingCost:
+          type: number
+          format: double
+          nullable: true
+        storageCostValue:
+          type: number
+          format: double
+        storageCostValueSpecified:
+          type: boolean
+        storageCost:
+          type: number
+          format: double
+          nullable: true
+        externalImageUrl:
+          type: string
+          nullable: true
+        taxableValue:
+          type: boolean
+        taxableValueSpecified:
+          type: boolean
+        taxable:
+          type: boolean
+          nullable: true
+        bornOnDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        bornOnDateValueSpecified:
+          type: boolean
+        bornOnDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        assembleToOrderFlagValue:
+          type: boolean
+        assembleToOrderFlagValueSpecified:
+          type: boolean
+        assembleToOrderFlag:
+          type: boolean
+          nullable: true
+        itemOptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemOptionType'
+          nullable: true
+          readOnly: true
+        itemOptionsSpecified:
+          type: boolean
+          readOnly: true
+        serialCapturePoint:
+          type: string
+          nullable: true
+        salesEnabledFlagValue:
+          type: boolean
+        salesEnabledFlagValueSpecified:
+          type: boolean
+        salesEnabledFlag:
+          type: boolean
+          nullable: true
+        reorderPoint:
+          type: integer
+          format: int32
+        pickStrategy:
+          minLength: 1
+          type: string
+        qcPercentValue:
+          type: number
+          format: double
+        qcPercentValueSpecified:
+          type: boolean
+        qcPercent:
+          type: number
+          format: double
+          nullable: true
+        planItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanItemType'
+          readOnly: true
+      additionalProperties: false
+    ItemTypeAbcCategory:
+      type: integer
+      format: int32
+    ItemVendorType:
+      required:
+        - businessUnit
+        - itemSkuUpc
+        - tradingPartnerCode
+      type: object
+      properties:
+        businessUnit:
+          minLength: 1
+          type: string
+        itemNumber:
+          type: string
+          nullable: true
+        item:
+          $ref: '#/components/schemas/ItemType'
+        shortDescription:
+          type: string
+          nullable: true
+        longDescription:
+          type: string
+          nullable: true
+        tradingPartnerCode:
+          minLength: 1
+          type: string
+        reorderQuantityValue:
+          type: integer
+          format: int32
+        reorderQuantityValueSpecified:
+          type: boolean
+        reorderQuantity:
+          type: integer
+          format: int32
+          nullable: true
+        reorderPointValue:
+          type: integer
+          format: int32
+        reorderPointValueSpecified:
+          type: boolean
+        reorderPoint:
+          type: integer
+          format: int32
+          nullable: true
+        reorderLeadTimeValue:
+          type: integer
+          format: int32
+        reorderLeadTimeValueSpecified:
+          type: boolean
+        reorderLeadTime:
+          type: integer
+          format: int32
+          nullable: true
+        unitCostValue:
+          type: number
+          format: double
+        unitCostValueSpecified:
+          type: boolean
+        unitCost:
+          type: number
+          format: double
+          nullable: true
+        fulfillmentType:
+          type: string
+          nullable: true
+        isPreferredValue:
+          type: boolean
+        isPreferredValueSpecified:
+          type: boolean
+        isPreferred:
+          type: boolean
+          nullable: true
+        isInventorySyncEnabledValue:
+          type: boolean
+        isInventorySyncEnabledValueSpecified:
+          type: boolean
+        isInventorySyncEnabled:
+          type: boolean
+          nullable: true
+        itemSkuUpc:
+          minLength: 1
+          type: string
+        additionalCostValue:
+          type: number
+          format: double
+        additionalCostValueSpecified:
+          type: boolean
+        additionalCost:
+          type: number
+          format: double
+          nullable: true
+        quantityValue:
+          type: integer
+          format: int32
+        quantityValueSpecified:
+          type: boolean
+        quantity:
+          type: integer
+          format: int32
+          nullable: true
+        importReference1:
+          type: string
+          nullable: true
+        importReference2:
+          type: string
+          nullable: true
+        exportReference1:
+          type: string
+          nullable: true
+        exportReference2:
+          type: string
+          nullable: true
+        reorderLotValue:
+          type: integer
+          format: int32
+        reorderLotValueSpecified:
+          type: boolean
+        reorderLot:
+          type: integer
+          format: int32
+          nullable: true
+      additionalProperties: false
+    KitComponentType:
+      required:
+        - componentItem
+        - quantity
+      type: object
+      properties:
+        componentItem:
+          minLength: 1
+          type: string
+        quantity:
+          type: integer
+          format: int32
+      additionalProperties: false
+    MultistatusResponse:
+      required:
+        - status
+      type: object
+      properties:
+        status:
+          minLength: 1
+          type: string
+        href:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        entity:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        processedDate:
+          type: string
+          nullable: true
+        requestStatus:
+          type: string
+          nullable: true
+        warnings:
+          type: array
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+        warningsSpecified:
+          type: boolean
+          readOnly: true
+        errors:
+          type: array
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+        errorsSpecified:
+          type: boolean
+          readOnly: true
+        coHeaderStatus:
+          type: string
+          nullable: true
+        importReference:
+          type: string
+          nullable: true
+        notices:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoticeCollectionNotice'
+          nullable: true
+          readOnly: true
+        noticesSpecified:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+      nullable: true
+    NoteType:
+      required:
+        - body
+        - priority
+        - title
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/NoteTypeSource'
+        title:
+          minLength: 1
+          type: string
+        body:
+          minLength: 1
+          type: string
+        priority:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    NoteTypeSource:
+      type: integer
+      format: int32
+    NoticeCollectionNotice:
+      required:
+        - code
+        - entityBk
+        - entityId
+        - entityType
+        - fieldName
+        - message
+        - noticeType
+        - providedValue
+        - status
+      type: object
+      properties:
+        entityType:
+          minLength: 1
+          type: string
+        entityBk:
+          minLength: 1
+          type: string
+        entityId:
+          minLength: 1
+          type: string
+        fieldName:
+          minLength: 1
+          type: string
+        providedValue:
+          minLength: 1
+          type: string
+        noticeType:
+          minLength: 1
+          type: string
+        code:
+          minLength: 1
+          type: string
+        message:
+          minLength: 1
+          type: string
+        status:
+          minLength: 1
+          type: string
+      additionalProperties: false
+    OrderLineType:
+      required:
+        - customMappings
+        - pack
+      type: object
+      properties:
+        businessUnit:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        orderNumber:
+          type: string
+          nullable: true
+        lineNumber:
+          type: string
+          nullable: true
+        customerLineNumber:
+          type: string
+          nullable: true
+        importReference:
+          type: string
+          nullable: true
+        exportReference:
+          type: string
+          nullable: true
+        lineStatus:
+          type: string
+          default: New
+          nullable: true
+        coLine:
+          type: string
+          nullable: true
+        orderPackQuantityValue:
+          type: number
+          format: double
+        orderPackQuantityValueSpecified:
+          type: boolean
+        orderPackQuantity:
+          type: number
+          format: double
+          nullable: true
+        canceledPackQuantityValue:
+          type: number
+          format: double
+        canceledPackQuantityValueSpecified:
+          type: boolean
+        canceledPackQuantity:
+          type: number
+          format: double
+          nullable: true
+        receivedPackQuantityValue:
+          type: number
+          format: double
+        receivedPackQuantityValueSpecified:
+          type: boolean
+        receivedPackQuantity:
+          type: number
+          format: double
+          nullable: true
+        receivedDamagedPackQuantityValue:
+          type: number
+          format: double
+        receivedDamagedPackQuantityValueSpecified:
+          type: boolean
+        receivedDamagedPackQuantity:
+          type: number
+          format: double
+          nullable: true
+        shippedPackQuantityValue:
+          type: number
+          format: double
+        shippedPackQuantityValueSpecified:
+          type: boolean
+        shippedPackQuantity:
+          type: number
+          format: double
+          nullable: true
+        soldPackQuantityValue:
+          type: number
+          format: double
+        soldPackQuantityValueSpecified:
+          type: boolean
+        soldPackQuantity:
+          type: number
+          format: double
+          nullable: true
+        shortagePackQuantityValue:
+          type: number
+          format: double
+        shortagePackQuantityValueSpecified:
+          type: boolean
+        shortagePackQuantity:
+          type: number
+          format: double
+          nullable: true
+        allocatedQuantityValue:
+          type: number
+          format: double
+        allocatedQuantityValueSpecified:
+          type: boolean
+        allocatedQuantity:
+          type: number
+          format: double
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        importType:
+          type: string
+          nullable: true
+        unallocatedQuantityValue:
+          type: number
+          format: double
+        unallocatedQuantityValueSpecified:
+          type: boolean
+        unallocatedQuantity:
+          type: number
+          format: double
+          nullable: true
+        returnedPackQuantityValue:
+          type: number
+          format: double
+        returnedPackQuantityValueSpecified:
+          type: boolean
+        returnedPackQuantity:
+          type: number
+          format: double
+          nullable: true
+        pickedPackQuantityValue:
+          type: number
+          format: double
+        pickedPackQuantityValueSpecified:
+          type: boolean
+        pickedPackQuantity:
+          type: number
+          format: double
+          nullable: true
+        releasedQuantityValue:
+          type: number
+          format: double
+        releasedQuantityValueSpecified:
+          type: boolean
+        releasedQuantity:
+          type: number
+          format: double
+          nullable: true
+        taxableTotalValue:
+          type: number
+          format: double
+        taxableTotalValueSpecified:
+          type: boolean
+        taxableTotal:
+          type: number
+          format: double
+          nullable: true
+        taxableValue:
+          type: boolean
+        taxableValueSpecified:
+          type: boolean
+        taxable:
+          type: boolean
+          nullable: true
+        hardAllocationValue:
+          type: boolean
+        hardAllocationValueSpecified:
+          type: boolean
+        hardAllocation:
+          type: boolean
+          nullable: true
+        weightValue:
+          type: number
+          format: double
+        weightValueSpecified:
+          type: boolean
+        weight:
+          type: number
+          format: double
+          nullable: true
+        weightUom:
+          type: string
+          nullable: true
+        platinumLineNoValue:
+          type: integer
+          format: int32
+        platinumLineNoValueSpecified:
+          type: boolean
+        platinumLineNo:
+          type: integer
+          format: int32
+          nullable: true
+        backorderedValue:
+          type: boolean
+        backorderedValueSpecified:
+          type: boolean
+        backordered:
+          type: boolean
+          nullable: true
+        pickWave:
+          type: string
+          nullable: true
+        preallocatedValue:
+          type: boolean
+        preallocatedValueSpecified:
+          type: boolean
+        preallocated:
+          type: boolean
+          nullable: true
+        dropShipValue:
+          type: boolean
+        dropShipValueSpecified:
+          type: boolean
+        dropShip:
+          type: boolean
+          nullable: true
+        crossDockValue:
+          type: boolean
+        crossDockValueSpecified:
+          type: boolean
+        crossDock:
+          type: boolean
+          nullable: true
+        itemNumber:
+          type: string
+          nullable: true
+        item:
+          $ref: '#/components/schemas/ItemType'
+        itemExternalReference:
+          type: string
+          nullable: true
+        pack:
+          $ref: '#/components/schemas/PackType'
+        zoneNumber:
+          type: string
+          nullable: true
+        productCategory:
+          type: string
+          nullable: true
+        priceCode:
+          type: string
+          nullable: true
+        unitPriceValue:
+          type: number
+          format: double
+        unitPriceValueSpecified:
+          type: boolean
+        unitPrice:
+          type: number
+          format: double
+          nullable: true
+        shippingAmountValue:
+          type: number
+          format: double
+        shippingAmountValueSpecified:
+          type: boolean
+        shippingAmount:
+          type: number
+          format: double
+          nullable: true
+        taxCostValue:
+          type: number
+          format: double
+        taxCostValueSpecified:
+          type: boolean
+        taxCost:
+          type: number
+          format: double
+          nullable: true
+        untaxableTotalValue:
+          type: number
+          format: double
+        untaxableTotalValueSpecified:
+          type: boolean
+        untaxableTotal:
+          type: number
+          format: double
+          nullable: true
+        lineTotalValue:
+          type: number
+          format: double
+        lineTotalValueSpecified:
+          type: boolean
+        lineTotal:
+          type: number
+          format: double
+          nullable: true
+        unitCostValue:
+          type: number
+          format: double
+        unitCostValueSpecified:
+          type: boolean
+        unitCost:
+          type: number
+          format: double
+          nullable: true
+        extendedTotalValue:
+          type: number
+          format: double
+        extendedTotalValueSpecified:
+          type: boolean
+        extendedTotal:
+          type: number
+          format: double
+          nullable: true
+        discountAmountValue:
+          type: number
+          format: double
+        discountAmountValueSpecified:
+          type: boolean
+        discountAmount:
+          type: number
+          format: double
+          nullable: true
+        catchWeightValue:
+          type: number
+          format: double
+        catchWeightValueSpecified:
+          type: boolean
+        catchWeight:
+          type: number
+          format: double
+          nullable: true
+        serialNumber:
+          type: string
+          nullable: true
+        invoice:
+          type: string
+          nullable: true
+        customAttribute1:
+          type: string
+          nullable: true
+        customAttribute2:
+          type: string
+          nullable: true
+        customAttribute3:
+          type: string
+          nullable: true
+        sortOrderValue:
+          type: integer
+          format: int32
+        sortOrderValueSpecified:
+          type: boolean
+        sortOrder:
+          type: integer
+          format: int32
+          nullable: true
+        productCode:
+          type: string
+          nullable: true
+        createdDateTimeValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        createdDateTimeValueSpecified:
+          type: boolean
+        createdDateTime:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        updatedDateTimeValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        updatedDateTimeValueSpecified:
+          type: boolean
+        updatedDateTime:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        createdBy:
+          type: string
+          nullable: true
+        updatedBy:
+          type: string
+          nullable: true
+        inboundLpn:
+          type: string
+          nullable: true
+        masterInboundLpn:
+          type: string
+          nullable: true
+        lotNumber:
+          type: string
+          nullable: true
+        shipTo:
+          type: string
+          nullable: true
+        shipFrom:
+          type: string
+          nullable: true
+        customFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomFieldType'
+          nullable: true
+          readOnly: true
+        customFieldsSpecified:
+          type: boolean
+          readOnly: true
+        carrierSpecialServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarrierSpecialServiceType'
+          nullable: true
+          readOnly: true
+        carrierSpecialServicesSpecified:
+          type: boolean
+          readOnly: true
+        extendedEntities:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtendedEntityType'
+          nullable: true
+          readOnly: true
+        extendedEntitiesSpecified:
+          type: boolean
+          readOnly: true
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelFieldType'
+          nullable: true
+          readOnly: true
+        channelsSpecified:
+          type: boolean
+          readOnly: true
+        notes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteType'
+          nullable: true
+          readOnly: true
+        notesSpecified:
+          type: boolean
+          readOnly: true
+        customMappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomMapType'
+          readOnly: true
+        receiptLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReceiptLineType'
+          nullable: true
+          readOnly: true
+        receiptLinesSpecified:
+          type: boolean
+          readOnly: true
+        shipToAddressNumber:
+          type: string
+          nullable: true
+        shipToAddress:
+          $ref: '#/components/schemas/AddressType'
+        inventoryCondition:
+          type: string
+          nullable: true
+        inventoryAttribute1:
+          type: string
+          nullable: true
+        inventoryAttribute2:
+          type: string
+          nullable: true
+        inventoryAttribute3:
+          type: string
+          nullable: true
+        inventoryAttribute4:
+          type: string
+          nullable: true
+        inventoryAttribute5:
+          type: string
+          nullable: true
+        inventoryAttribute6:
+          type: string
+          nullable: true
+        inventoryAttribute7:
+          type: string
+          nullable: true
+        plannedArrivalDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        plannedArrivalDateValueSpecified:
+          type: boolean
+        plannedArrivalDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        plannedShipDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        plannedShipDateValueSpecified:
+          type: boolean
+        plannedShipDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        expirationDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        expirationDateValueSpecified:
+          type: boolean
+        expirationDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        cartonizedContainers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContainerType'
+          nullable: true
+          readOnly: true
+        cartonizedContainersSpecified:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+    OrderType:
+      required:
+        - customMappings
+        - number
+        - status
+        - type
+      type: object
+      properties:
+        persistableValue:
+          type: boolean
+        persistableValueSpecified:
+          type: boolean
+        persistable:
+          type: boolean
+          nullable: true
+        businessUnit:
+          type: string
+          nullable: true
+        facility:
+          type: string
+          nullable: true
+        zoneNumber:
+          type: string
+          nullable: true
+        idValue:
+          type: integer
+          format: int64
+        idValueSpecified:
+          type: boolean
+        id:
+          type: integer
+          format: int64
+          nullable: true
+        number:
+          minLength: 1
+          type: string
+        type:
+          $ref: '#/components/schemas/OrderTypeType'
+        status:
+          minLength: 1
+          type: string
+        orderPriority:
+          type: integer
+          format: int64
+          default: 1000
+        otherReferenceNumber:
+          type: string
+          nullable: true
+        importReference:
+          type: string
+          nullable: true
+        integrationSourceId:
+          type: string
+          nullable: true
+        shipFromAddressNumber:
+          type: string
+          nullable: true
+        shipFromAddress:
+          $ref: '#/components/schemas/AddressType'
+        shipToAddressNumber:
+          type: string
+          nullable: true
+        shipToAddress:
+          $ref: '#/components/schemas/AddressType'
+        billToAddressNumber:
+          type: string
+          nullable: true
+        billToAccountNumber:
+          type: string
+          nullable: true
+        billToAddress:
+          $ref: '#/components/schemas/AddressType'
+        freight:
+          $ref: '#/components/schemas/FreightType'
+        shipMethod:
+          type: string
+          nullable: true
+        shipVendor:
+          type: string
+          nullable: true
+        shipVia:
+          type: string
+          nullable: true
+        returnShipVia:
+          type: string
+          nullable: true
+        returnShipOption:
+          type: string
+          nullable: true
+        dropShipValue:
+          type: boolean
+        dropShipValueSpecified:
+          type: boolean
+        dropShip:
+          type: boolean
+          nullable: true
+        orderSource:
+          type: string
+          nullable: true
+        secondaryOrderSource:
+          type: string
+          nullable: true
+        seller:
+          type: string
+          nullable: true
+        buyer:
+          type: string
+          nullable: true
+        shipperPartner:
+          type: string
+          nullable: true
+        tradingPartner:
+          type: string
+          nullable: true
+        tradingPartnerSite:
+          type: string
+          nullable: true
+        billToPartner:
+          type: string
+          nullable: true
+        customer:
+          type: string
+          nullable: true
+        customerOrderNumber:
+          type: string
+          nullable: true
+        shipToEmail:
+          type: string
+          nullable: true
+        orderSummary:
+          type: string
+          nullable: true
+        orderSubTotalValue:
+          type: number
+          format: double
+        orderSubTotalValueSpecified:
+          type: boolean
+        orderSubTotal:
+          type: number
+          format: double
+          nullable: true
+        orderTaxableTotalValue:
+          type: number
+          format: double
+        orderTaxableTotalValueSpecified:
+          type: boolean
+        orderTaxableTotal:
+          type: number
+          format: double
+          nullable: true
+        orderUntaxableTotalValue:
+          type: number
+          format: double
+        orderUntaxableTotalValueSpecified:
+          type: boolean
+        orderUntaxableTotal:
+          type: number
+          format: double
+          nullable: true
+        orderShipTotalValue:
+          type: number
+          format: double
+        orderShipTotalValueSpecified:
+          type: boolean
+        orderShipTotal:
+          type: number
+          format: double
+          nullable: true
+        orderShippingTotalValue:
+          type: number
+          format: double
+        orderShippingTotalValueSpecified:
+          type: boolean
+        orderShippingTotal:
+          type: number
+          format: double
+          nullable: true
+        taxableValue:
+          type: boolean
+        taxableValueSpecified:
+          type: boolean
+        taxable:
+          type: boolean
+          nullable: true
+        orderTaxTotalValue:
+          type: number
+          format: double
+        orderTaxTotalValueSpecified:
+          type: boolean
+        orderTaxTotal:
+          type: number
+          format: double
+          nullable: true
+        shippingTaxTotalValue:
+          type: number
+          format: double
+        shippingTaxTotalValueSpecified:
+          type: boolean
+        shippingTaxTotal:
+          type: number
+          format: double
+          nullable: true
+        orderTotalValue:
+          type: number
+          format: double
+        orderTotalValueSpecified:
+          type: boolean
+        orderTotal:
+          type: number
+          format: double
+          nullable: true
+        hubId:
+          type: string
+          nullable: true
+        customAttribute1:
+          type: string
+          nullable: true
+        customAttribute2:
+          type: string
+          nullable: true
+        customAttribute3:
+          type: string
+          nullable: true
+        customAttribute4:
+          type: string
+          nullable: true
+        customAttribute5:
+          type: string
+          nullable: true
+        customAttribute6:
+          type: string
+          nullable: true
+        customAttribute7:
+          type: string
+          nullable: true
+        relatedOrderNumber:
+          type: string
+          nullable: true
+        createdDateTimeValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        createdDateTimeValueSpecified:
+          type: boolean
+        createdDateTime:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        updatedDateTimeValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        updatedDateTimeValueSpecified:
+          type: boolean
+        updatedDateTime:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        createdBy:
+          type: string
+          nullable: true
+        updatedBy:
+          type: string
+          nullable: true
+        notes:
+          type: array
+          items:
+            $ref: '#/components/schemas/NoteType'
+          nullable: true
+          readOnly: true
+        notesSpecified:
+          type: boolean
+          readOnly: true
+        customFields:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomFieldType'
+          nullable: true
+          readOnly: true
+        customFieldsSpecified:
+          type: boolean
+          readOnly: true
+        carrierSpecialServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/CarrierSpecialServiceType'
+          nullable: true
+          readOnly: true
+        carrierSpecialServicesSpecified:
+          type: boolean
+          readOnly: true
+        extendedEntities:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExtendedEntityType'
+          nullable: true
+          readOnly: true
+        extendedEntitiesSpecified:
+          type: boolean
+          readOnly: true
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelFieldType'
+          nullable: true
+          readOnly: true
+        channelsSpecified:
+          type: boolean
+          readOnly: true
+        orderLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderLineType'
+          nullable: true
+          readOnly: true
+        orderLinesSpecified:
+          type: boolean
+          readOnly: true
+        payments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentType'
+          nullable: true
+          readOnly: true
+        paymentsSpecified:
+          type: boolean
+          readOnly: true
+        currencyCode:
+          type: string
+          nullable: true
+        coHeader:
+          type: string
+          nullable: true
+        parentOrderNumber:
+          type: string
+          nullable: true
+        parentOrderType:
+          type: string
+          nullable: true
+        customMappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomMapType'
+          readOnly: true
+        otherReferenceNumber2:
+          type: string
+          nullable: true
+        orderDiscountSubtotalValue:
+          type: number
+          format: double
+        orderDiscountSubtotalValueSpecified:
+          type: boolean
+        orderDiscountSubtotal:
+          type: number
+          format: double
+          nullable: true
+        partnerInvoiceNumber:
+          type: string
+          nullable: true
+        contractNumber:
+          type: string
+          nullable: true
+        importType:
+          type: string
+          nullable: true
+        deliveryConfirmation:
+          type: string
+          nullable: true
+        invSegmentPlanCode:
+          type: string
+          nullable: true
+        placedDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        placedDateValueSpecified:
+          type: boolean
+        placedDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        plannedArrivalDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        plannedArrivalDateValueSpecified:
+          type: boolean
+        plannedArrivalDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        plannedReleaseDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        plannedReleaseDateValueSpecified:
+          type: boolean
+        plannedReleaseDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        plannedShipDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        plannedShipDateValueSpecified:
+          type: boolean
+        plannedShipDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        actualShipDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        actualShipDateValueSpecified:
+          type: boolean
+        actualShipDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        cancelByArrivalDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        cancelByArrivalDateValueSpecified:
+          type: boolean
+        cancelByArrivalDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        cancelByReleaseDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        cancelByReleaseDateValueSpecified:
+          type: boolean
+        cancelByReleaseDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        cancelByShipDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        cancelByShipDateValueSpecified:
+          type: boolean
+        cancelByShipDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        earliestShipDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        earliestShipDateValueSpecified:
+          type: boolean
+        earliestShipDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        earliestDeliveryDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        earliestDeliveryDateValueSpecified:
+          type: boolean
+        earliestDeliveryDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        actualArrivalDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        actualArrivalDateValueSpecified:
+          type: boolean
+        actualArrivalDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        shippingStatusValue:
+          type: integer
+          format: int32
+        shippingStatusValueSpecified:
+          type: boolean
+        shippingStatus:
+          type: integer
+          format: int32
+          nullable: true
+        sendAsnValue:
+          type: integer
+          format: int32
+        sendAsnValueSpecified:
+          type: boolean
+        sendAsn:
+          type: integer
+          format: int32
+          nullable: true
+        dutyPaidBy:
+          type: string
+          nullable: true
+        residentialDeliveryValue:
+          type: boolean
+        residentialDeliveryValueSpecified:
+          type: boolean
+        residentialDelivery:
+          type: boolean
+          nullable: true
+        homeDeliveryValue:
+          type: boolean
+        homeDeliveryValueSpecified:
+          type: boolean
+        homeDelivery:
+          type: boolean
+          nullable: true
+        insuranceRequiredValue:
+          type: boolean
+        insuranceRequiredValueSpecified:
+          type: boolean
+        insuranceRequired:
+          type: boolean
+          nullable: true
+        returnRequiredValue:
+          type: boolean
+        returnRequiredValueSpecified:
+          type: boolean
+        returnRequired:
+          type: boolean
+          nullable: true
+        incotermsType:
+          type: string
+          nullable: true
+        saturdayDeliveryValue:
+          type: boolean
+        saturdayDeliveryValueSpecified:
+          type: boolean
+        saturdayDelivery:
+          type: boolean
+          nullable: true
+        notificationCode1:
+          type: string
+          nullable: true
+        notificationCode2:
+          type: string
+          nullable: true
+        notificationCode3:
+          type: string
+          nullable: true
+        shipTo:
+          type: string
+          nullable: true
+        saleConditionCode:
+          type: string
+          nullable: true
+        termsTypePortOrPlace:
+          type: string
+          nullable: true
+        onTimeValue:
+          type: boolean
+        onTimeValueSpecified:
+          type: boolean
+        onTime:
+          type: boolean
+          nullable: true
+        verbalConfirmationName:
+          type: string
+          nullable: true
+        verbalConfirmationPhoneNumber:
+          type: string
+          nullable: true
+      additionalProperties: false
+    OrderTypeType:
+      type: integer
+      format: int32
+    PackType:
+      required:
+        - customMappings
+        - dimension
+        - quantity
+        - type
+        - upcs
+      type: object
+      properties:
+        itemNumber:
+          type: string
+          nullable: true
+        type:
+          minLength: 1
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        weightValue:
+          type: number
+          format: double
+        weightValueSpecified:
+          type: boolean
+        weight:
+          type: number
+          format: double
+          nullable: true
+        weightUom:
+          type: string
+          nullable: true
+        boxTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/BoxTypeType'
+          nullable: true
+          readOnly: true
+        boxTypesSpecified:
+          type: boolean
+          readOnly: true
+        dimension:
+          $ref: '#/components/schemas/DimensionType'
+        upcs:
+          $ref: '#/components/schemas/UpcCollection'
+        newPackFlagValue:
+          type: boolean
+        newPackFlagValueSpecified:
+          type: boolean
+        newPackFlag:
+          type: boolean
+          nullable: true
+        lpnTrackingEnabledValue:
+          type: boolean
+        lpnTrackingEnabledValueSpecified:
+          type: boolean
+        lpnTrackingEnabled:
+          type: boolean
+          nullable: true
+        readyToShipValue:
+          type: integer
+          format: int32
+        readyToShipValueSpecified:
+          type: boolean
+        readyToShip:
+          type: integer
+          format: int32
+          nullable: true
+        customMappings:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomMapType'
+          readOnly: true
+        cartonGroup:
+          type: string
+          nullable: true
+        preferredCartonType:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PaymentDetailType:
+      type: object
+      properties:
+        creditValue:
+          type: boolean
+        creditValueSpecified:
+          type: boolean
+        credit:
+          type: boolean
+          nullable: true
+        lastFour:
+          type: string
+          nullable: true
+        authorizedValue:
+          type: boolean
+        authorizedValueSpecified:
+          type: boolean
+        authorized:
+          type: boolean
+          nullable: true
+        historyId:
+          type: string
+          nullable: true
+        orderId:
+          type: string
+          nullable: true
+        authCode:
+          type: string
+          nullable: true
+        additionalData:
+          type: string
+          nullable: true
+        salePostedValue:
+          type: boolean
+        salePostedValueSpecified:
+          type: boolean
+        salePosted:
+          type: boolean
+          nullable: true
+        emvData:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PaymentType:
+      required:
+        - amount
+        - changes
+        - cityTax
+        - discount
+        - order
+        - shipping
+        - tax
+      type: object
+      properties:
+        idValue:
+          type: integer
+          format: int64
+        idValueSpecified:
+          type: boolean
+        id:
+          type: integer
+          format: int64
+          nullable: true
+        number:
+          type: string
+          nullable: true
+        gateway:
+          type: string
+          nullable: true
+        order:
+          minLength: 1
+          type: string
+        store:
+          type: string
+          nullable: true
+        transType:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        amount:
+          type: number
+          format: float
+        changes:
+          type: number
+          format: float
+        shipping:
+          type: number
+          format: float
+        tax:
+          type: number
+          format: float
+        cityTax:
+          type: number
+          format: float
+        discount:
+          type: number
+          format: float
+        cardType:
+          type: string
+          nullable: true
+        txType:
+          type: string
+          nullable: true
+        txNumber:
+          type: string
+          nullable: true
+        createdBy:
+          type: string
+          nullable: true
+        createdDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        createdDateValueSpecified:
+          type: boolean
+        createdDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        businessUnit:
+          type: string
+          nullable: true
+        detail:
+          $ref: '#/components/schemas/PaymentDetailType'
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelFieldType'
+          nullable: true
+          readOnly: true
+        channelsSpecified:
+          type: boolean
+          readOnly: true
+        channelSource:
+          type: string
+          nullable: true
+      additionalProperties: false
+    PlanItemType:
+      required:
+        - autoPreferredSafetyStock
+        - autoReorderLeadTime
+        - autoReorderPoint
+        - makeOrBuy
+        - minVendorOrderQuantity
+        - orderCycle
+        - reorderLeadTime
+        - reorderPoint
+        - reorderQuantity
+        - rounding
+        - safetyStock
+      type: object
+      properties:
+        tradingPartner:
+          type: string
+          nullable: true
+        facility:
+          type: string
+          nullable: true
+        reorderQuantity:
+          type: integer
+          format: int32
+        reorderPoint:
+          type: integer
+          format: int32
+        reorderLeadTime:
+          type: integer
+          format: int32
+        safetyStock:
+          type: integer
+          format: int32
+        rounding:
+          type: integer
+          format: int32
+        orderCycle:
+          type: integer
+          format: int32
+        minVendorOrderQuantity:
+          type: integer
+          format: int32
+        autoReorderPoint:
+          type: boolean
+        autoPreferredSafetyStock:
+          type: boolean
+        autoReorderLeadTime:
+          type: boolean
+        makeOrBuy:
+          type: boolean
+      additionalProperties: false
+    ReceiptLineType:
+      required:
+        - channels
+        - createItem
+        - createPo
+        - itemNumber
+        - lineNumber
+        - orderNumber
+        - quantity
+      type: object
+      properties:
+        orderType:
+          type: string
+          default: Purchase Order
+          nullable: true
+        orderNumber:
+          minLength: 1
+          type: string
+        lineNumber:
+          minLength: 1
+          type: string
+        number:
+          type: string
+          nullable: true
+        itemNumber:
+          minLength: 1
+          type: string
+        quantity:
+          type: integer
+          format: int32
+        packType:
+          type: string
+          default: Each
+          nullable: true
+        packQty:
+          type: integer
+          format: int32
+          default: 1
+        receivingFacility:
+          type: string
+          nullable: true
+        receivingLocation:
+          type: string
+          default: Receiving
+          nullable: true
+        receivingContainer:
+          type: string
+          nullable: true
+        receivingContainerType:
+          type: string
+          default: Pallet
+          nullable: true
+        receivedDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        receivedDateValueSpecified:
+          type: boolean
+        receivedDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        unitPriceValue:
+          type: number
+          format: double
+        unitPriceValueSpecified:
+          type: boolean
+        unitPrice:
+          type: number
+          format: double
+          nullable: true
+        lotNumber:
+          type: string
+          nullable: true
+        disposition:
+          type: string
+          nullable: true
+        serialNumber:
+          type: string
+          nullable: true
+        bornOnDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        bornOnDateValueSpecified:
+          type: boolean
+        bornOnDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        expirationDateValue:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+        expirationDateValueSpecified:
+          type: boolean
+        expirationDate:
+          pattern: '([0-9]{4})-(?:[0-9]{2})-([0-9]{2})'
+          type: string
+          format: date
+          nullable: true
+        catchWeightValue:
+          type: number
+          format: double
+        catchWeightValueSpecified:
+          type: boolean
+        catchWeight:
+          type: number
+          format: double
+          nullable: true
+        damagedValue:
+          type: boolean
+        damagedValueSpecified:
+          type: boolean
+        damaged:
+          type: boolean
+          nullable: true
+        damagedQuantityValue:
+          type: integer
+          format: int32
+        damagedQuantityValueSpecified:
+          type: boolean
+        damagedQuantity:
+          type: integer
+          format: int32
+          nullable: true
+        createInventory:
+          type: boolean
+          default: true
+        createPo:
+          type: boolean
+        createItem:
+          type: boolean
+        otherReferenceNumber:
+          type: string
+          nullable: true
+        parentNumber:
+          type: string
+          nullable: true
+        oldItemNumber:
+          type: string
+          nullable: true
+        customAttribute1:
+          type: string
+          nullable: true
+        customAttribute2:
+          type: string
+          nullable: true
+        customAttribute3:
+          type: string
+          nullable: true
+        inventoryCondition:
+          type: string
+          nullable: true
+        inventoryAttribute1:
+          type: string
+          nullable: true
+        inventoryAttribute2:
+          type: string
+          nullable: true
+        inventoryAttribute3:
+          type: string
+          nullable: true
+        inventoryAttribute4:
+          type: string
+          nullable: true
+        inventoryAttribute5:
+          type: string
+          nullable: true
+        inventoryAttribute6:
+          type: string
+          nullable: true
+        inventoryAttribute7:
+          type: string
+          nullable: true
+        channels:
+          type: array
+          items:
+            $ref: '#/components/schemas/ChannelFieldType'
+          readOnly: true
+      additionalProperties: false
+    UpcCollection:
+      type: object
+      properties:
+        upc:
+          type: array
+          items:
+            type: string
+          nullable: true
+          readOnly: true
+        upcSpecified:
+          type: boolean
+          readOnly: true
+        source:
+          type: string
+          nullable: true
+      additionalProperties: false
+    UserCollection:
+      type: object
+      properties:
+        user:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserType'
+          nullable: true
+          readOnly: true
+        userSpecified:
+          type: boolean
+          readOnly: true
+      additionalProperties: false
+      nullable: true
+    UserType:
+      required:
+        - email
+        - enabled
+        - firstName
+        - lastName
+        - username
+      type: object
+      properties:
+        username:
+          minLength: 1
+          type: string
+        firstName:
+          minLength: 1
+          type: string
+        lastName:
+          minLength: 1
+          type: string
+        email:
+          minLength: 1
+          type: string
+        enabled:
+          type: boolean
+        businessUnit:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+          nullable: true
+        facility:
+          type: string
+          nullable: true
+        organization:
+          type: string
+          nullable: true
+        password:
+          type: string
+          nullable: true
+        active:
+          type: string
+          nullable: true
+        handheldMenu:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        employeeNumber:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        department:
+          type: string
+          nullable: true
+        division:
+          type: string
+          nullable: true
+        address:
+          type: string
+          nullable: true
+        city:
+          type: string
+          nullable: true
+        state:
+          type: string
+          nullable: true
+        country:
+          type: string
+          nullable: true
+        zip:
+          type: string
+          nullable: true
+        timeZone:
+          type: string
+          nullable: true
+        language:
+          type: string
+          nullable: true
+        phone:
+          type: string
+          nullable: true
+        mobile:
+          type: string
+          nullable: true
+        fax:
+          type: string
+          nullable: true
+      additionalProperties: false
+      nullable: true
+    WeightType:
+      required:
+        - weight
+      type: object
+      properties:
+        weight:
+          type: number
+          format: double
+        units:
+          type: string
+          default: Pound
+          nullable: true
+      additionalProperties: false
+  securitySchemes:
+    BasicAuth:
+      type: http
+      description: Basic Authentication. Enter your username and password.
+      scheme: basic
+security:
+  - BasicAuth: [ ]
+tags:
+  - name: AddressValidation
+    description: Enables you to validate a specific address
+    externalDocs:
+      url: https://doc.deposco.com/docs/html/Content/API/Address_validation_API.htm
+  - name: Bulk
+    description: Send a large number of items or orders to Deposco in a single request
+    externalDocs:
+      url: https://doc.deposco.com/docs/html/Content/API/Bulk_API/Bulk_API.htm

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://integration.deposco.com/types"
+           targetNamespace="http://integration.deposco.com/types"
+           elementFormDefault="unqualified">
+    <xs:import namespace="http://integration.deposco.com/types" schemaLocation="Types.xsd"/>
+    
+    <xs:element name="carrierSpecialServiceType " type="CarrierSpecialServiceType"/>
+</xs:schema>

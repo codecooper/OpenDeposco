@@ -1,0 +1,11 @@
+﻿<xsd xmlns='http://microsoft.com/dotnet/tools/xsd/'>
+	<generateClasses language='CS' namespace='OpenDeposco.Location'>
+		<schema>XSDs\Location.xsd</schema>
+		<schema>XSDs\Zone.xsd</schema>
+		<schema>XSDs\MultiStatusResponse.xsd</schema>
+		<schema>XSDs\Types.xsd</schema>
+		<schema>XSDs\Pack.xsd</schema>
+		<schema>XSDs\UPC.xsd</schema>
+		<schema>.\XMLConfigs\Location.xsd</schema>
+	</generateClasses>
+</xsd>

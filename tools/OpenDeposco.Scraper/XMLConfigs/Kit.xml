@@ -1,0 +1,11 @@
+﻿<xsd xmlns='http://microsoft.com/dotnet/tools/xsd/'>
+	<generateClasses language='CS' namespace='OpenDeposco.Kit'>
+		<schema>XSDs\KitHeader.xsd</schema>
+		<schema>XSDs\KitDetail.xsd</schema>
+		<schema>XSDs\MultiStatusResponse.xsd</schema>
+		<schema>XSDs\Types.xsd</schema>
+		<schema>XSDs\Pack.xsd</schema>
+		<schema>XSDs\UPC.xsd</schema>
+		<schema>.\XMLConfigs\Kit.xsd</schema>
+	</generateClasses>
+</xsd>

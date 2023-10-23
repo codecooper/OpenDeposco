@@ -1,0 +1,20 @@
+﻿<xsd xmlns='http://microsoft.com/dotnet/tools/xsd/'>
+	<generateClasses language='CS' namespace='OpenDeposco.Bulk'>
+		<schema>XSDs\BulkUpdate.xsd</schema>
+		<schema>XSDs\BulkUpdateResponse.xsd</schema>
+		<schema>XSDs\Item.xsd</schema>
+		<schema>XSDs\OrderHeader.xsd</schema>
+		<schema>XSDs\OrderLine.xsd</schema>
+		<schema>XSDs\MultiStatusResponse.xsd</schema>
+		<schema>XSDs\Container.xsd</schema>
+		<schema>XSDs\ItemCustomer.xsd</schema>
+		<schema>XSDs\ItemVendor.xsd</schema>
+		<schema>XSDs\ReceiptLine.xsd</schema>
+		<schema>XSDs\Pack.xsd</schema>
+		<schema>XSDs\Payment.xsd</schema>
+		<schema>XSDs\PlanItem.xsd</schema>
+		<schema>XSDs\Types.xsd</schema>
+		<schema>XSDs\UPC.xsd</schema>
+		<schema>.\Bulk.xsd</schema>
+	</generateClasses>
+</xsd>

@@ -1,0 +1,22 @@
+﻿<xsd xmlns='http://microsoft.com/dotnet/tools/xsd/'>
+	<generateClasses language='CS' namespace='OpenDeposco.CustomerOrder'>
+		<schema>XSDs\CoHeader.xsd</schema>
+		<schema>XSDs\CoChargeAllowance.xsd</schema>
+		<schema>XSDs\CoContact.xsd</schema>
+		<schema>XSDs\CoDate.xsd</schema>
+		<schema>XSDs\CoLine.xsd</schema>
+		<schema>XSDs\CoLineAllocation.xsd</schema>
+		<schema>XSDs\CoLineSite.xsd</schema>
+		<schema>XSDs\CoNotice.xsd</schema>
+		<schema>XSDs\CoPayment.xsd</schema>
+		<schema>XSDs\CoPaymentTerm.xsd</schema>
+		<schema>XSDs\CoReference.xsd</schema>
+		<schema>XSDs\CoRefund.xsd</schema>
+		<schema>XSDs\CoTax.xsd</schema>
+		<schema>XSDs\MultiStatusResponse.xsd</schema>
+		<schema>XSDs\Types.xsd</schema>
+		<schema>XSDs\Pack.xsd</schema>
+		<schema>XSDs\UPC.xsd</schema>
+		<schema>.\XMLConfigs\CustomerOrder.xsd</schema>
+	</generateClasses>
+</xsd>

@@ -396,3 +396,11 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+**/Output/*/XMLConfigs/*
+**/Output/*/*.dll
+**/Output/*/*.exe
+**/Output/*/Open*.json
+
+api_keys.json
+api_key.json

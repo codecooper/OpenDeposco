@@ -1,0 +1,18 @@
+﻿<xsd xmlns='http://microsoft.com/dotnet/tools/xsd/'>
+	<generateClasses language='CS' namespace='OpenDeposco.PriceList'>
+		<schema>XSDs\PriceList.xsd</schema>
+		<schema>XSDs\MultiStatusResponse.xsd</schema>
+		<schema>XSDs\Types.xsd</schema>
+		<schema>XSDs\Pack.xsd</schema>
+		<schema>XSDs\UPC.xsd</schema>
+		<schema>XSDs\TradingPartner.xsd</schema>
+		<schema>XSDs\Facility.xsd</schema>
+		<schema>XSDs\PriceListDetail.xsd</schema>
+		<schema>XSDs\Item.xsd</schema>
+		<schema>XSDs\ItemCustomer.xsd</schema>
+		<schema>XSDs\ItemPrice.xsd</schema>
+		<schema>XSDs\ItemVendor.xsd</schema>
+		<schema>XSDs\PlanItem.xsd</schema>
+		<schema>.\XMLConfigs\PriceList.xsd</schema>
+	</generateClasses>
+</xsd>
